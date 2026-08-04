@@ -1,1 +1,667 @@
-body{margin:0;background:#0b0d10;color:#fff;font-family:Arial}nav{display:flex;justify-content:space-between;padding:20px 40px;position:sticky;top:0;background:#1118}a{color:#ddd;text-decoration:none}.hero{height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#111,#222)}button{padding:14px 28px;border-radius:30px;background:#fff;color:#000;border:0}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;padding:20px}.cards div,.feature{background:#181c22;border:1px solid #333;padding:24px;border-radius:16px;margin:20px}section{padding:40px}
+<!DOCTYPE html>
+<html lang="vi" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athena Showcase H2 - Kỷ Nguyên Công Nghệ Tương Lai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Config for custom theme -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        athena: {
+                            50: '#f0f7ff',
+                            500: '#00f0ff',
+                            600: '#00c3ff',
+                            900: '#030712',
+                            card: '#0e1726',
+                            accent: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { 'box-shadow': '0 0 15px rgba(0, 240, 255, 0.3)' },
+                            '100%': { 'box-shadow': '0 0 30px rgba(168, 85, 247, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Alpine.js for lightweight reactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(30, 41, 59, 0.7);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-apple {
+            background: linear-gradient(180deg, #FFFFFF 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f0ff; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-athena-500 selection:text-black overflow-x-hidden" x-data="athenaApp()">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-athena-500 to-athena-accent flex items-center justify-center p-[2px] transition-transform duration-300 group-hover:scale-105">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-athena-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-xl tracking-wider text-white">ATHENA</span>
+                        <span class="text-xs text-athena-500 block -mt-1 font-mono tracking-widest">SHOWCASE H2</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                    <a href="#hero" class="hover:text-athena-500 transition-colors">Trang chủ</a>
+                    <a href="#h2-focus" class="hover:text-athena-500 transition-colors flex items-center gap-1.5">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-athena-500 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-athena-500"></span>
+                        </span>
+                        Trọng điểm H2
+                    </a>
+                    <a href="#products" class="hover:text-athena-500 transition-colors">Sản phẩm & Đối tác</a>
+                    <a href="#matrix" class="hover:text-athena-500 transition-colors">Giải pháp</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="#products" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium rounded-xl group bg-gradient-to-br from-athena-500 to-athena-accent group-hover:from-athena-500 group-hover:to-athena-accent hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-cyan-800">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-slate-950 rounded-[10px] group-hover:bg-opacity-0">
+                            Khám phá ngay
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i data-lucide="menu" x-show="!mobileMenuOpen" class="w-6 h-6"></i>
+                    <i data-lucide="x" x-show="mobileMenuOpen" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden glass-panel border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" @click="mobileMenuOpen=false" class="block py-2 text-slate-200 hover:text-athena-500">Trang chủ</a>
+            <a href="#h2-focus" @click="mobileMenuOpen=false" class="block py-2 text-athena-500 font-medium">Trọng điểm H2</a>
+            <a href="#products" @click="mobileMenuOpen=false" class="block py-2 text-slate-200 hover:text-athena-500">Danh mục sản phẩm</a>
+            <a href="#matrix" @click="mobileMenuOpen=false" class="block py-2 text-slate-200 hover:text-athena-500">So sánh giải pháp</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <!-- Background Lighting FX -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-athena-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-athena-accent/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <!-- Grid Pattern Overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-athena-500/30 text-athena-500 text-xs sm:text-sm font-medium mb-8 animate-fade-in">
+                <i data-lucide="sparkles" class="w-4 h-4 text-athena-500"></i>
+                <span>ATHENA PORTFOLIO H2 2026 - ĐIỂM HỘI TỤ CÔNG NGHỆ BỨC PHÁ</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 max-w-5xl mx-auto leading-tight">
+                Giải Pháp Công Nghệ Thượng Đỉnh <br class="hidden sm:inline"/>
+                <span class="text-gradient">Đột Phá Doanh Nghiệp & Gaming</span>
+            </h1>
+
+            <p class="text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+                Tổng hợp hệ sinh thái phần cứng đỉnh cao từ các thương hiệu dẫn đầu thế giới: Apple, Alienware, Samsung, Dell, HP & Acer. Giải pháp hoàn hảo cho H2.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#h2-focus" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-athena-500 to-athena-accent text-slate-950 font-bold hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <i data-lucide="rocket" class="w-5 h-5"></i>
+                    Xem Sản Phẩm Trọng Điểm H2
+                </a>
+                <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-white font-semibold hover:bg-white/10 border border-white/10 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="filter" class="w-5 h-5 text-athena-500"></i>
+                    Lọc Theo Thương Hiệu / Ngành
+                </a>
+            </div>
+
+            <!-- Brand Logos Bar -->
+            <div class="pt-10 border-t border-white/5">
+                <p class="text-xs uppercase font-mono tracking-widest text-slate-500 mb-6">Đối tác chiến lược thương hiệu hàng đầu</p>
+                <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">APPLE</span>
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">ALIENWARE</span>
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">SAMSUNG</span>
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">DELL</span>
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">HP</span>
+                    <span class="font-display font-bold text-xl tracking-wider text-slate-300">ACER PREDATOR</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- H2 Focus Section -->
+    <section id="h2-focus" class="py-24 relative bg-slate-950/80 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <div class="text-athena-500 font-mono text-sm tracking-widest uppercase mb-2">● STRATEGIC HIGHLIGHTS</div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-bold text-gradient-apple">Sản Phẩm Trọng Điểm H2</h2>
+                </div>
+                <p class="text-slate-400 max-w-md mt-4 md:mt-0 text-sm">
+                    Những dòng sản phẩm chiến lược được Athena tập trung nguồn lực tư vấn, triển khai và bảo trợ độc quyền trong bán niên cuối năm.
+                </p>
+            </div>
+
+            <!-- Focus Product Cards Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <template x-for="item in h2FocusProducts" :key="item.id">
+                    <div class="glass-panel rounded-2xl overflow-hidden group hover:border-athena-500/50 transition-all duration-500 flex flex-col justify-between">
+                        <div class="relative p-6">
+                            <!-- Tag -->
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono bg-athena-500/10 text-athena-500 border border-athena-500/20" x-text="item.brand"></span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">FLAGSHIP H2</span>
+                            </div>
+
+                            <!-- Image Container -->
+                            <div class="h-56 relative rounded-xl overflow-hidden mb-6 bg-slate-900 flex items-center justify-center p-4">
+                                <img :src="item.image" :alt="item.name" class="max-h-full object-contain group-hover:scale-110 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                            </div>
+
+                            <!-- Content -->
+                            <h3 class="text-2xl font-bold font-display text-white mb-2 group-hover:text-athena-500 transition-colors" x-text="item.name"></h3>
+                            <p class="text-slate-400 text-sm mb-6 line-clamp-2" x-text="item.description"></p>
+
+                            <!-- Specs Chips -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <template x-for="spec in item.specs" :key="spec">
+                                    <span class="text-xs bg-slate-900/90 border border-white/5 text-slate-300 px-2.5 py-1 rounded-md" x-text="spec"></span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Footer Link -->
+                        <div class="p-6 pt-0 border-t border-white/5 mt-auto flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-mono" x-text="item.category"></span>
+                            <button @click="openModal(item)" class="text-sm font-semibold text-athena-500 hover:text-white flex items-center gap-1.5 transition-colors">
+                                <span>Chi tiết giải pháp</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section with Filters -->
+    <section id="products" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-5xl font-display font-bold text-white mb-4">Hệ Sinh Thái Sản Phẩm Comprehensive</h2>
+                <p class="text-slate-400 text-base">
+                    Bộ lọc thông minh giúp chọn lựa chính xác theo nhu cầu Doanh nghiệp, Đồ họa chuyên nghiệp hoặc Hiệu năng Gaming cao cấp.
+                </p>
+            </div>
+
+            <!-- Filter Controls Panel -->
+            <div class="glass-panel p-6 rounded-2xl mb-12 border border-white/10 space-y-6">
+                <!-- Search & Reset -->
+                <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full md:w-96">
+                        <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input 
+                            type="text" 
+                            x-model="searchQuery" 
+                            placeholder="Tìm kiếm sản phẩm, chip, VGA..." 
+                            class="w-full bg-slate-900 border border-slate-700/60 rounded-xl pl-11 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-athena-500 transition-colors"
+                        >
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                        <span class="text-xs font-mono text-slate-400">Hiển thị <strong class="text-athena-500" x-text="filteredProducts.length"></strong> sản phẩm</span>
+                        <button @click="resetFilters()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 transition-colors flex items-center gap-1">
+                            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                            Đặt lại
+                        </button>
+                    </div>
+                </div>
+
+                <div class="h-px bg-white/5"></div>
+
+                <!-- Industry Filter (Ngành Hàng) -->
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-3">Phân Loại Theo Ngành / Nhu Cầu:</label>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="cat in categories" :key="cat.id">
+                            <button 
+                                @click="selectedCategory = cat.id"
+                                :class="selectedCategory === cat.id ? 'bg-athena-500 text-slate-950 font-bold border-athena-500' : 'bg-slate-900/80 text-slate-300 border-white/10 hover:border-slate-600'"
+                                class="px-4 py-2 rounded-xl text-xs sm:text-sm border transition-all flex items-center gap-2"
+                            >
+                                <span x-text="cat.name"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Brand Filter (Nhãn Hàng) -->
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-3">Lọc Theo Thương Hiệu Partner:</label>
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="brand in brands" :key="brand.id">
+                            <button 
+                                @click="selectedBrand = brand.id"
+                                :class="selectedBrand === brand.id ? 'bg-athena-accent text-white font-bold border-athena-accent' : 'bg-slate-900/80 text-slate-300 border-white/10 hover:border-slate-600'"
+                                class="px-3.5 py-1.5 rounded-lg text-xs border transition-all flex items-center gap-1.5"
+                            >
+                                <span x-text="brand.name"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <template x-for="product in filteredProducts" :key="product.id">
+                    <div class="glass-card rounded-xl p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
+                        <div>
+                            <!-- Header Info -->
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-white/5" x-text="product.brand"></span>
+                                <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1" x-show="product.inStock">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Sẵn hàng H2
+                                </span>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="h-44 rounded-lg bg-slate-950/60 p-3 mb-4 flex items-center justify-center relative group">
+                                <img :src="product.image" :alt="product.name" class="max-h-full object-contain group-hover:scale-105 transition-transform">
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="font-bold text-white text-base mb-1 hover:text-athena-500 cursor-pointer" @click="openModal(product)" x-text="product.name"></h3>
+                            <p class="text-xs text-slate-400 mb-4 line-clamp-2" x-text="product.summary"></p>
+                        </div>
+
+                        <!-- Price & CTA -->
+                        <div class="pt-4 border-t border-white/5">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-slate-500">Mức giá định hướng:</span>
+                                <span class="font-mono text-sm font-bold text-athena-500" x-text="product.price"></span>
+                            </div>
+                            <button @click="openModal(product)" class="w-full py-2 rounded-lg bg-slate-800 hover:bg-athena-500 hover:text-slate-950 text-xs font-semibold text-white transition-all duration-200">
+                                Xem thông số & tư vấn
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Empty State -->
+            <div x-show="filteredProducts.length === 0" class="text-center py-20 glass-panel rounded-2xl">
+                <i data-lucide="package-search" class="w-12 h-12 text-slate-600 mx-auto mb-4"></i>
+                <h3 class="text-lg font-bold text-white mb-1">Không tìm thấy sản phẩm phù hợp</h3>
+                <p class="text-slate-400 text-sm mb-4">Vui lòng thử thay đổi từ khóa hoặc bộ lọc thương hiệu.</p>
+                <button @click="resetFilters()" class="px-4 py-2 bg-athena-500 text-slate-950 rounded-lg text-xs font-bold">Xóa bộ lọc</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Matrix Section -->
+    <section id="matrix" class="py-20 glass-panel border-t border-b border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-athena-500 font-mono text-xs uppercase tracking-widest">WHY ATHENA SOLUTION</span>
+                <h2 class="text-3xl font-display font-bold text-white mt-2">So Sánh Năng Lực Cung Cấp H2</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-white/5">
+                    <div class="w-12 h-12 rounded-xl bg-athena-500/10 flex items-center justify-center text-athena-500 mb-6">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Chính Sách Bào Hành Độc Quyền</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Chế độ bảo hành tận nơi 1-đổi-1 cho doanh nghiệp đối với các dòng máy trạm Dell Precision, HP Z-Series và server chuyên dụng.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-white/5">
+                    <div class="w-12 h-12 rounded-xl bg-athena-accent/10 flex items-center justify-center text-athena-accent mb-6">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Tùy Biến Theo Yêu Cầu (Customization)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Hỗ trợ build cấu hình PC Alienware, Acer Predator và cụm tính toán AI với tản nhiệt chất lỏng chuyên sâu cho nghiên cứu.
+                    </p>
+                </div>
+
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-white/5">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-6">
+                        <i data-lucide="truck" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Hàng Sẵn H2 Kho Athena</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Cam kết giữ tiến độ giao hàng dưới 48 giờ cho toàn bộ các thiết bị trọng điểm H2 niêm yết trong catalogue.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Detail Overlay -->
+    <div 
+        x-show="modalOpen" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+        style="display: none;"
+    >
+        <div 
+            @click.away="modalOpen = false"
+            class="glass-panel w-full max-w-3xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col"
+        >
+            <!-- Close Button -->
+            <button @click="modalOpen = false" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <template x-if="selectedProduct">
+                <div class="p-6 overflow-y-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <!-- Product Image in Modal -->
+                        <div class="bg-slate-900 rounded-xl p-6 flex items-center justify-center border border-white/5">
+                            <img :src="selectedProduct.image" :alt="selectedProduct.name" class="max-h-64 object-contain">
+                        </div>
+
+                        <!-- Info -->
+                        <div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-athena-500/10 text-athena-500 font-bold" x-text="selectedProduct.brand"></span>
+                            <h2 class="text-2xl font-bold text-white mt-2 mb-2" x-text="selectedProduct.name"></h2>
+                            <p class="text-slate-300 text-sm mb-4" x-text="selectedProduct.description || selectedProduct.summary"></p>
+                            
+                            <div class="bg-slate-900/80 p-3 rounded-lg border border-white/5 mb-4">
+                                <span class="text-xs text-slate-400 block mb-1">Mức giá dự kiến H2:</span>
+                                <span class="text-xl font-bold font-mono text-athena-500" x-text="selectedProduct.price"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Specs -->
+                    <div class="border-t border-white/10 pt-4 mb-6">
+                        <h4 class="text-sm font-bold text-white font-mono uppercase tracking-wider mb-3">Thông số kỹ thuật nổi bật</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <template x-for="spec in (selectedProduct.specs || [])" :key="spec">
+                                <div class="bg-slate-900 p-2.5 rounded border border-white/5 flex items-center gap-2 text-slate-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-athena-500 shrink-0"></i>
+                                    <span x-text="spec"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Contact/CTA inside Modal -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                        <a href="https://github.com" target="_blank" class="flex-1 py-3 bg-gradient-to-r from-athena-500 to-athena-accent text-slate-950 font-bold rounded-xl text-center text-sm hover:opacity-90 transition-opacity">
+                            Yêu Cầu Báo Giá Doanh Nghiệp
+                        </a>
+                        <button @click="modalOpen = false" class="px-6 py-3 bg-slate-800 text-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-700">
+                            Đóng
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-athena-500 flex items-center justify-center text-slate-950 font-bold">A</div>
+                    <span class="font-display font-bold text-white text-lg tracking-wider">ATHENA TECHNOLOGY</span>
+                </div>
+
+                <div class="text-xs text-slate-500 text-center">
+                    &copy; 2026 Athena Enterprise. Hosted proudly on GitHub Pages (<code class="text-athena-500">github.io</code>).
+                </div>
+
+                <div class="flex gap-4 text-slate-400">
+                    <a href="#" class="hover:text-athena-500 transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-athena-500 transition-colors"><i data-lucide="globe" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-athena-500 transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function athenaApp() {
+            return {
+                mobileMenuOpen: false,
+                modalOpen: false,
+                selectedProduct: null,
+                searchQuery: '',
+                selectedCategory: 'all',
+                selectedBrand: 'all',
+
+                categories: [
+                    { id: 'all', name: 'Tất cả ngành hàng' },
+                    { id: 'gaming', name: 'Esports & Gaming High-End' },
+                    { id: 'workstation', name: 'Đồ Họa & Máy Trạm AI' },
+                    { id: 'business', name: 'Doanh Nghiệp & Ultramobile' },
+                    { id: 'display', name: 'Màn Hình & Hiển Thị' }
+                ],
+
+                brands: [
+                    { id: 'all', name: 'Tất cả nhãn hàng' },
+                    { id: 'Alienware', name: 'Alienware' },
+                    { id: 'Apple', name: 'Apple Pro' },
+                    { id: 'Samsung', name: 'Samsung' },
+                    { id: 'Dell', name: 'Dell Enterprise' },
+                    { id: 'HP', name: 'HP Z-Series' },
+                    { id: 'Acer', name: 'Acer Predator' }
+                ],
+
+                // H2 Highlight Focus Items
+                h2FocusProducts: [
+                    {
+                        id: 'h2-1',
+                        name: 'Alienware Aurora R16 Athena Edition',
+                        brand: 'Alienware',
+                        category: 'Esports & Gaming High-End',
+                        description: 'Cấu hình gaming tối thượng H2 trang bị tản nhiệt chất lỏng Legend 3, thiết kế tối ưu luồng khí.',
+                        image: 'https://placehold.co/600x400/0b1329/00f0ff?text=Alienware+R16+Athena',
+                        price: '89.900.000 VNĐ',
+                        specs: ['Intel Core i9-14900KF', 'NVIDIA RTX 4090 24GB', '64GB DDR5 XMP', '2TB NVMe Gen4']
+                    },
+                    {
+                        id: 'h2-2',
+                        name: 'MacBook Pro 16" M3 Max Athena Station',
+                        brand: 'Apple',
+                        category: 'Đồ Họa & Máy Trạm AI',
+                        description: 'Quái vật hiệu năng di động cho lập trình AI & dựng phim 8K chuyên nghiệp nửa cuối năm 2026.',
+                        image: 'https://placehold.co/600x400/0b1329/a855f7?text=MacBook+Pro+M3+Max',
+                        price: '98.500.000 VNĐ',
+                        specs: ['M3 Max 16-Core CPU', '40-Core GPU', '64GB Unified RAM', 'Liquid Retina XDR 120Hz']
+                    },
+                    {
+                        id: 'h2-3',
+                        name: 'Samsung Odyssey OLED G9 49" Curved',
+                        brand: 'Samsung',
+                        category: 'Màn Hình & Hiển Thị',
+                        description: 'Màn hình cong kép siêu rộng 240Hz OLED đáp ứng đa nhiệm doanh nghiệp và giải trí đỉnh cao.',
+                        image: 'https://placehold.co/600x400/0b1329/00c3ff?text=Samsung+Odyssey+G9',
+                        price: '38.990.000 VNĐ',
+                        specs: ['49 inch Dual QHD', 'OLED 0.03ms GTG', '240Hz Refresh Rate', 'DisplayHDR True Black 400']
+                    }
+                ],
+
+                // Main Products List
+                products: [
+                    {
+                        id: 'p1',
+                        name: 'Dell Precision 7780 Workstation',
+                        brand: 'Dell',
+                        category: 'workstation',
+                        summary: 'Máy trạm di động mạnh mẽ nhất cho kỹ sư thiết kế CAD/CAE.',
+                        description: 'Giải pháp Dell Precision được Athena chứng nhận tối ưu hóa cho đồ họa công nghiệp nặng.',
+                        image: 'https://placehold.co/400x300/1e293b/00f0ff?text=Dell+Precision+7780',
+                        price: '75.000.000 VNĐ',
+                        inStock: true,
+                        specs: ['Core i9-13950HX', 'NVIDIA RTX 5000 Ada', '32GB ECC RAM', '17.3" UHD+ 100% DCI-P3']
+                    },
+                    {
+                        id: 'p2',
+                        name: 'HP ZBook Studio G10 Mobile AI',
+                        brand: 'HP',
+                        category: 'workstation',
+                        summary: 'Sự kết hợp hoàn hảo giữa độ mỏng nhẹ và sức mạnh đồ họa Z-Series.',
+                        description: 'Trang bị tản nhiệt Vapor Chamber tiên tiến từ HP.',
+                        image: 'https://placehold.co/400x300/1e293b/a855f7?text=HP+ZBook+Studio',
+                        price: '62.000.000 VNĐ',
+                        inStock: true,
+                        specs: ['Core i7-13800H', 'RTX 4080 12GB', '32GB DDR5', 'DreamColor Display']
+                    },
+                    {
+                        id: 'p3',
+                        name: 'Acer Predator Helios 18 Gaming',
+                        brand: 'Acer',
+                        category: 'gaming',
+                        summary: 'Laptop gaming màn hình 18-inch Mini-LED tần số quét 250Hz.',
+                        description: 'Dòng máy trọng điểm H2 cho các tuyển thủ và streamer chuyên nghiệp.',
+                        image: 'https://placehold.co/400x300/1e293b/00f0ff?text=Acer+Helios+18',
+                        price: '71.900.000 VNĐ',
+                        inStock: true,
+                        specs: ['Core i9-14900HX', 'RTX 4090 16GB', '32GB DDR5', '18" WQXGA Mini-LED']
+                    },
+                    {
+                        id: 'p4',
+                        name: 'Samsung ViewFinity S9 5K 27"',
+                        brand: 'Samsung',
+                        category: 'display',
+                        summary: 'Màn hình 5K cân chỉnh màu chuẩn xác cho Studio & Designer.',
+                        description: 'Tích hợp Calman Verified và Smart Calibration từ điện thoại.',
+                        image: 'https://placehold.co/400x300/1e293b/00c3ff?text=Samsung+5K+ViewFinity',
+                        price: '29.990.000 VNĐ',
+                        inStock: true,
+                        specs: ['27" 5K (5120 x 2880)', '99% DCI-P3', 'Matte Display', 'Thunderbolt 4 90W']
+                    },
+                    {
+                        id: 'p5',
+                        name: 'Apple iPad Pro 13" M4 Ultra Thin',
+                        brand: 'Apple',
+                        category: 'business',
+                        summary: 'Màn hình Ultra Retina Tandem OLED mỏng nhẹ kỷ lục.',
+                        description: 'Thiết bị làm việc di động cao cấp cho các lãnh đạo và kiến trúc sư.',
+                        image: 'https://placehold.co/400x300/1e293b/a855f7?text=iPad+Pro+M4',
+                        price: '37.990.000 VNĐ',
+                        inStock: true,
+                        specs: ['Apple M4 Chip', 'Tandem OLED Display', 'Apple Pencil Pro Support', '5.1mm Ultra Thin']
+                    },
+                    {
+                        id: 'p6',
+                        name: 'Alienware m18 R2 Gaming Laptop',
+                        brand: 'Alienware',
+                        category: 'gaming',
+                        summary: 'Sức mạnh thay thế máy bàn hoàn hảo với bàn phím cơ CherryMX.',
+                        description: 'Công nghệ tản nhiệt Element 31 độc quyền độc đáo của Dell Alienware.',
+                        image: 'https://placehold.co/400x300/1e293b/00f0ff?text=Alienware+m18+R2',
+                        price: '84.500.000 VNĐ',
+                        inStock: true,
+                        specs: ['Core i9-14900HX', 'RTX 4090', '64GB RAM', 'Mechanical Keyboard']
+                    }
+                ],
+
+                get filteredProducts() {
+                    return this.products.filter(p => {
+                        const matchesCategory = this.selectedCategory === 'all' || p.category === this.selectedCategory;
+                        const matchesBrand = this.selectedBrand === 'all' || p.brand === this.selectedBrand;
+                        const matchesSearch = p.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+                                              p.summary.toLowerCase().includes(this.searchQuery.toLowerCase());
+                        return matchesCategory && matchesBrand && matchesSearch;
+                    });
+                },
+
+                openModal(product) {
+                    this.selectedProduct = product;
+                    this.modalOpen = true;
+                },
+
+                resetFilters() {
+                    this.selectedCategory = 'all';
+                    this.selectedBrand = 'all';
+                    this.searchQuery = '';
+                }
+            }
+        }
+
+        // Initialize icons on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
