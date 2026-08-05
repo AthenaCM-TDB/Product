@@ -796,6 +796,139 @@ html,body{max-width:100%;overflow-x:hidden}
   .h2-hero-block h2{font-size:34px}
 }
 
+
+/* ===== V20 STACKED H2 PRIORITIES =====
+   New H2 and Quarter Focus are now sequential storytelling blocks,
+   avoiding the dead space caused by equal-height side-by-side cards.
+*/
+.h2-highlight-grid{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:18px!important;
+}
+.h2-hero-block{
+  min-height:0!important;
+  width:100%;
+}
+
+/* NEW H2 becomes a compact horizontal opportunity banner on desktop */
+.h2-hero-block.new-block{
+  padding:0!important;
+  min-height:0!important;
+}
+.new-block .h2-block-inner{
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(170px,.34fr) minmax(0,1fr);
+  grid-template-areas:
+    "signal story"
+    "signal actions";
+  column-gap:34px;
+  row-gap:14px;
+  align-items:center;
+  padding:34px 38px;
+}
+.new-block .h2-kicker{
+  grid-area:signal;
+  align-self:start;
+}
+.new-block .h2-number{
+  grid-area:signal;
+  align-self:center;
+  justify-self:start;
+  margin:24px 0 0!important;
+  font-size:clamp(82px,9vw,124px);
+}
+.new-block h2{
+  grid-area:story;
+  align-self:end;
+  margin:0!important;
+  max-width:760px;
+  font-size:clamp(34px,4vw,52px);
+}
+.new-block>div>p,
+.new-block .h2-block-inner>p{
+  grid-area:story;
+  align-self:start;
+  margin-top:78px;
+  max-width:700px;
+}
+.new-block .action-strip{
+  grid-area:actions;
+  margin:0;
+  align-self:start;
+}
+.new-block .h2-block-actions{
+  grid-area:actions;
+  justify-self:end;
+  align-self:end;
+  margin:0!important;
+  padding:0!important;
+  width:auto;
+}
+
+/* Make story + action strip coexist cleanly by reserving action row */
+@media(min-width:901px){
+  .new-block .h2-block-inner{
+    grid-template-columns:170px minmax(0,1fr) auto;
+    grid-template-areas:
+      "signal story story"
+      "signal chips actions";
+  }
+  .new-block .h2-kicker{grid-area:signal}
+  .new-block .h2-number{grid-area:signal}
+  .new-block h2{grid-area:story}
+  .new-block .h2-block-inner>p{
+    grid-area:story;
+    margin-top:68px;
+    max-width:720px;
+    padding-right:30px;
+  }
+  .new-block .action-strip{grid-area:chips}
+  .new-block .h2-block-actions{
+    grid-area:actions;
+    display:flex;
+    flex-wrap:nowrap;
+    gap:8px;
+  }
+}
+
+/* Quarter Focus gets the visual stage after the compact opportunity banner */
+.h2-hero-block.focus-block{
+  padding:38px 40px!important;
+}
+.focus-block .h2-block-inner{height:auto}
+
+/* Mobile remains vertical and compact */
+@media(max-width:900px){
+  .h2-highlight-grid{gap:14px!important}
+  .new-block .h2-block-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    padding:26px 22px;
+    gap:0;
+  }
+  .new-block .h2-kicker{align-self:flex-start}
+  .new-block .h2-number{
+    align-self:flex-start;
+    margin:28px 0 18px!important;
+  }
+  .new-block h2{margin:0 0 14px!important}
+  .new-block .h2-block-inner>p{
+    margin:0!important;
+    padding:0;
+  }
+  .new-block .action-strip{margin-top:20px}
+  .new-block .h2-block-actions{
+    width:100%;
+    justify-self:stretch;
+    margin-top:24px!important;
+    padding:0!important;
+  }
+  .h2-hero-block.focus-block{padding:26px 22px!important}
+}
+
 </style></head>
 <body>
 
