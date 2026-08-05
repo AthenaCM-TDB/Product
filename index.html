@@ -573,6 +573,229 @@ h2{max-width:840px}
   .proof-compact-block .cases{grid-template-columns:1fr}
 }
 
+
+/* ===== V18 PRODUCT BRIEF DRAWER UX ===== */
+.drawer{width:min(520px,100%);z-index:140}
+.drawer.hover-preview{box-shadow:-18px 0 54px rgba(23,24,29,.14)}
+.drawerhead{z-index:4}
+.drawerbody{padding:24px 26px 34px}
+.drawer-product-top h2{font-size:clamp(30px,3vw,44px);margin:8px 0 12px;line-height:.98}
+.drawer-usp{font-size:16px;line-height:1.55;color:var(--muted);margin:0}
+.drawer-price-card{
+  margin:22px 0 14px;
+  padding:16px 18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#17181D,#282A31);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.drawer-price-card span{font-size:9px;letter-spacing:.12em;font-weight:900;color:rgba(255,255,255,.55)}
+.drawer-price-card strong{font-size:17px;text-align:right}
+.drawer-info-stack{display:grid;gap:9px}
+.drawer-info-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 15px;
+  background:var(--surface);
+}
+.drawer-info-card small{
+  display:block;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.11em;
+  color:#B65000;
+  margin-bottom:5px;
+}
+.drawer-info-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.drawer-actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.drawer-profile-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:10px 13px;
+  background:var(--ink);
+  color:var(--surface);
+  font-size:12px;
+  font-weight:900;
+}
+.drawer-profile-cta.disabled-profile{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.drawer-copy-ask{font-size:12px}
+.drawer-data-note{font-size:10px;color:var(--muted);margin:12px 0 0}
+.tree-leaf,.focus-product-card,.new-product-card,.catcard,.directory-row,.row[data-product]{
+  cursor:pointer;
+}
+@media(hover:hover){
+  .tree-leaf:hover,.focus-product-card:hover,.new-product-card:hover,.catcard:hover,.directory-row:hover,.row[data-product]:hover{
+    background-color:color-mix(in srgb,var(--athena-yellow) 7%,var(--surface));
+  }
+}
+@media(max-width:700px){
+  .drawer{width:100%}
+  .drawerbody{padding:20px 18px 28px}
+}
+
+
+/* ===== V19 MOBILE-FIRST FIX + H2 OPPORTUNITY MESSAGE ===== */
+html,body{max-width:100%;overflow-x:hidden}
+
+/* H2 action hierarchy */
+.h2-main-cta,.h2-secondary-cta{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  padding:11px 16px;
+  font-size:12px;
+  font-weight:900;
+  line-height:1.15;
+  text-align:center;
+  white-space:nowrap;
+}
+.h2-secondary-cta{
+  color:#fff;
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.05);
+}
+.h2-secondary-cta:hover{background:rgba(255,255,255,.10)}
+.new-block .h2-number{margin-bottom:18px}
+.new-block h2{max-width:560px}
+.new-block .h2-block-actions{align-items:center}
+
+/* Critical breakpoint: older rules reintroduced desktop sidebar margin after mobile CSS. */
+@media(max-width:900px){
+  :root{--sidebar:0px}
+  body{width:100%;overflow-x:hidden}
+  .main{margin-left:0!important;width:100%;min-width:0}
+  .topnav{margin-left:0!important;width:100%;max-width:100%;height:58px;padding:0 14px}
+  .sidebar{width:min(300px,86vw);left:0;top:58px}
+  .content{width:100%;max-width:100%;padding-left:18px;padding-right:18px}
+  .topbar{
+    left:0;right:0;width:100%;
+    height:58px;
+    padding:0 12px;
+    gap:8px;
+    overflow:hidden;
+  }
+  #crumb{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .toolbar{gap:6px;flex:0 0 auto}
+  .toolbar .knowledge-btn{padding:8px 10px;font-size:11px}
+  .toolbar .btn{padding:8px 10px;font-size:11px}
+  .toolbar .icon{width:36px;height:36px;flex:0 0 36px}
+  .mobile{flex:0 0 36px}
+
+  .hero.brand-hero{
+    width:auto;
+    min-width:0;
+    margin-left:-18px;
+    margin-right:-18px;
+    padding-left:18px;
+    padding-right:18px;
+  }
+  .hero.brand-hero h1{
+    font-size:clamp(46px,15vw,70px);
+    line-height:.92;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .hero .lede{font-size:18px;line-height:1.5;max-width:100%}
+  .hero .actions{display:grid;grid-template-columns:1fr;gap:8px;width:100%}
+  .hero .actions a{width:100%;text-align:center}
+
+  .h2-highlight-grid{grid-template-columns:1fr!important}
+  .h2-hero-block{
+    width:100%;
+    min-width:0;
+    min-height:auto;
+    padding:26px 22px;
+    border-radius:24px;
+  }
+  .new-block .h2-number{
+    font-size:88px;
+    margin:28px 0 18px;
+  }
+  .h2-hero-block h2{
+    font-size:clamp(34px,10vw,46px);
+    line-height:.98;
+    letter-spacing:-.045em;
+  }
+  .new-block p{font-size:14px;line-height:1.55}
+  .action-strip{gap:6px}
+  .action-strip span{font-size:9px;padding:6px 8px}
+
+  .h2-block-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    width:100%;
+    padding-top:24px;
+  }
+  .h2-main-cta,.h2-secondary-cta{
+    width:100%;
+    min-width:0;
+    white-space:normal;
+    padding:11px 10px;
+  }
+
+  .h2-new-catalogue{
+    width:100%;
+    min-width:0;
+    padding:20px 16px;
+    border-radius:20px;
+  }
+  .new-search{max-width:100%}
+}
+
+@media(max-width:560px){
+  /* On phones, remove secondary header clutter instead of squeezing it. */
+  #crumb{display:none}
+  .topbar{justify-content:space-between}
+  .toolbar{margin-left:auto}
+  .toolbar .knowledge-btn{
+    max-width:98px;
+    white-space:normal;
+    line-height:1.05;
+    padding:7px 9px;
+  }
+  .toolbar #searchBtn{font-size:0;width:40px;height:40px;padding:0}
+  .toolbar #searchBtn::after{content:"⌕";font-size:19px}
+  .toolbar .icon{width:40px;height:40px}
+
+  .section{padding-left:0;padding-right:0}
+  .highlight-zone{padding-top:42px!important}
+  .head{grid-template-columns:1fr!important;gap:12px}
+  .head p{font-size:15px}
+  .h2-block-actions{grid-template-columns:1fr}
+  .h2-main-cta,.h2-secondary-cta{min-height:48px;font-size:12px}
+
+  .focus-heading-row{display:block}
+  .focus-priority-note{margin-top:10px}
+  .focus-tabs{overflow-x:auto;padding-bottom:2px}
+  .focus-tab{flex:0 0 auto}
+}
+
+/* Very narrow in-app browsers */
+@media(max-width:390px){
+  .content{padding-left:14px;padding-right:14px}
+  .hero.brand-hero{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}
+  .topnav-logo img{max-width:122px;height:auto}
+  .toolbar .knowledge-btn{display:none}
+  .new-block .h2-number{font-size:78px}
+  .h2-hero-block h2{font-size:34px}
+}
+
 </style></head>
 <body>
 
@@ -670,14 +893,14 @@ h2{max-width:840px}
       <div class="h2-block-inner">
         <div class="h2-kicker">NEW IN H2 / 2026</div>
         <div class="h2-number">19</div>
-        <h2>Cơ hội mới để mở brief.</h2>
-        <p>Tra theo ngành, mục tiêu hoặc format để chọn sản phẩm phù hợp ngay trong cuộc trao đổi với khách.</p>
+        <h2>19 sản phẩm mới.<br>19 cơ hội mở brief.</h2>
+        <p>Mỗi sản phẩm mới là thêm một lý do để quay lại khách cũ, mở khách mới, cross-sell hoặc upsell ngay trong H2.</p>
         <div class="action-strip">
           <span>Mở brief mới</span><span>Cross-sell</span><span>Upsell</span><span>Test sản phẩm mới</span>
         </div>
         <div class="h2-block-actions">
-          <button class="primary light-btn" id="toggleNewProducts">Tìm sản phẩm phù hợp ↓</button>
-          <a class="ghost" style="color:white;border-color:rgba(255,255,255,.25)" href="#taxonomy">Xem Product Map</a>
+          <button class="primary light-btn h2-main-cta" id="toggleNewProducts">Xem 19 sản phẩm mới ↓</button>
+          <a class="h2-secondary-cta" href="#taxonomy">Đi tới Product Map →</a>
         </div>
       </div>
     </article>
@@ -1923,6 +2146,7 @@ function renderQuarterFocus(q){
       <div class="focus-action-line"><b>DÙNG KHI</b><span>${x.pitch}</span></div>
       <div class="focus-action-line"><b>BRAND FIT</b><span>${x.fit}</span></div>
       ${x.placeholder?"":`<div class="focus-cta-row">
+        <button class="focus-mini-btn focus-brief-btn" data-brief-name="${x.name}">Brief</button>
         <button class="focus-mini-btn" onclick="prefillQuarterPitch('${x.name.replace(/'/g,"\'")}')">Tạo Pitch 30s</button>
         <button class="focus-mini-btn" onclick="askQuarterProduct('${x.name.replace(/'/g,"\'")}')">Hỏi NotebookLM</button>
       </div>`}
@@ -1944,7 +2168,7 @@ const newGrid=document.getElementById("newProductGrid");
 if(toggleNew && newGrid){
   toggleNew.addEventListener("click",()=>{
     const open=newGrid.classList.toggle("open");
-    toggleNew.textContent=open?"Thu gọn danh sách ↑":"Xem toàn bộ 19 sản phẩm ↓";
+    toggleNew.textContent=open?"Thu gọn 19 sản phẩm ↑":"Xem 19 sản phẩm mới ↓";
     if(open) newGrid.scrollIntoView({behavior:"smooth",block:"nearest"});
   });
 }
@@ -1953,7 +2177,7 @@ document.getElementById("newH2Search")?.addEventListener("input",e=>{
   const q=e.target.value.trim().toLowerCase();
   if(q && !newGrid.classList.contains("open")){
     newGrid.classList.add("open");
-    toggleNew.textContent="Thu gọn danh sách ↑";
+    toggleNew.textContent="Thu gọn 19 sản phẩm ↑";
   }
   document.querySelectorAll("[data-new-search]").forEach(card=>{
     card.classList.toggle("hidden-new",!!q && !card.dataset.newSearch.includes(q));
@@ -2202,20 +2426,216 @@ document.querySelectorAll("[data-tree-reset]").forEach(btn=>{
   });
 });
 
-document.querySelectorAll("[data-tree-product]").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const name=btn.dataset.treeProduct;
-    const normalized=name.replace(/^★\s*/,"");
-    const key=Object.keys(PRODUCTS).find(k=>PRODUCTS[k]?.name===normalized || PRODUCTS[k]?.name===name);
-    if(key){openProduct(key);return;}
-    drawerBody.innerHTML=`
-      <div class="kicker">Quick Brief</div>
-      <h2>${normalized}</h2>
-      <p class="lede" style="font-size:20px">Mở Product Profile hoặc hỏi Athena Knowledge để lấy USP, brand fit, deliverables, case và giá.</p>
-      <button class="primary" onclick="navigator.clipboard.writeText('Tóm tắt ${normalized}: USP, brand fit, deliverables, case study, giá và khi nào nên pitch.');window.open(NOTEBOOKLM_URL,'_blank')">Hỏi NotebookLM ↗</button>`;
-    drawer.classList.add("open");drawer.setAttribute("aria-hidden","false");overlay.classList.add("show");
+
+/* ===== V18 UNIVERSAL PRODUCT BRIEF DRAWER =====
+   - Click "Brief": open immediately with overlay.
+   - Desktop hover on any product surface: preview drawer at right without blocking the page.
+   - Mobile/tablet: tap product surface to open.
+*/
+const SOCIAL_PRODUCT_DETAILS = {"Social Booking": {"category": "Core Product · Social", "usp": "Sở hữu đa dạng Fanpage/TikTok báo chí và hệ thống vệ tinh, phù hợp nhiều tệp độc giả; giúp nhãn hàng phủ rộng chiến dịch trên mạng xã hội.", "pain": "Nhãn hàng cần mở rộng social reach và phân phối nội dung tới đúng tệp nhưng không muốn booking rời rạc, thiếu hệ thống.", "solution": "Booking trên hệ thống Fanpage/TikTok thuộc các trang tin báo điện tử uy tín trong và ngoài VCCorp.", "fit": "Đa ngành · Nhãn cần social reach / distribution", "price": "Từ 3.000.000 VNĐ", "proof": "Case Study Social Booking", "cross": "Social Chủ động · Influencer Marketing · Social Ecom"}, "Influencer Marketing": {"category": "Core Product · Social", "usp": "200 nhân sự chuyên biệt theo ngành; năng lực vận hành quy mô lớn, creative mạnh và hệ thống sản xuất hình ảnh/video/livestream.", "pain": "Nhãn cần KOL/KOC/Chuyên gia nhưng phải đồng bộ từ lựa chọn talent tới nội dung, sản xuất và vận hành campaign.", "solution": "Booking KOL/KOC/Chuyên gia; sản xuất video MKT, hình ảnh; tổ chức sản xuất và đào tạo livestream bán hàng.", "fit": "FMCG · Beauty · Tech · Retail · Đa ngành", "price": "Từ 20.000.000 VNĐ", "proof": "Có case vận hành KOL quy mô lớn; case chi tiết trong Product Profile.", "cross": "Social Booking · Social Ecom · Product Marketing"}, "Booking KOL/Chuyên gia": {"category": "Influencer Marketing", "usp": "Hệ thống nhân sự và năng lực vận hành Influencer Marketing quy mô lớn.", "pain": "Khách muốn dùng KOL/KOC/Chuyên gia nhưng chưa rõ talent nào phù hợp vai trò trong campaign.", "solution": "Booking KOL/KOC/Chuyên gia review sản phẩm, tham dự sự kiện/talkshow hoặc đại diện hình ảnh thương hiệu.", "fit": "FMCG · Beauty · Tech · Retail · Đa ngành", "price": "Từ 20.000.000 VNĐ", "proof": "Xem case trong Product Profile Influencer Marketing.", "cross": "Social Booking · Video MKT · Livestream"}, "Sản xuất Livestream": {"category": "Social Ecom", "usp": "Đối tác chính thức TikTok Shop & Shopee; mức giá sản xuất cạnh tranh; mạng lưới KOC và seller affiliate lớn.", "pain": "Nhãn cần livestream bán hàng nhưng thiếu chiến lược nội dung, host/KOL, production và tracking hiệu suất trong cùng một đầu mối.", "solution": "Tư vấn chiến lược/kịch bản, booking KOL/host, studio hoặc onsite production, tracking đơn hàng và hiệu suất; hỗ trợ Live studio, sự kiện/dự án và AI Livestream.", "fit": "FMCG · Beauty · Retail · E-commerce · Consumer Tech", "price": "Daily Live từ 2.000.000 · Mega Live từ 20.000.000", "proof": "Case đang cập nhật trong thư viện Social Ecom.", "cross": "Video chuyển đổi · Quản trị & vận hành sàn · Influencer Marketing"}, "Sản xuất Video chuyển đổi": {"category": "Social Ecom", "usp": "Tập trung tối ưu nội dung video nhằm thúc đẩy hành vi mua hàng trực tiếp trên sàn và nền tảng social.", "pain": "Nhãn có traffic/video nhưng nội dung chưa được thiết kế đủ gần hành vi mua.", "solution": "Sản xuất video chuyển đổi Ecommerce, tối ưu nội dung theo mục tiêu commerce.", "fit": "E-commerce · FMCG · Beauty · Retail · Consumer Tech", "price": "Từ 25.000.000 VNĐ", "proof": "Case đang cập nhật.", "cross": "Livestream · Quản trị & vận hành sàn"}, "Quản trị & vận hành sàn": {"category": "Social Ecom", "usp": "Theo dõi và tối ưu traffic, conversion rate, AOV, ROAS, GMV theo tuần/tháng để hỗ trợ tăng trưởng và scale doanh thu.", "pain": "Nhãn cần vận hành sàn liên tục nhưng thiếu một hệ thống quản trị hiệu suất và tối ưu theo dữ liệu.", "solution": "Quản trị & vận hành Ecommerce toàn diện, phân tích dữ liệu kinh doanh và liên tục tối ưu chiến lược.", "fit": "Brand đang bán trên sàn TMĐT", "price": "Báo giá case by case", "proof": "Case đang cập nhật.", "cross": "Livestream · Video chuyển đổi"}, "Social Contest": {"category": "Core Product · Social", "usp": "Đa dạng format AI Contest, CapCut Contest, AR TikTok trên hệ thống fanpage VCCorp.", "pain": "Campaign cần tạo participation, engagement hoặc UGC thay vì chỉ tạo lượt xem.", "solution": "Tổ chức cuộc thi và hoạt động truyền thông thu hút người chơi trên hệ thống fanpage VCCorp.", "fit": "FMCG · Beauty · Retail · Gen Z", "price": "Từ 20.000.000 VNĐ", "proof": "Ofood AI Contest Case Study", "cross": "Social Booking · Influencer Marketing · Social Native"}, "Quản trị Fanpage, TikTok": {"category": "Core Product · Social", "usp": "Khởi tạo và xây dựng nội dung trên Fanpage Facebook/TikTok chính thức của thương hiệu.", "pain": "Brand cần xây kênh owned social lâu dài nhưng thiếu hệ thống nội dung và vận hành nhất quán.", "solution": "Khởi tạo, xây dựng nội dung và quản trị kênh social chính thức.", "fit": "Đa ngành · Brand cần owned channel", "price": "Từ 5.000.000/video", "proof": "Mom & Baby Case Study", "cross": "Social Chủ động · Social Booking · Social Đào Tạo"}, "Community Marketing Mẹ & Bé": {"category": "Solution · Community", "usp": "Afamily + cộng đồng Mom & Kid + chuyên gia/KOL/KOC; earned media từ người dùng thật, nội dung tồn tại lâu dài và chạm niềm tin tệp TA.", "pain": "Nhãn Mẹ & Bé cần trust, trải nghiệm và thảo luận thật thay vì chỉ phủ paid booking.", "solution": "Hợp tác chuyên sâu Afamily × Community × Workshop × hoạt động trải nghiệm hai chiều với nhóm phụ huynh.", "fit": "Mẹ & Bé · Dinh dưỡng · Healthcare · Chăm sóc gia đình", "price": "Từ 50.000.000 VNĐ", "proof": "Case/Salekit nằm trong Product Profile.", "cross": "Influencer Marketing · Social Booking · Product Marketing"}, "Community Marketing Game": {"category": "Solution · Community", "usp": "Kết hợp cộng đồng Game/Esports và hệ sinh thái GameK để tạo nhận diện, tương tác và nội dung thật.", "pain": "Brand muốn được gamer tin và tham gia, không chỉ nhìn thấy quảng cáo.", "solution": "Xây dựng – kích hoạt – vận hành cộng đồng game thủ/esports; gồm các format như giải đấu AOV tại trường đại học và LCK 2026 AFF.", "fit": "Gen Z · Sinh viên · Mobile gamer · Esports", "price": "Từ 200.000.000 VNĐ", "proof": "Case đang cập nhật.", "cross": "Influencer Marketing · Social Native · Event Partnership"}, "Khuếch đại Truyền thông": {"category": "Solution · Social", "usp": "Kết hợp hệ sinh thái Kênh14, community page giới trẻ và các cộng đồng fanpage lớn.", "pain": "Sự kiện/concert/show có nội dung nhưng chưa đủ độ lan tỏa trong cộng đồng trẻ.", "solution": "Khuếch đại quy mô truyền thông cho sự kiện, đặc biệt tới Gen Z.", "fit": "Entertainment · Event · Lifestyle · Gen Z", "price": "Chưa cập nhật", "proof": "Xem Product Profile để lấy case.", "cross": "Social Native Kênh14 · Influencer Marketing"}, "Social Native Kênh14": {"category": "Solution · Social", "usp": "Hệ sinh thái Kênh14 + community page giới trẻ + cộng đồng fanpage lớn.", "pain": "Brand muốn hưởng sức nóng của sự kiện nhưng cần xuất hiện tự nhiên, ít cảm giác quảng cáo.", "solution": "Giải pháp truyền thông cắm rễ vào cộng đồng, giúp nhãn hàng hưởng sức nóng của sự kiện theo cách native.", "fit": "Gen Z · Lifestyle · FMCG · Entertainment", "price": "Chưa cập nhật", "proof": "Case nằm trong Social Native profile.", "cross": "Khuếch đại Truyền thông · Influencer Marketing"}, "Strategic Partnership Marketing × GenZ/Men": {"category": "Solution · Partnership", "usp": "Hệ sinh thái website/social báo chí lõi + mạng lưới báo chí, KOL đối tác và community.", "pain": "Brand muốn tương tác sâu với Gen Z/nam giới thay vì chỉ mua media đơn lẻ.", "solution": "Hợp tác chiến lược cùng IP content, cộng đồng, nội dung và các điểm chạm ảnh hưởng tới hành vi tiếp nhận và ra quyết định.", "fit": "Gen Z · Men · Lifestyle · FMCG · Tech", "price": "Từ 100.000.000 VNĐ", "proof": "Có salekit World Cup và giải pháp khuếch đại theo ngành.", "cross": "Social Native · Influencer Marketing · Event Partnership"}, "Tick Xanh Facebook": {"category": "Solution · Trust", "usp": "Dịch vụ xác minh chính thống, vĩnh viễn, có bảo hành cam kết; đội ngũ am hiểu chính sách Meta.", "pain": "Brand bị giả mạo, thiếu tín hiệu chính chủ hoặc gặp rủi ro từ dịch vụ tick không đảm bảo.", "solution": "Đăng ký Tick Xanh Facebook giúp xác thực chính chủ, chống giả mạo và tăng uy tín.", "fit": "Doanh nghiệp/cá nhân cần xác thực thương hiệu Facebook", "price": "75.000.000 VNĐ", "proof": "Dragon Capital Vietnam · TESOL Simple Education", "cross": "PR · Quản trị Fanpage"}, "Social Đào Tạo": {"category": "Solution · Core Social", "usp": "Giúp doanh nghiệp sở hữu hệ thống sản xuất video/livestream số lượng lớn từ chính nhân sự nội bộ.", "pain": "Doanh nghiệp cần tăng lượng content và lead nhưng chi phí thuê ngoài cao, đội ngũ nội bộ chưa tự sản xuất được.", "solution": "Đào tạo và thiết lập năng lực Media for Sale để đội ngũ nội bộ sản xuất video/livestream.", "fit": "Auto · BĐS · Finance · Doanh nghiệp có đội Sale/Marketing lớn", "price": "150.000.000 – 300.000.000 VNĐ", "proof": "Case đang cập nhật.", "cross": "Quản trị Fanpage/TikTok · Social Chủ động"}};
+
+function cleanProductName(name){
+  return (name||"")
+    .replace(/^★\s*/,"")
+    .replace(/^\d{2}\s*[·.-]\s*/,"")
+    .trim();
+}
+
+function findQuarterInfo(name){
+  name=cleanProductName(name);
+  for(const q of Object.values(typeof QUARTER_FOCUS!=="undefined"?QUARTER_FOCUS:{})){
+    const found=(q||[]).find(x=>cleanProductName(x.name)===name);
+    if(found) return found;
+  }
+  return null;
+}
+
+function findLegacyInfo(name){
+  name=cleanProductName(name);
+  if(typeof P==="undefined") return null;
+  return Object.values(P).find(x=>cleanProductName(x.name)===name) || null;
+}
+
+function getDomProductMeta(name){
+  const esc=(window.CSS&&CSS.escape)?CSS.escape(name):name.replace(/"/g,'\\"');
+  let price="", status="";
+  document.querySelectorAll(".new-product-card").forEach(card=>{
+    if(cleanProductName(card.querySelector("h3")?.textContent)===name){
+      price=card.querySelector(".new-price")?.textContent?.trim()||price;
+      status=card.querySelector(".new-cat")?.textContent?.trim()||status;
+    }
   });
+  document.querySelectorAll(".tree-leaf").forEach(leaf=>{
+    const n=cleanProductName(leaf.querySelector("[data-tree-product]")?.dataset.treeProduct || leaf.querySelector(".tree-name b")?.textContent);
+    if(n===name) status=leaf.querySelector(".tree-status")?.textContent?.trim()||status;
+  });
+  return {price,status};
+}
+
+function getProductDetail(rawName){
+  const name=cleanProductName(rawName);
+  const social=SOCIAL_PRODUCT_DETAILS[name]||null;
+  const quarter=findQuarterInfo(name);
+  const legacy=findLegacyInfo(name);
+  const dom=getDomProductMeta(name);
+
+  const profile=(typeof PRODUCT_PROFILE_URLS!=="undefined" && (PRODUCT_PROFILE_URLS[name]||PRODUCT_PROFILE_URLS[rawName])) || "";
+
+  return {
+    name,
+    category:social?.category || legacy?.k || quarter?.badge || dom.status || "Product / Solution",
+    usp:social?.usp || quarter?.usp || legacy?.line || "Thông tin USP đang được Product team cập nhật.",
+    pain:social?.pain || quarter?.pitch || legacy?.pain || "Bài toán khách hàng đang được cập nhật trong Product Profile/Knowledge Base.",
+    solution:social?.solution || legacy?.solution || (quarter ? quarter.usp : "Chi tiết giải pháp đang được cập nhật."),
+    fit:social?.fit || quarter?.fit || legacy?.fit || "Chưa cập nhật Brand Fit.",
+    price:social?.price || dom.price || "Chưa cập nhật / theo proposal.",
+    proof:social?.proof || legacy?.proof || "Case study đang được cập nhật.",
+    cross:social?.cross || legacy?.cross || "Xem Product Map để chọn giải pháp cross-sell phù hợp.",
+    profile
+  };
+}
+
+function productBriefHtml(d){
+  const profileHtml=d.profile
+    ? `<a class="drawer-profile-cta" href="${d.profile}" target="_blank" rel="noopener noreferrer">Mở Product Profile ↗</a>`
+    : `<span class="drawer-profile-cta disabled-profile" aria-disabled="true">Profile chưa cập nhật</span>`;
+
+  return `
+    <div class="drawer-product-top">
+      <div class="eyebrow">${d.category}</div>
+      <h2>${d.name}</h2>
+      <p class="drawer-usp">${d.usp}</p>
+    </div>
+
+    <div class="drawer-price-card">
+      <span>GIÁ / PACKAGE</span>
+      <strong>${d.price}</strong>
+    </div>
+
+    <div class="drawer-info-stack">
+      <section class="drawer-info-card">
+        <small>BÀI TOÁN KHÁCH HÀNG</small>
+        <p>${d.pain}</p>
+      </section>
+      <section class="drawer-info-card">
+        <small>GIẢI PHÁP / CÁCH GIẢI</small>
+        <p>${d.solution}</p>
+      </section>
+      <section class="drawer-info-card">
+        <small>BRAND FIT</small>
+        <p>${d.fit}</p>
+      </section>
+      <section class="drawer-info-card">
+        <small>PROOF / CASE STUDY</small>
+        <p>${d.proof}</p>
+      </section>
+      <section class="drawer-info-card">
+        <small>CROSS-SELL</small>
+        <p>${d.cross}</p>
+      </section>
+    </div>
+
+    <div class="drawer-actions-row">
+      ${profileHtml}
+      <button class="btn drawer-copy-ask" type="button">Copy câu hỏi Athena</button>
+    </div>
+    <p class="drawer-data-note">Thông tin chưa có trong dữ liệu đã duyệt được hiển thị là “chưa cập nhật”, không tự suy đoán giá/case.</p>
+  `;
+}
+
+let drawerPinned=false;
+let hoverTimer=null;
+let lastDrawerProduct="";
+
+function showProductBrief(name,opts={}){
+  const d=getProductDetail(name);
+  if(!d.name) return;
+  const pinned=!!opts.pinned;
+  drawerPinned=pinned;
+  lastDrawerProduct=d.name;
+
+  body.innerHTML=productBriefHtml(d);
+  drawer.classList.add("open");
+  drawer.setAttribute("aria-hidden","false");
+  drawer.classList.toggle("hover-preview",!pinned);
+
+  if(pinned) overlay.classList.add("show");
+  else overlay.classList.remove("show");
+
+  body.querySelector(".drawer-copy-ask")?.addEventListener("click",()=>{
+    const prompt=`Tóm tắt ${d.name}: USP, bài toán khách hàng, giải pháp, brand fit, deliverables, case study, giá và khi nào nên pitch.`;
+    navigator.clipboard?.writeText(prompt);
+    const btn=body.querySelector(".drawer-copy-ask");
+    if(btn){btn.textContent="Đã copy ✓";setTimeout(()=>btn.textContent="Copy câu hỏi Athena",1200);}
+  });
+}
+
+function productNameFromSurface(el){
+  if(!el) return "";
+  if(el.matches("[data-tree-product]")) return el.dataset.treeProduct||"";
+  if(el.matches("[data-brief-name]")) return el.dataset.briefName||"";
+  const brief=el.querySelector?.("[data-tree-product],[data-brief-name]");
+  if(brief) return brief.dataset.treeProduct||brief.dataset.briefName||"";
+  if(el.matches(".focus-product-card")) return cleanProductName(el.querySelector("h3")?.textContent||"");
+  if(el.matches(".new-product-card,.catcard,.directory-row,.row")) return cleanProductName(el.querySelector("h3,b,.directory-name b")?.textContent||"");
+  return "";
+}
+
+function closestProductSurface(target){
+  return target.closest?.(".tree-leaf,.focus-product-card,.new-product-card,.catcard,.directory-row,.row[data-product]") || null;
+}
+
+/* Explicit Brief buttons always pin the drawer */
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-tree-product],[data-brief-name]");
+  if(btn){
+    e.preventDefault();
+    e.stopPropagation();
+    showProductBrief(btn.dataset.treeProduct||btn.dataset.briefName,{pinned:true});
+    return;
+  }
+
+  /* On touch/mobile, tapping a product row/card opens the brief. */
+  if(window.matchMedia("(hover: none)").matches){
+    const surface=closestProductSurface(e.target);
+    if(surface && !e.target.closest("a,button,input,select,textarea,summary")){
+      const name=productNameFromSurface(surface);
+      if(name) showProductBrief(name,{pinned:true});
+    }
+  }
 });
+
+/* Desktop hover preview. 320ms delay avoids the drawer flashing while scrolling. */
+document.addEventListener("mouseover",e=>{
+  if(!window.matchMedia("(hover: hover)").matches || drawerPinned) return;
+  if(e.target.closest("button,a,input,select,textarea")) return;
+  const surface=closestProductSurface(e.target);
+  if(!surface) return;
+  if(surface.contains(e.relatedTarget)) return;
+  const name=productNameFromSurface(surface);
+  if(!name || name===lastDrawerProduct) return;
+  clearTimeout(hoverTimer);
+  hoverTimer=setTimeout(()=>showProductBrief(name,{pinned:false}),320);
+});
+
+document.addEventListener("mouseout",e=>{
+  const surface=closestProductSurface(e.target);
+  if(surface && !surface.contains(e.relatedTarget)) clearTimeout(hoverTimer);
+});
+
+/* Existing close control */
+document.getElementById("close").onclick=()=>{
+  drawerPinned=false;
+  lastDrawerProduct="";
+  closeAll();
+};
+
+/* Overlay closes only pinned drawers */
+overlay.onclick=()=>{
+  drawerPinned=false;
+  lastDrawerProduct="";
+  closeAll();
+};
 
 </script>
 </body>
