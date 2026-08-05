@@ -352,9 +352,39 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 
 </style>
 <style id="v14-css">
-.q3-added-priorities{display:grid;gap:8px;margin:14px 0}.q3-added-priorities article{border:1px solid rgba(20,20,25,.13);border-radius:14px;padding:12px;background:rgba(255,255,255,.35)}.q3-added-priorities b{font-size:12px}.q3-added-priorities span{margin-left:7px;font-size:8px;font-weight:900;color:#b65000}.q3-added-priorities p{font-size:11px;color:var(--muted);margin:6px 0 0}
 .pm-hero{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;margin-top:24px}.pm-main{background:#1b1c21;color:white;border-radius:24px;padding:36px}.pm-main h3{font-size:42px;line-height:1;margin:14px 0 20px}.pm-main p{color:#d8d8df;line-height:1.65}.pm-flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:25px}.pm-flow span{border:1px solid #555;border-radius:999px;padding:7px 9px;font-size:9px;font-weight:900}.pm-side{display:grid;gap:16px}.pm-edu,.pm-pillars article{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--surface)}.pm-edu p,.pm-pillars p{color:var(--muted);line-height:1.55}.pm-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}.pm-pillars article>b{font-size:11px;line-height:1.55}.pm-compare{display:grid;grid-template-columns:1fr 50px 1fr;align-items:center;border:1px solid var(--line);border-radius:20px;padding:24px;margin-top:16px}.pm-compare span{font-size:9px;font-weight:900;color:#b65000}.pm-compare b{display:block;font-size:18px;margin-top:5px}.pm-compare p{color:var(--muted);font-size:12px}.pm-arrow{text-align:center;font-size:24px}.pm-actions{display:flex;gap:10px;margin-top:16px}.pm-actions a{text-decoration:none}.independent-root{border-style:dashed}
 @media(max-width:800px){.pm-hero,.pm-pillars,.pm-compare{grid-template-columns:1fr}.pm-main{padding:24px}.pm-main h3{font-size:32px}.pm-arrow{transform:rotate(90deg)}}
+
+
+/* ===== V15 UNIFIED QUARTER FOCUS ===== */
+.focus-block{padding:30px!important}
+.focus-heading-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.focus-heading-row h2{font-size:clamp(30px,3.2vw,42px);line-height:.95;margin-bottom:4px!important}
+.focus-countline{font-size:15px;font-weight:800;color:#5f5142;margin-top:8px}
+.focus-countline strong{font-size:24px;line-height:1;color:#17181D;margin-right:4px}
+[data-theme="dark"] .focus-countline{color:#c8c1b9}[data-theme="dark"] .focus-countline strong{color:#fff}
+.focus-priority-note{max-width:190px;border-left:3px solid #D69A00;padding:8px 0 8px 12px;font-size:11px;line-height:1.45;color:#6d6255}
+[data-theme="dark"] .focus-priority-note{color:#c8c1b9}
+.focus-intro{font-size:12px!important;margin:12px 0 0!important;max-width:560px!important}
+.focus-tabs{margin:18px 0 12px}
+.focus-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.focus-product-card{padding:13px 14px;border-radius:14px;min-width:0}
+.focus-product-card.flagship-focus{grid-column:1/-1;padding:17px 18px;background:linear-gradient(135deg,rgba(255,211,0,.18),rgba(255,255,255,.72));border:1.5px solid #D69A00;box-shadow:0 10px 28px rgba(184,126,0,.10)}
+[data-theme="dark"] .focus-product-card.flagship-focus{background:linear-gradient(135deg,rgba(255,211,0,.10),rgba(255,255,255,.035))}
+.focus-product-head{gap:8px}.focus-product-head h3{font-size:14px;line-height:1.25;letter-spacing:-.015em}
+.flagship-focus .focus-product-head h3{font-size:17px}
+.focus-product-badge{font-size:7.5px;padding:4px 6px;letter-spacing:.08em;flex:none}
+.focus-usp{display:none}
+.flagship-focus .focus-usp{display:block;font-size:12px!important;line-height:1.45;margin:8px 0 10px!important}
+.focus-action-line{display:block;font-size:10.5px;line-height:1.42;margin-top:7px}
+.focus-action-line b{display:block;font-size:8px;letter-spacing:.08em;margin-bottom:2px}
+.focus-action-line span{display:block}
+.focus-cta-row{margin-top:10px;gap:6px}.focus-mini-btn{font-size:9px;padding:6px 8px}
+.focus-product-card:not(.flagship-focus) .focus-cta-row{display:none}
+@media(max-width:1120px){.focus-product-grid{grid-template-columns:1fr}.focus-product-card.flagship-focus{grid-column:auto}.focus-priority-note{display:none}}
+@media(max-width:980px){.focus-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.focus-product-card.flagship-focus{grid-column:1/-1}.focus-priority-note{display:block}}
+@media(max-width:620px){.focus-heading-row{display:block}.focus-priority-note{margin-top:12px;max-width:none}.focus-product-grid{grid-template-columns:1fr}.focus-product-card.flagship-focus{grid-column:auto}}
+
 </style></head>
 <body>
 
@@ -467,13 +497,14 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
     <article class="h2-hero-block focus-block">
       <div class="h2-block-inner">
         <div class="h2-kicker">QUARTER FOCUS / SELL THIS NOW</div>
-        <h2 style="margin-top:22px">Q3 / 2026<br>7 giải pháp ưu tiên bán.</h2>
-        <p>★ Ưu tiên số 1: <b>Truyền thông Thương Hiệu Quốc Gia</b>. Sau đó chọn giải pháp theo đúng brief và nhóm khách.</p><div class="q3-added-priorities">
-<article><b>02 · GEO</b><span>INDEPENDENT SOLUTION</span><p>Giải pháp độc lập. Pitch khi Client quan tâm hiện diện và khả năng được AI/search engine tìm thấy, hiểu đúng.</p></article>
-<article><b>03 · A81</b><span>Q3 PROJECT</span><p>Dự án trọng điểm Q3. Rà soát brand fit và mở brief theo concept/deliverables được Product team cập nhật.</p></article>
-<article><b>04 · Community Marketing Mẹ & Bé</b><span>COMMUNITY</span><p>Cho nhãn cần đi sâu vào cộng đồng phụ huynh, trải nghiệm, thảo luận và social proof.</p></article>
-<article><b>05 · Social Chủ động</b><span>SOCIAL</span><p>Cho nhãn cần chủ động tạo câu chuyện và nhịp phân phối social thay vì booking rời rạc.</p></article>
-</div>
+        <div class="focus-heading-row">
+          <div>
+            <h2 id="focusQuarterTitle" style="margin-top:22px">Q3 / 2026</h2>
+            <div class="focus-countline"><strong id="focusQuarterCount">8</strong> giải pháp ưu tiên bán</div>
+          </div>
+          <div class="focus-priority-note">★ <b>#1 Flagship</b><br>Truyền thông Thương Hiệu Quốc Gia</div>
+        </div>
+        <p class="focus-intro">Một danh sách duy nhất để Sale/Acc quét nhanh: <b>dùng khi nào</b> và <b>nhãn nào phù hợp</b>.</p>
 
         <div class="focus-tabs">
           <button class="focus-tab active" data-focus-quarter="q3">Q3 / 2026</button>
@@ -1629,6 +1660,34 @@ const QUARTER_FOCUS = {
       flagship:true
     },
     {
+      name:"GEO",
+      badge:"INDEPENDENT",
+      usp:"Giải pháp độc lập giúp thương hiệu tăng khả năng hiện diện và được AI/search engine tìm thấy, hiểu đúng.",
+      pitch:"Client quan tâm hiện diện trên AI/search engine, khả năng được tìm thấy hoặc cách thương hiệu được diễn giải trong môi trường tìm kiếm mới.",
+      fit:"Nhãn có nhu cầu Search, AI visibility, Brand presence"
+    },
+    {
+      name:"A81",
+      badge:"Q3 PROJECT",
+      usp:"Dự án trọng điểm Q3, mở brief theo concept và deliverables do Product team cập nhật.",
+      pitch:"Brand fit với concept A81 và có nhu cầu tham gia một dự án truyền thông trọng điểm trong Q3.",
+      fit:"Theo brand fit / proposal cập nhật"
+    },
+    {
+      name:"Community Marketing Mẹ & Bé",
+      badge:"COMMUNITY",
+      usp:"Giải pháp đi sâu vào cộng đồng phụ huynh, trải nghiệm, thảo luận và social proof.",
+      pitch:"Nhãn cần tạo thảo luận thật, trải nghiệm và niềm tin trong cộng đồng cha mẹ thay vì chỉ phủ booking.",
+      fit:"Mẹ & Bé, FMCG, Dinh dưỡng, Chăm sóc gia đình"
+    },
+    {
+      name:"Social Chủ động",
+      badge:"SOCIAL",
+      usp:"Chủ động tạo câu chuyện và nhịp phân phối social thay vì booking rời rạc.",
+      pitch:"Nhãn cần duy trì câu chuyện social có chủ đích, tạo nhịp truyền thông và mở rộng độ phủ theo chiến dịch.",
+      fit:"Đa ngành, đặc biệt nhãn cần social reach / storytelling"
+    },
+    {
       name:"Talkshow The Investors 3 - CafeF",
       badge:"Q3 PRIORITY",
       usp:"Format talkshow trên CafeF để khai thác góc nhìn đầu tư, tài chính và tiếng nói chuyên môn.",
@@ -1666,6 +1725,11 @@ function renderQuarterFocus(q){
   const box=document.getElementById("quarterFocusList");
   if(!box) return;
   const items=QUARTER_FOCUS[q]||[];
+  const activeItems=items.filter(x=>!x.placeholder);
+  const title=document.getElementById("focusQuarterTitle");
+  const count=document.getElementById("focusQuarterCount");
+  if(title) title.textContent=(q==="q4"?"Q4 / 2026":"Q3 / 2026");
+  if(count) count.textContent=activeItems.length || items.length;
 
   box.innerHTML=items.map((x,i)=>`
     <article class="focus-product-card ${x.placeholder?"placeholder":""} ${x.flagship?"flagship-focus":""}">
@@ -1674,8 +1738,8 @@ function renderQuarterFocus(q){
         <span class="focus-product-badge">${x.badge||"PRIORITY"}</span>
       </div>
       <p class="focus-usp">${x.usp}</p>
-      <div class="focus-action-line"><b>PITCH KHI</b><span>${x.pitch}</span></div>
-      <div class="focus-action-line"><b>PHÙ HỢP</b><span>${x.fit}</span></div>
+      <div class="focus-action-line"><b>DÙNG KHI</b><span>${x.pitch}</span></div>
+      <div class="focus-action-line"><b>BRAND FIT</b><span>${x.fit}</span></div>
       ${x.placeholder?"":`<div class="focus-cta-row">
         <button class="focus-mini-btn" onclick="prefillQuarterPitch('${x.name.replace(/'/g,"\'")}')">Tạo Pitch 30s</button>
         <button class="focus-mini-btn" onclick="askQuarterProduct('${x.name.replace(/'/g,"\'")}')">Hỏi NotebookLM</button>
