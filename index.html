@@ -1,918 +1,157 @@
-<!DOCTYPE html>
-<html lang="vi" class="dark scroll-smooth">
+<!doctype html>
+<html lang="vi" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athena CM - Sales Operation Hub & Visual Playbook H2.2026</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        hub: {
-                            bg: '#09090b',
-                            card: '#121218',
-                            panel: '#181822',
-                            border: 'rgba(255, 255, 255, 0.08)',
-                            gold: '#F59E0B',
-                            goldLight: '#FACC15',
-                            accent: '#06B6D4',
-                            rose: '#F43F5E',
-                            emerald: '#10B981',
-                            purple: '#8B5CF6'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        mono: ['Space Grotesk', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #09090b;
-            color: #f3f4f6;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .card-glass {
-            background: rgba(18, 18, 24, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.25s ease-in-out;
-        }
-        .card-glass:hover {
-            border-color: rgba(245, 158, 11, 0.4);
-            transform: translateY(-2px);
-        }
-        .gradient-text-gold {
-            background: linear-gradient(135deg, #FFFFFF 0%, #FACC15 60%, #F59E0B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .img-overlay {
-            background: linear-gradient(180deg, rgba(9, 9, 11, 0) 0%, rgba(9, 9, 11, 0.95) 100%);
-        }
-        /* Mega Menu Transition */
-        .mega-menu {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .has-mega-menu:hover .mega-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        /* Custom scrollbars */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AthenaCM Product Operating System — H2/2026</title>
+<meta name="description" content="AthenaCM Product Operating System H2/2026">
+<style>
+:root{--bg:#f5f7fa;--surface:#fff;--ink:#101418;--muted:#68727d;--line:#e1e6eb;--blue:#1259ff;--green:#18864b;--shadow:0 16px 50px rgba(0,0,0,.08);--sidebar:240px}
+[data-theme="dark"]{--bg:#0d1116;--surface:#151a20;--ink:#f4f7fa;--muted:#a8b0ba;--line:#29323b;--blue:#7ba2ff;--green:#5bd18b;--shadow:0 16px 50px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}
+button,input,select{font:inherit}a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar);background:var(--bg);border-right:1px solid var(--line);padding:20px 16px;z-index:20}
+.brand{display:flex;gap:10px;align-items:center;margin-bottom:22px}.mark{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--surface);display:grid;place-items:center;font-weight:800}
+.brand b{display:block}.brand small{color:var(--muted);letter-spacing:.1em}
+.searchbox{position:relative;margin-bottom:18px}.searchbox input{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:11px;padding:10px 12px}
+.nav{display:grid;gap:4px}.nav a{padding:10px;border-radius:10px;color:var(--muted);font-size:14px}.nav a:hover,.nav a.active{background:var(--surface);color:var(--ink)}.nav a.active{box-shadow:inset 2px 0 0 var(--blue)}
+.main{margin-left:var(--sidebar)}.topbar{position:sticky;top:0;height:68px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:15}
+.toolbar{display:flex;gap:8px}.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 14px;cursor:pointer}.icon{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.content{max-width:1120px;margin:auto;padding:0 34px 100px}.section{padding:88px 0;border-bottom:1px solid var(--line);scroll-margin-top:84px}
+.hero{min-height:calc(100vh - 68px);display:grid;align-content:center}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+h1{font-size:clamp(54px,7vw,92px);line-height:.95;letter-spacing:-.06em;margin:16px 0 24px}h2{font-size:clamp(36px,4vw,56px);line-height:1;letter-spacing:-.045em;margin:0 0 18px}h3{letter-spacing:-.02em}
+.lede{font-size:clamp(20px,2vw,26px);color:var(--muted);max-width:760px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.primary{background:var(--ink);color:var(--surface);border:0;border-radius:999px;padding:13px 18px;font-weight:800}.secondary{border:1px solid var(--line);border-radius:999px;padding:12px 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:60px;max-width:760px}.stat{border-top:1px solid var(--line);padding-top:14px}.stat strong{display:block;font-size:30px}.stat span{font-size:13px;color:var(--muted)}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:40px}.head p{color:var(--muted);font-size:18px}
+.triple{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.plain{border-top:2px solid var(--ink);padding-top:20px}.plain p{color:var(--muted)}
+.map{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}.journey{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}.col{background:var(--surface);padding:24px}.col small{color:var(--muted);text-transform:uppercase;font-weight:800;letter-spacing:.1em}.prod{width:100%;display:flex;justify-content:space-between;border:0;border-top:1px solid var(--line);background:transparent;color:var(--ink);padding:11px 0;cursor:pointer;text-align:left}.prod:hover{color:var(--blue)}
+.featured{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.hero-card{background:var(--ink);color:var(--surface);border-radius:24px;padding:40px;min-height:470px;display:flex;flex-direction:column;justify-content:space-between}.hero-card p{color:rgba(255,255,255,.72)}.tags{display:flex;gap:8px;flex-wrap:wrap}.tags span{border:1px solid rgba(255,255,255,.18);padding:7px 10px;border-radius:999px;font-size:12px}
+.sidecards{display:grid;gap:18px}.info{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}.info p,.info li{color:var(--muted)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:8px 12px;cursor:pointer}.chip.active{color:var(--ink);border-color:var(--ink)}
+.list{border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:52px 1.1fr 1.5fr 100px 20px;gap:16px;align-items:center;padding:20px 6px;border-bottom:1px solid var(--line);cursor:pointer}.row p{margin:0;color:var(--muted);font-size:14px}.status{color:var(--green);font-size:12px;font-weight:800}
+.tablewrap{overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px}.matrix{border-collapse:collapse;width:100%;min-width:780px}.matrix th,.matrix td{padding:15px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.matrix th:first-child,.matrix td:first-child{text-align:left}.matrix th{font-size:12px;color:var(--muted)}.fit{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font-weight:800}.high{background:rgba(24,134,75,.12);color:var(--green)}.med{background:rgba(180,106,0,.12);color:#b46a00}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.case{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}.case p{color:var(--muted)}
+.toolkit{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.tool{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;align-items:center;justify-content:space-between}.tool p{margin:0;color:var(--muted);font-size:13px}
+.advisor{background:var(--ink);color:var(--surface);border-radius:24px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:30px}.advisor p{color:rgba(255,255,255,.7)}.form{display:grid;gap:10px}.form select{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--surface)}.form option{color:#111}.rec{border-top:1px solid rgba(255,255,255,.18);padding-top:14px;margin-top:6px}.rec div{display:flex;justify-content:space-between;padding:7px 0}
+details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 0;font-weight:800}details p{color:var(--muted);max-width:780px}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(560px,100%);background:var(--surface);z-index:40;border-left:1px solid var(--line);transform:translateX(105%);transition:.25s;overflow:auto;box-shadow:var(--shadow)}.drawer.open{transform:translateX(0)}.drawerhead{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}.drawerbody{padding:28px}.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ditem{border-top:1px solid var(--line);padding-top:14px}.ditem p{color:var(--muted)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.32);z-index:30;opacity:0;pointer-events:none;transition:.2s}.overlay.show{opacity:1;pointer-events:auto}
+.searchpanel{position:fixed;left:50%;top:14%;transform:translateX(-50%);width:min(720px,90vw);background:var(--surface);border:1px solid var(--line);border-radius:20px;z-index:50;box-shadow:var(--shadow);display:none;overflow:hidden}.searchpanel.show{display:block}.searchpanel input{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);padding:18px 20px;font-size:20px;outline:none}.results{padding:8px}.result{padding:12px;border-radius:10px;cursor:pointer}.result:hover{background:var(--bg)}.result span{display:block;color:var(--muted);font-size:13px}
+.mobile{display:none}
+@media(max-width:900px){.sidebar{transform:translateX(-105%);transition:.2s;width:min(300px,86vw);box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.mobile{display:block}.content{padding:0 20px 80px}.head,.featured,.advisor{grid-template-columns:1fr}.triple,.journey,.cases,.toolkit{grid-template-columns:1fr}.row{grid-template-columns:34px 1fr 24px}.row p,.status{display:none}.stats{grid-template-columns:1fr}.hero{min-height:auto;padding-top:70px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
-<body class="min-h-screen text-slate-100 selection:bg-hub-gold selection:text-black antialiased" x-data="salesHubApp()" @keydown.escape.window="closeAllModals()">
-
-    <!-- NIKE-STYLE STICKY TOP HEADER WITH HOVER MEGA MENU -->
-    <header class="sticky top-0 z-50 bg-hub-bg/95 backdrop-blur-md border-b border-hub-border">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Brand & Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-hub-gold to-yellow-300 flex items-center justify-center shadow-lg shadow-amber-500/20">
-                        <i data-lucide="zap" class="w-5 h-5 text-black font-black"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-extrabold text-white text-base tracking-tight font-sans">ATHENA CM</span>
-                            <span class="text-[10px] font-mono font-bold bg-hub-gold/20 text-hub-gold px-2 py-0.5 rounded border border-hub-gold/30">H2 PLAYBOOK</span>
-                        </div>
-                        <p class="text-[10px] text-slate-400 font-mono uppercase tracking-wider">Content Marketing Agency</p>
-                    </div>
-                </div>
-
-                <!-- Main Navigation Items with Mega Menu Trigger -->
-                <nav class="hidden lg:flex items-center space-x-1 text-xs font-semibold">
-                    <a href="#overview" class="px-3.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
-                        Tổng Quan
-                    </a>
-
-                    <!-- NIKE-STYLE MEGA MENU HOVER DROPDOWN -->
-                    <div class="relative has-mega-menu py-2">
-                        <button class="px-3.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5 font-bold text-hub-gold">
-                            <span>Sơ Đồ Sản Phẩm H2</span>
-                            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-                        </button>
-
-                        <!-- Mega Dropdown Panel -->
-                        <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 w-[850px] bg-hub-card/98 border border-hub-border rounded-2xl p-6 shadow-2xl backdrop-blur-xl z-50">
-                            <div class="grid grid-cols-2 gap-6">
-                                <!-- Product Marketing Column -->
-                                <div class="space-y-3">
-                                    <div class="flex items-center justify-between pb-2 border-b border-hub-border">
-                                        <span class="text-xs font-mono font-bold text-hub-gold uppercase tracking-wider flex items-center gap-1.5">
-                                            <i data-lucide="box" class="w-3.5 h-3.5"></i>
-                                            Product Marketing
-                                        </span>
-                                        <span class="text-[10px] bg-hub-gold/10 text-hub-gold px-2 py-0.5 rounded font-mono">17 Giải Pháp</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-2 text-xs">
-                                        <a href="#taxonomy" @click="filterTaxonomy('product_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Product Content Webuy</span>
-                                            <span class="text-[10px] text-slate-400">Trải nghiệm & Review</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('product_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Ecom & Mega Livestream</span>
-                                            <span class="text-[10px] text-slate-400">TikTok Store, Shopee GMV</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('product_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Creator Cruise</span>
-                                            <span class="text-[10px] text-slate-400">Hành trình trải nghiệm</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('product_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Sale AI Agent</span>
-                                            <span class="text-[10px] text-slate-400">Trợ lý bán hàng tự động</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <!-- Content Marketing Column -->
-                                <div class="space-y-3">
-                                    <div class="flex items-center justify-between pb-2 border-b border-hub-border">
-                                        <span class="text-xs font-mono font-bold text-hub-accent uppercase tracking-wider flex items-center gap-1.5">
-                                            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-                                            Content Marketing
-                                        </span>
-                                        <span class="text-[10px] bg-hub-accent/10 text-hub-accent px-2 py-0.5 rounded font-mono">11 Giải Pháp</span>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-2 text-xs">
-                                        <a href="#taxonomy" @click="filterTaxonomy('content_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">PR Star (Editorial)</span>
-                                            <span class="text-[10px] text-slate-400">Bài PR tiêu chuẩn cao</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('content_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Hiếu Nghĩa Vàng Son</span>
-                                            <span class="text-[10px] text-slate-400">Đề án Vu Lan & Tri ân</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('content_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">AI Banking & THQG</span>
-                                            <span class="text-[10px] text-slate-400">Vị thế Ngân hàng & B2B</span>
-                                        </a>
-                                        <a href="#taxonomy" @click="filterTaxonomy('content_mkt')" class="p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors block">
-                                            <span class="font-bold block text-white">Social Partnership</span>
-                                            <span class="text-[10px] text-slate-400">Tinystep, Vietbaby fair</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-hub-border flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                                <span>* Bấm để tra cứu ma trận chi tiết & báo giá tương ứng</span>
-                                <a href="#taxonomy" class="text-hub-gold font-bold hover:underline">Xem Tất Cả 28+ Sản Phẩm &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#case-studies" class="px-3.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
-                        Case Study
-                    </a>
-                    <a href="#featured-products" class="px-3.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
-                        SP Trọng Điểm
-                    </a>
-                    <a href="#pricing" class="px-3.5 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
-                        Gói Ngân Sách
-                    </a>
-                </nav>
-
-                <!-- Quick Action CTA -->
-                <div class="flex items-center gap-3">
-                    <button @click="openQuickPitchModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-hub-gold to-amber-500 text-black font-extrabold text-xs hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20">
-                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                        <span>Tạo Pitch Zalo 30s</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- SPLIT SCREEN LAYOUT CONTAINER (SIDEBAR + MAIN CONTENT) -->
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-            <!-- LEFT FIXED/STICKY SIDEBAR FOR QUICK TRAVERSAL -->
-            <aside class="hidden lg:block lg:col-span-3 sticky top-20 space-y-4">
-                <div class="card-glass p-5 rounded-2xl border border-hub-border space-y-5">
-                    
-                    <!-- Account HUD Greeting -->
-                    <div>
-                        <span class="text-[10px] font-mono text-hub-gold uppercase tracking-wider block mb-1">ACCOUNT QUICK CONSOLE</span>
-                        <h2 class="text-sm font-bold text-white">Tra Cứu Nhanh Cho Sales</h2>
-                    </div>
-
-                    <!-- Search Quick Input -->
-                    <div class="relative">
-                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-                        <input type="text" x-model="searchQuery" placeholder="Tìm tên sản phẩm, thẻ Mới/Thay thế..." class="w-full bg-hub-panel border border-hub-border rounded-xl pl-9 pr-3 py-2 text-xs text-white focus:outline-none focus:border-hub-gold transition-colors">
-                    </div>
-
-                    <!-- Jump Links Nav -->
-                    <nav class="space-y-1 text-xs font-medium">
-                        <a href="#overview" class="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="layout" class="w-3.5 h-3.5 text-hub-gold"></i> Tổng Quan H2</span>
-                            <i data-lucide="arrow-right" class="w-3 h-3 text-slate-500"></i>
-                        </a>
-                        <a href="#taxonomy" class="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-3.5 h-3.5 text-hub-purple"></i> Sơ Đồ Sản Phẩm (28+)</span>
-                            <span class="text-[10px] bg-hub-purple/20 text-hub-purple px-1.5 py-0.5 rounded font-mono" x-text="filteredTaxonomyCount"></span>
-                        </a>
-                        <a href="#case-studies" class="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-hub-accent"></i> Proof & Case Study</span>
-                            <i data-lucide="arrow-right" class="w-3 h-3 text-slate-500"></i>
-                        </a>
-                        <a href="#featured-products" class="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="star" class="w-3.5 h-3.5 text-hub-gold"></i> Sản Phẩm Trọng Điểm</span>
-                            <i data-lucide="arrow-right" class="w-3 h-3 text-slate-500"></i>
-                        </a>
-                        <a href="#pricing" class="flex items-center justify-between p-2 rounded-lg text-slate-300 hover:bg-white/5 hover:text-white transition-colors">
-                            <span class="flex items-center gap-2"><i data-lucide="dollar-sign" class="w-3.5 h-3.5 text-emerald-400"></i> Khung Gói Ngân Sách</span>
-                            <i data-lucide="arrow-right" class="w-3 h-3 text-slate-500"></i>
-                        </a>
-                    </nav>
-
-                    <!-- Quick Pitch Generator Trigger Banner -->
-                    <div class="p-3.5 rounded-xl bg-gradient-to-br from-amber-500/10 via-hub-gold/5 to-transparent border border-hub-gold/30">
-                        <span class="text-[10px] font-mono text-hub-gold font-bold block mb-1">PITCH SCRIPT GENERATOR</span>
-                        <p class="text-[11px] text-slate-300 mb-3">Tạo kịch bản chốt deal gửi Zalo/Email cho khách hàng trong 30 giây.</p>
-                        <button @click="openQuickPitchModal()" class="w-full py-2 rounded-lg bg-hub-gold text-black font-extrabold text-xs hover:brightness-110 transition-all flex items-center justify-center gap-1.5">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                            <span>Tạo Script Ngay</span>
-                        </button>
-                    </div>
-
-                    <!-- Client Brands Chips Quick Filter -->
-                    <div>
-                        <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-2">Thương hiệu tiêu biểu</span>
-                        <div class="flex flex-wrap gap-1.5">
-                            <template x-for="brand in partnerBrands" :key="brand.name">
-                                <span class="text-[10px] font-mono px-2 py-1 rounded bg-hub-panel text-slate-300 border border-hub-border" x-text="brand.name"></span>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- RIGHT MAIN CONTENT AREA -->
-            <main class="lg:col-span-9 space-y-12">
-
-                <!-- SECTION 1: OVERVIEW & HERO BRAND BANNER -->
-                <section id="overview" class="card-glass rounded-3xl p-6 sm:p-8 border border-hub-border relative overflow-hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
-                        <div class="md:col-span-8">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono mb-4">
-                                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                                <span>ATHENA CM • SALES ENABLEMENT CENTER H2.2026</span>
-                            </div>
-                            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4 font-sans">
-                                Vũ Khí Bán Hàng <br>
-                                <span class="gradient-text-gold font-serif italic">Trọng Điểm H2.2026</span>
-                            </h1>
-                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                                Hệ thống hóa toàn bộ 28+ sản phẩm mảng <strong>Product Marketing</strong> &amp; <strong>Content Marketing</strong>. Hỗ trợ đội ngũ Account tra cứu nhanh sơ đồ phân loại, case study thực chiến và kịch bản pitch chốt deal theo từng gói ngân sách.
-                            </p>
-
-                            <!-- Key Numbers -->
-                            <div class="grid grid-cols-3 gap-3 text-center">
-                                <div class="p-3 rounded-xl bg-hub-panel border border-hub-border">
-                                    <span class="block text-xl font-extrabold font-mono text-hub-gold">2 Mảng</span>
-                                    <span class="text-[10px] text-slate-400">Product & Content Mkt</span>
-                                </div>
-                                <div class="p-3 rounded-xl bg-hub-panel border border-hub-border">
-                                    <span class="block text-xl font-extrabold font-mono text-hub-accent">28+</span>
-                                    <span class="text-[10px] text-slate-400">Giải Pháp Đóng Gói</span>
-                                </div>
-                                <div class="p-3 rounded-xl bg-hub-panel border border-hub-border">
-                                    <span class="block text-xl font-extrabold font-mono text-emerald-400">30s</span>
-                                    <span class="text-[10px] text-slate-400">Tạo Script Pitch Zalo</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Visual KV Block -->
-                        <div class="md:col-span-4 flex justify-center">
-                            <div class="relative w-full h-56 rounded-2xl overflow-hidden border border-hub-gold/30 shadow-2xl group">
-                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="Athena Sales Hub" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181822/FACC15?text=Athena+CM'">
-                                <div class="absolute inset-0 img-overlay flex flex-col justify-end p-4">
-                                    <span class="text-[10px] font-mono font-bold text-hub-gold uppercase">INTERNAL SALES HUB</span>
-                                    <span class="text-sm font-bold text-white">Athena CM Agency</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SECTION 2: SƠ ĐỒ PHÂN LOẠI SẢN PHẨM ATHENA CM (REAL-TIME FILTER MATRIX) -->
-                <section id="taxonomy" class="space-y-6">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                            <span class="text-hub-purple font-mono text-xs font-bold uppercase tracking-widest block mb-1">TAXONOMY MATRIX</span>
-                            <h2 class="text-2xl font-extrabold text-white">Khung Giải Pháp — Sơ Đồ Sản Phẩm Athena CM</h2>
-                        </div>
-
-                        <!-- Filter Controls & Real-Time Search Input -->
-                        <div class="flex flex-wrap items-center gap-2">
-                            <!-- Search Bar -->
-                            <div class="relative min-w-[220px]">
-                                <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
-                                <input type="text" x-model="searchQuery" placeholder="Tìm sản phẩm / từ khóa..." class="w-full bg-hub-panel border border-hub-border rounded-xl pl-8 pr-3 py-1.5 text-xs text-white focus:outline-none focus:border-hub-gold">
-                            </div>
-
-                            <!-- Domain Filter Buttons -->
-                            <div class="flex items-center gap-1 bg-hub-panel p-1 rounded-xl border border-hub-border text-xs font-mono">
-                                <button @click="taxonomyFilter = 'all'" :class="taxonomyFilter === 'all' ? 'bg-hub-purple text-white' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition-colors">Tất Cả</button>
-                                <button @click="taxonomyFilter = 'product_mkt'" :class="taxonomyFilter === 'product_mkt' ? 'bg-hub-gold text-black font-bold' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition-colors">Product Mkt</button>
-                                <button @click="taxonomyFilter = 'content_mkt'" :class="taxonomyFilter === 'content_mkt' ? 'bg-hub-accent text-black font-bold' : 'text-slate-400'" class="px-3 py-1 rounded-lg transition-colors">Content Mkt</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Taxonomy Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <template x-for="group in filteredTaxonomy" :key="group.categoryName">
-                            <div class="card-glass p-5 rounded-2xl border border-hub-border flex flex-col justify-between">
-                                <div>
-                                    <!-- Header Badge -->
-                                    <div class="flex items-center justify-between mb-3">
-                                        <span class="px-2.5 py-1 rounded text-[10px] font-mono font-bold uppercase"
-                                              :class="group.domain === 'Product Marketing' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/30'"
-                                              x-text="group.domain"></span>
-                                        <span class="text-[10px] font-mono text-slate-400" x-text="group.levelCode"></span>
-                                    </div>
-
-                                    <h3 class="text-base font-bold text-white mb-3" x-text="group.categoryName"></h3>
-
-                                    <!-- Items List -->
-                                    <div class="space-y-2">
-                                        <template x-for="item in group.items" :key="item.name">
-                                            <div class="p-2.5 rounded-xl bg-hub-panel/80 border border-hub-border hover:border-slate-600 transition-colors">
-                                                <div class="flex items-start justify-between gap-2 mb-1">
-                                                    <span class="font-bold text-xs text-slate-100" x-text="item.name"></span>
-                                                    <!-- Status Badge -->
-                                                    <span class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded shrink-0 uppercase"
-                                                          :class="{
-                                                              'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30': item.type === 'Mới',
-                                                              'bg-amber-500/20 text-amber-300 border border-amber-500/30': item.type === 'Nâng cấp',
-                                                              'bg-rose-500/20 text-rose-300 border border-rose-500/30': item.type === 'Thay thế'
-                                                          }"
-                                                          x-text="item.type"></span>
-                                                </div>
-
-                                                <template x-if="item.replacedOld">
-                                                    <div class="text-[10px] text-slate-400 font-mono mb-1">
-                                                        Thay thế cho: <span class="text-rose-400 line-through" x-text="item.replacedOld"></span>
-                                                    </div>
-                                                </template>
-
-                                                <template x-if="item.note">
-                                                    <p class="text-[11px] text-slate-400 leading-snug" x-text="item.note"></p>
-                                                </template>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </section>
-
-                <!-- SECTION 3: VISUAL CASE STUDIES & BRAND PROOF -->
-                <section id="case-studies" class="space-y-6">
-                    <div>
-                        <span class="text-hub-accent font-mono text-xs font-bold uppercase tracking-widest block mb-1">VISUAL PROOF</span>
-                        <h2 class="text-2xl font-extrabold text-white">Bằng Chứng Hiệu Quả & Case Study Thực Chiến</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <template x-for="cs in caseStudies" :key="cs.id">
-                            <div class="card-glass rounded-2xl overflow-hidden border border-hub-border flex flex-col justify-between group">
-                                <div>
-                                    <div class="relative h-44 overflow-hidden">
-                                        <img :src="cs.imageUrl" :alt="cs.clientBrand" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/181822/06B6D4?text=Case+Study'">
-                                        <div class="absolute inset-0 img-overlay flex items-end p-3 justify-between">
-                                            <span class="font-mono font-extrabold text-xs text-hub-gold bg-black/70 px-2 py-1 rounded backdrop-blur border border-hub-gold/30" x-text="cs.clientBrand"></span>
-                                            <span class="text-[10px] font-mono text-slate-200 px-2 py-0.5 rounded bg-slate-800/80 border border-white/10" x-text="cs.industry"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-4">
-                                        <h3 class="font-bold text-white text-sm mb-2" x-text="cs.campaignTitle"></h3>
-                                        <p class="text-xs text-slate-300 leading-relaxed mb-4" x-text="cs.description"></p>
-
-                                        <div class="grid grid-cols-2 gap-2 mb-3">
-                                            <template x-for="metric in cs.metrics" :key="metric.label">
-                                                <div class="p-2 rounded-xl bg-hub-panel border border-hub-border text-center">
-                                                    <span class="block font-mono font-bold text-base text-hub-accent" x-text="metric.value"></span>
-                                                    <span class="text-[9px] text-slate-400" x-text="metric.label"></span>
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="p-4 pt-0">
-                                    <div class="p-2.5 rounded-xl bg-hub-panel/60 border border-hub-border text-xs italic text-slate-300">
-                                        "<span x-text="cs.quote"></span>"
-                                    </div>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </section>
-
-                <!-- SECTION 4: STRATEGIC FEATURED PRODUCTS -->
-                <section id="featured-products" class="space-y-6">
-                    <div>
-                        <span class="text-emerald-400 font-mono text-xs font-bold uppercase tracking-widest block mb-1">KEY PRODUCT CATALOGUE</span>
-                        <h2 class="text-2xl font-extrabold text-white">Sản Phẩm Trọng Điểm & Dịch Vụ Mới H2</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <template x-for="product in featuredProducts" :key="product.id">
-                            <div class="card-glass rounded-2xl overflow-hidden border border-hub-border flex flex-col justify-between group">
-                                <div>
-                                    <div class="relative h-40 overflow-hidden">
-                                        <img :src="product.bannerUrl" :alt="product.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x350/121218/F59E0B?text=Athena+Product'">
-                                        <div class="absolute inset-0 img-overlay flex items-start justify-between p-3">
-                                            <span class="px-2 py-0.5 rounded bg-black/70 backdrop-blur text-hub-gold text-[10px] font-mono font-bold uppercase border border-hub-gold/30" x-text="product.category"></span>
-                                            <span class="text-[9px] font-mono font-bold px-2 py-0.5 rounded"
-                                                  :class="product.status === 'MỚI' ? 'bg-emerald-500/80 text-white' : 'bg-amber-500/80 text-black'"
-                                                  x-text="product.status"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-4">
-                                        <h3 class="text-base font-bold text-white mb-2" x-text="product.title"></h3>
-                                        <p class="text-xs text-slate-300 leading-relaxed mb-4" x-text="product.summary"></p>
-
-                                        <div class="mb-3">
-                                            <span class="text-[10px] font-mono text-slate-400 block mb-1">Thương hiệu phù hợp:</span>
-                                            <div class="flex flex-wrap gap-1">
-                                                <template x-for="brand in product.targetBrands" :key="brand">
-                                                    <span class="text-[10px] px-2 py-0.5 rounded bg-hub-panel text-slate-200 border border-hub-border" x-text="brand"></span>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="p-4 pt-0 border-t border-hub-border mt-2 flex items-center justify-between">
-                                    <div>
-                                        <span class="text-[10px] font-mono text-slate-400 block">Khung giá:</span>
-                                        <span class="text-xs font-bold font-mono text-hub-gold" x-text="product.pricing"></span>
-                                    </div>
-                                    <button @click="openDetailModal(product)" class="px-3 py-1.5 rounded-lg bg-hub-gold text-black font-extrabold text-xs hover:brightness-110 transition-all">
-                                        Xem Pitch
-                                    </button>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </section>
-
-                <!-- SECTION 5: RATE CARD & BUDGET PACKAGES WITH SCRIPT GENERATOR TRIGGER -->
-                <section id="pricing" class="space-y-6">
-                    <div>
-                        <span class="text-hub-rose font-mono text-xs font-bold uppercase tracking-widest block mb-1">RATE CARD GUIDELINE</span>
-                        <h2 class="text-2xl font-extrabold text-white">Định Hướng Ngân Sách Đóng Gói H2</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Starter Package -->
-                        <div class="card-glass p-6 rounded-2xl border border-hub-border relative flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">GÓI 01 - TRIAL</span>
-                                <h3 class="text-lg font-bold text-white mt-1 mb-2">Starter Test Campaign</h3>
-                                <p class="text-xs text-slate-300 mb-4">Thử nghiệm giải pháp mới với rủi ro thấp cho Client mới.</p>
-                                <div class="text-2xl font-mono font-extrabold text-hub-gold mb-4">
-                                    50M - 90M <span class="text-xs text-slate-400 font-sans font-normal">/ chiến dịch</span>
-                                </div>
-                                <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> 01 Content Hero Bài PR Star</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Cam kết 100K+ Organic Reach</li>
-                                </ul>
-                            </div>
-                            <button @click="openQuickPitchModal('Starter')" class="w-full py-2.5 rounded-xl bg-hub-panel border border-hub-border text-xs font-bold text-white hover:bg-white/10 transition-all">
-                                Tạo Pitch Gói Starter
-                            </button>
-                        </div>
-
-                        <!-- Growth Package -->
-                        <div class="card-glass p-6 rounded-2xl border-2 border-hub-gold relative flex flex-col justify-between shadow-xl shadow-amber-500/10">
-                            <div class="absolute -top-3 right-4 bg-gradient-to-r from-hub-gold to-amber-500 text-black text-[9px] font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">
-                                Bán Chạy Nhất
-                            </div>
-                            <div>
-                                <span class="text-[10px] font-mono font-bold text-hub-gold uppercase">GÓI 02 - ACCELERATOR</span>
-                                <h3 class="text-lg font-bold text-white mt-1 mb-2">Growth Multi-Channel</h3>
-                                <p class="text-xs text-slate-300 mb-4">Combo đa kênh bao gồm Product Content & Social Booking.</p>
-                                <div class="text-2xl font-mono font-extrabold text-hub-gold mb-4">
-                                    150M - 280M <span class="text-xs text-slate-400 font-sans font-normal">/ chiến dịch</span>
-                                </div>
-                                <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-hub-gold"></i> Combo PR Star + Booking + Webuy</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-hub-gold"></i> Cam kết KPI Engagement & Traffic</li>
-                                </ul>
-                            </div>
-                            <button @click="openQuickPitchModal('Growth')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-hub-gold to-amber-500 text-black font-extrabold text-xs hover:brightness-110 transition-all">
-                                Tạo Pitch Gói Growth
-                            </button>
-                        </div>
-
-                        <!-- Enterprise Package -->
-                        <div class="card-glass p-6 rounded-2xl border border-hub-border relative flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">GÓI 03 - ENTERPRISE</span>
-                                <h3 class="text-lg font-bold text-white mt-1 mb-2">Dominance Tailored</h3>
-                                <p class="text-xs text-slate-300 mb-4">May đo riêng cho các đề án lớn (Hiếu Nghĩa Vàng Son, AI Banking).</p>
-                                <div class="text-2xl font-mono font-extrabold text-hub-gold mb-4">
-                                    350M+ <span class="text-xs text-slate-400 font-sans font-normal">/ dự án custom</span>
-                                </div>
-                                <ul class="space-y-2 text-xs text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Event Partnership & Co-branding</li>
-                                    <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Production Team độc quyền</li>
-                                </ul>
-                            </div>
-                            <button @click="openQuickPitchModal('Enterprise')" class="w-full py-2.5 rounded-xl bg-hub-panel border border-hub-border text-xs font-bold text-white hover:bg-white/10 transition-all">
-                                Tạo Pitch Enterprise
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
-
-    <!-- MODAL 1: QUICK PITCH SCRIPT GENERATOR (Tailored to Package) -->
-    <div x-show="quickPitchModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm" style="display: none;">
-        <div @click.away="quickPitchModalOpen = false" class="card-glass w-full max-w-2xl rounded-2xl p-6 border border-hub-gold/40 relative shadow-2xl">
-            <button @click="quickPitchModalOpen = false" class="absolute top-4 right-4 text-slate-400 hover:text-white">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-5 h-5 text-hub-gold"></i>
-                <span>Tạo Script Pitch Chào Hàng Zalo/Email (30s)</span>
-            </h3>
-            <p class="text-xs text-slate-300 mb-4">Tự động thay đổi nội dung chào hàng theo gói ngân sách được chọn.</p>
-
-            <div class="space-y-4 text-xs">
-                <!-- Package Selection Switcher -->
-                <div>
-                    <label class="block text-slate-400 font-mono mb-1">Gói Ngân Sách Chọn Pitch:</label>
-                    <div class="grid grid-cols-3 gap-2">
-                        <button @click="selectedPackageName = 'Starter'" :class="selectedPackageName === 'Starter' ? 'bg-hub-gold text-black font-bold' : 'bg-hub-panel text-slate-300 border border-hub-border'" class="py-2 rounded-lg text-xs transition-colors">
-                            Starter (50M-90M)
-                        </button>
-                        <button @click="selectedPackageName = 'Growth'" :class="selectedPackageName === 'Growth' ? 'bg-hub-gold text-black font-bold' : 'bg-hub-panel text-slate-300 border border-hub-border'" class="py-2 rounded-lg text-xs transition-colors">
-                            Growth (150M-280M)
-                        </button>
-                        <button @click="selectedPackageName = 'Enterprise'" :class="selectedPackageName === 'Enterprise' ? 'bg-hub-gold text-black font-bold' : 'bg-hub-panel text-slate-300 border border-hub-border'" class="py-2 rounded-lg text-xs transition-colors">
-                            Enterprise (350M+)
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-slate-400 font-mono mb-1">Tên Nhãn Hàng / Người Nhận:</label>
-                    <input type="text" x-model="pitchClientName" placeholder="VD: Anh Nam - Brand Manager Samsung" class="w-full bg-hub-panel border border-hub-border rounded-lg p-2.5 text-white focus:outline-none focus:border-hub-gold">
-                </div>
-
-                <div>
-                    <label class="block text-slate-400 font-mono mb-1">Nội Dung Script Mẫu Zalo/Email:</label>
-                    <textarea readonly rows="7" class="w-full bg-hub-panel border border-hub-border rounded-lg p-3 text-slate-200 font-mono text-xs focus:outline-none leading-relaxed" x-text="generatedPitchText"></textarea>
-                </div>
-            </div>
-
-            <div class="mt-6 flex justify-end gap-3">
-                <button @click="quickPitchModalOpen = false" class="px-4 py-2 rounded-lg bg-slate-800 text-xs text-slate-300">Đóng (ESC)</button>
-                <button @click="copyGeneratedPitch()" class="px-5 py-2 rounded-lg bg-hub-gold text-black font-bold text-xs hover:brightness-110 flex items-center gap-1.5">
-                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                    <span>Sao Chép Script Zalo</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: PRODUCT DETAIL OVERLAY -->
-    <div x-show="detailModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm" style="display: none;">
-        <div @click.away="detailModalOpen = false" class="card-glass w-full max-w-2xl rounded-2xl p-6 border border-hub-border relative max-h-[90vh] overflow-y-auto">
-            <button @click="detailModalOpen = false" class="absolute top-4 right-4 text-slate-400 hover:text-white">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <template x-if="activeProduct">
-                <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="text-xs font-mono text-hub-gold px-2.5 py-1 bg-hub-gold/10 rounded border border-hub-gold/30 font-bold" x-text="activeProduct.category"></span>
-                        <span class="text-xs font-mono text-emerald-400 font-bold" x-text="activeProduct.status"></span>
-                    </div>
-
-                    <h2 class="text-xl font-bold text-white mb-2" x-text="activeProduct.title"></h2>
-                    <p class="text-xs text-slate-300 mb-4 leading-relaxed" x-text="activeProduct.summary"></p>
-
-                    <div class="space-y-4 text-xs">
-                        <div class="p-3.5 rounded-xl bg-hub-panel border border-hub-border">
-                            <strong class="text-hub-gold font-mono block mb-1">GÓC ĐỘ TƯ VẤN CHO ACCOUNT:</strong>
-                            <p class="text-slate-300 leading-relaxed" x-text="activeProduct.salesPitchReason"></p>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 flex justify-end gap-3 pt-3 border-t border-hub-border">
-                        <button @click="detailModalOpen = false" class="px-4 py-2 rounded-xl bg-hub-panel text-slate-300 text-xs font-semibold">Đóng (ESC)</button>
-                        <button @click="copyPitchScript(activeProduct)" class="px-5 py-2 rounded-xl bg-gradient-to-r from-hub-gold to-amber-500 text-black font-extrabold text-xs flex items-center gap-1.5">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                            <span>Sao Chép Sales Pitch</span>
-                        </button>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
-
-    <!-- Alpine State Logic -->
-    <script>
-        function salesHubApp() {
-            return {
-                taxonomyFilter: 'all',
-                searchQuery: '',
-                quickPitchModalOpen: false,
-                detailModalOpen: false,
-                pitchClientName: '',
-                activeProduct: null,
-                selectedPackageName: 'Growth',
-
-                // Partner Client Brands Showcase
-                partnerBrands: [
-                    { name: "UNILEVER", industry: "FMCG / Beauty" },
-                    { name: "DELL & ALIENWARE", industry: "Tech / Gaming" },
-                    { name: "L'ORÉAL PARIS", industry: "Cosmetics" },
-                    { name: "SAMSUNG", industry: "Electronics" },
-                    { name: "VINFAST", industry: "Automotive" },
-                    { name: "TECHCOMBANK", industry: "Banking & Finance" }
-                ],
-
-                // Full Taxonomy Matrix
-                taxonomyData: [
-                    {
-                        domain: "Product Marketing",
-                        levelCode: "LEVEL 2-4",
-                        categoryName: "Bộ Công Cụ Tiếp Thị Sản Phẩm Ra Thị Trường",
-                        items: [
-                            { name: "Product Content by Webuy", type: "Mới", note: "Nội dung trải nghiệm sản phẩm trực quan" },
-                            { name: "Featured Product", type: "Mới", note: "Đưa sản phẩm lên vị trí tiêu điểm chính" },
-                            { name: "WEPICK", type: "Mới", note: "Bình chọn & chứng nhận sản phẩm xuất sắc" },
-                            { name: "Influencer Marketing / Booking KOL", type: "Mới", note: "Chuyên gia & Influencers đánh giá sản phẩm" },
-                            { name: "Sx Hình ảnh & Video MKT", type: "Mới", note: "Sản xuất hình ảnh/video bán hàng chuẩn thương mại" },
-                            { name: "Đào tạo Livestream bán hàng", type: "Mới", note: "Huấn luyện kỹ năng livestream với Chuyên gia" },
-                            { name: "Visual Marketing", type: "Mới", note: "Thiết kế đồ họa & Visual ấn tượng" },
-                            { name: "Community Marketing", type: "Mới", note: "Chuỗi Workshop Mẹ & Bé, Mom Review" },
-                            { name: "Gamification Marketing", type: "Mới", note: "Mini-game tương tác tăng giữ chân" }
-                        ]
-                    },
-                    {
-                        domain: "Product Marketing",
-                        levelCode: "LEVEL 2-3",
-                        categoryName: "Bộ Công Cụ Review Sản Phẩm & Activation O2O",
-                        items: [
-                            { name: "Webuy Booking", type: "Mới", note: "Booking review sản phẩm theo chuẩn Webuy" },
-                            { name: "AI Video Review", type: "Mới", note: "Ứng dụng AI sản xuất video review tốc độ cao" },
-                            { name: "Activation O2O", type: "Mới", note: "Kích hoạt trải nghiệm từ Online sang Offline" },
-                            { name: "Creator Cruise", type: "Mới", note: "Hành trình trải nghiệm dành riêng cho Creators" }
-                        ]
-                    },
-                    {
-                        domain: "Product Marketing",
-                        levelCode: "LEVEL 2-4",
-                        categoryName: "Bộ Công Cụ Tối Ưu Chuyển Đổi & Ecom",
-                        items: [
-                            { name: "Ecom Marketing", type: "Mới", note: "Mega Livestream, TikTok Store, Sàn TMĐT, GMV Max" },
-                            { name: "Shoppertainment Race", type: "Mới", note: "Cuộc đua giải trí kết hợp mua sắm" },
-                            { name: "Sale AI Agent", type: "Mới", note: "Trợ lý AI hỗ trợ chốt đơn tự động" },
-                            { name: "Tool Sale Story", type: "Mới", note: "Công cụ kể chuyện bán hàng hấp dẫn" }
-                        ]
-                    },
-                    {
-                        domain: "Content Marketing",
-                        levelCode: "CORE PRODUCTS",
-                        categoryName: "Sản Phẩm Cốt Lõi (Core Content)",
-                        items: [
-                            { name: "Editorial Content (PR Star)", type: "Nâng cấp", replacedOld: "PR Truyền thống cũ", note: "Nâng cấp lên PR Star tiêu chuẩn cao" },
-                            { name: "Content Chủ Động", type: "Nâng cấp", note: "Xây dựng tuyến nội dung chủ động thu hút" },
-                            { name: "Social Booking", type: "Nâng cấp", note: "Dự kiến điều chỉnh tăng giá theo hiệu quả" },
-                            { name: "Social Chủ Động", type: "Mới", note: "Quản trị & phát triển nội dung Social chủ động" }
-                        ]
-                    },
-                    {
-                        domain: "Content Marketing",
-                        levelCode: "SOLUTIONS",
-                        categoryName: "Giải Pháp Đối Tác & Sự Kiện (Solutions)",
-                        items: [
-                            { name: "Social Partnership", type: "Thay thế", replacedOld: "Quản trị Fanpage cũ", note: "Tinystep, Vietbaby fair" },
-                            { name: "Event Partnership", type: "Nâng cấp", note: "Nâng cấp quy mô đối tác sự kiện" },
-                            { name: "HIẾU NGHĨA VÀNG SON", type: "Thay thế", replacedOld: "Yêu nước A80", note: "Đề án tri ân & Vu Lan bán concept trước 15/8" },
-                            { name: "Thương hiệu Quốc gia / AI BANKING", type: "Mới", note: "Gói giải pháp vị thế doanh nghiệp & ngân hàng" },
-                            { name: "Engagement Campaign", type: "Nâng cấp", note: "Chiến dịch tăng tương tác chiều sâu" }
-                        ]
-                    }
-                ],
-
-                // Case Studies
-                caseStudies: [
-                    {
-                        id: 'cs1',
-                        clientBrand: 'UNILEVER VIETNAM',
-                        industry: 'FMCG & Beauty',
-                        campaignTitle: 'Product Content by Webuy x Interactive Hub',
-                        imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
-                        description: 'Bài viết trải nghiệm Webuy kết hợp gamification tăng 3x thời gian lưu trang.',
-                        metrics: [
-                            { label: 'Total Reach', value: '2.4M+' },
-                            { label: 'Engagement Rate', value: '6.8%' }
-                        ],
-                        quote: 'Giải pháp Webuy giúp sản phẩm mới tiếp cận giới trẻ tự nhiên.'
-                    },
-                    {
-                        id: 'cs2',
-                        clientBrand: 'DELL & ALIENWARE',
-                        industry: 'Tech & Gaming',
-                        campaignTitle: 'Featured Product & Review Chuyên Sâu',
-                        imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80',
-                        description: 'PR Star kết hợp Video Short review giúp chốt đơn dòng Laptop gaming.',
-                        metrics: [
-                            { label: 'Video Views', value: '1.2M+' },
-                            { label: 'High Leads', value: '850+' }
-                        ],
-                        quote: 'Athena CM bắt trúng góc độ kỹ thuật mà gamer quan tâm.'
-                    },
-                    {
-                        id: 'cs3',
-                        clientBrand: 'L\'ORÉAL PARIS',
-                        industry: 'Beauty & Skincare',
-                        campaignTitle: 'Creator Cruise & Shoppertainment',
-                        imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80',
-                        description: 'Hành trình Creators trải nghiệm kết hợp Mega Livestream thúc đẩy GMV.',
-                        metrics: [
-                            { label: 'UGC Shares', value: '4,500+' },
-                            { label: 'GMV Lift', value: '+35%' }
-                        ],
-                        quote: 'Mô hình Creator Cruise kết hợp Shoppertainment bùng nổ doanh số.'
-                    }
-                ],
-
-                // Featured Strategic Products
-                featuredProducts: [
-                    {
-                        id: 'fp1',
-                        title: 'PR Star (Editorial Content)',
-                        category: 'Content Marketing',
-                        status: 'NÂNG CẤP',
-                        bannerUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80',
-                        summary: 'Phiên bản nâng cấp bài viết truyền thông với chuẩn Visual mới & Video Short.',
-                        pricing: '60M - 120M / Bài',
-                        targetBrands: ['Tech', 'Ngân Hàng', 'FMCG'],
-                        salesPitchReason: 'Tăng 2.5x lượt đọc trọn vẹn so với bài PR tĩnh truyền thống.'
-                    },
-                    {
-                        id: 'fp2',
-                        title: 'Product Content by Webuy',
-                        category: 'Product Marketing',
-                        status: 'MỚI',
-                        bannerUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-                        summary: 'Gói trải nghiệm thực tế sản phẩm dành riêng cho mảng ra mắt sản phẩm mới.',
-                        pricing: '80M - 160M / Gói',
-                        targetBrands: ['Gia Dụng', 'Mỹ Phẩm', 'Electronics'],
-                        salesPitchReason: 'Đánh trúng tâm lý "thấy mới tin" khi khách hàng tìm kiếm bài review thật.'
-                    },
-                    {
-                        id: 'fp3',
-                        title: 'Đề Án Hiếu Nghĩa Vàng Son',
-                        category: 'Solutions & Event',
-                        status: 'THAY THẾ',
-                        bannerUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80',
-                        summary: 'Gói giải pháp truyền thông lớn cho Ngân hàng & Tập đoàn (Vu Lan / Tri ân).',
-                        pricing: '250M - 500M+ / Đề án',
-                        targetBrands: ['Tài Chính / Banking', 'Enterprise'],
-                        salesPitchReason: 'Thay thế gói A80 cũ, mang lại vị thế dẫn đầu cho doanh nghiệp.'
-                    }
-                ],
-
-                get filteredTaxonomy() {
-                    let items = this.taxonomyData;
-
-                    // Filter by domain tab
-                    if (this.taxonomyFilter === 'product_mkt') {
-                        items = items.filter(g => g.domain === 'Product Marketing');
-                    } else if (this.taxonomyFilter === 'content_mkt') {
-                        items = items.filter(g => g.domain === 'Content Marketing');
-                    }
-
-                    // Filter by search query
-                    if (this.searchQuery.trim() !== '') {
-                        const q = this.searchQuery.toLowerCase();
-                        items = items.map(group => {
-                            const matchedItems = group.items.filter(i => 
-                                i.name.toLowerCase().includes(q) || 
-                                i.type.toLowerCase().includes(q) ||
-                                (i.note && i.note.toLowerCase().includes(q))
-                            );
-                            return { ...group, items: matchedItems };
-                        }).filter(group => group.items.length > 0);
-                    }
-
-                    return items;
-                },
-
-                get filteredTaxonomyCount() {
-                    let total = 0;
-                    this.filteredTaxonomy.forEach(g => total += g.items.length);
-                    return total;
-                },
-
-                get generatedPitchText() {
-                    const client = this.pitchClientName || 'Anh/Chị';
-                    if (this.selectedPackageName === 'Starter') {
-                        return `Chào ${client},\n\nEm bên Athena CM gửi ${client} Gói Starter Test Campaign (50M-90M) thử nghiệm sản phẩm mới H2.2026 bên em.\n\nCombo bao gồm 01 bài PR Star tiêu chuẩn cao + cam kết 100K+ Organic Reach tiếp cận chuẩn tập khách hàng mục tiêu.\n\n${client} xem qua brief ngắn này nhé!`;
-                    } else if (this.selectedPackageName === 'Enterprise') {
-                        return `Chào ${client},\n\nEm bên Athena CM xin gửi ${client} Đề án Truyền thông Vị thế Enterprise H2.2026 (Hiếu Nghĩa Vàng Son / AI Banking).\n\nGói may đo riêng mang lại bảo chứng truyền thông uy tín, kết hợp Reality Show & Sự kiện lớn cho doanh nghiệp.\n\n${client} dành 10p tuần này em gửi proposal chi tiết nhé!`;
-                    }
-                    // Default Growth Package
-                    return `Chào ${client},\n\nEm bên Athena CM xin gửi ${client} Gói Accelerator Growth (150M-280M) kết hợp đa kênh: PR Star + Webuy Product Content + Social Booking.\n\nGói giải pháp này vừa triển khai thành công cho các nhãn hàng Unilever, Dell, Samsung với cam kết KPI Engagement & Traffic minh bạch.\n\n${client} cho em xin 5 phút trao đổi chi tiết nhé!`;
-                },
-
-                filterTaxonomy(domain) {
-                    this.taxonomyFilter = domain;
-                },
-
-                openQuickPitchModal(pkgName = 'Growth') {
-                    this.selectedPackageName = pkgName;
-                    this.quickPitchModalOpen = true;
-                    setTimeout(() => lucide.createIcons(), 50);
-                },
-
-                openDetailModal(product) {
-                    this.activeProduct = product;
-                    this.detailModalOpen = true;
-                    setTimeout(() => lucide.createIcons(), 50);
-                },
-
-                closeAllModals() {
-                    this.quickPitchModalOpen = false;
-                    this.detailModalOpen = false;
-                },
-
-                copyPitchScript(product) {
-                    const text = `Sales Pitch ${product.title}:\n- Giá trị: ${product.summary}\n- Giá: ${product.pricing}\n- LÝ DO CHỐT: ${product.salesPitchReason}`;
-                    navigator.clipboard.writeText(text);
-                    this.showToast('Đã sao chép Sales Pitch!');
-                },
-
-                copyGeneratedPitch() {
-                    navigator.clipboard.writeText(this.generatedPitchText);
-                    this.quickPitchModalOpen = false;
-                    this.showToast('Đã sao chép Script Zalo thành công!');
-                },
-
-                showToast(msg) {
-                    const toast = document.createElement('div');
-                    toast.className = 'fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-hub-gold text-black font-extrabold text-xs shadow-2xl transition-all';
-                    toast.innerText = msg;
-                    document.body.appendChild(toast);
-                    setTimeout(() => toast.remove(), 2500);
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
-    </script>
+<body>
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="mark">A</div><div><b>AthenaCM</b><small>H2 / 2026</small></div></div>
+<div class="searchbox"><input id="sideSearch" placeholder="Tìm sản phẩm..."></div>
+<nav class="nav" id="nav">
+<a href="#overview" class="active">Overview</a><a href="#ecosystem">Product Map</a><a href="#featured">Featured</a><a href="#products">Products</a><a href="#industry">Industry</a><a href="#cases">Cases</a><a href="#toolkit">Toolkit</a><a href="#advisor">Advisor</a><a href="#faq">FAQ</a>
+</nav>
+</aside>
+<main class="main">
+<header class="topbar">
+<button class="icon mobile" id="mobileBtn">☰</button>
+<div id="crumb">Overview / Athena Product OS</div>
+<div class="toolbar"><button class="btn" id="searchBtn">⌕ Search</button><button class="icon" id="themeBtn">◐</button></div>
+</header>
+<div class="content">
+<section class="section hero" id="overview">
+<div class="eyebrow">AthenaCM • H2/2026 Product Operating System</div>
+<h1>Know faster.<br>Pitch smarter.<br>Sell better.</h1>
+<p class="lede">Trung tâm tra cứu giúp Sale/Account hiểu nhanh sản phẩm trọng điểm, biết nhãn hàng nào phù hợp, dùng case nào để chứng minh và mở đúng hướng bán hàng.</p>
+<div class="actions"><a class="primary" href="#featured">Khám phá sản phẩm trọng điểm</a><a class="secondary" href="#industry">Map theo ngành hàng</a></div>
+<div class="stats"><div class="stat"><strong>30s</strong><span>Nhìn ra sản phẩm ưu tiên</span></div><div class="stat"><strong>2m</strong><span>Hiểu một sản phẩm đủ để mở pitch</span></div><div class="stat"><strong>5m</strong><span>Có bộ thông tin trước cuộc gặp</span></div></div>
+</section>
+<section class="section">
+<div class="head"><div><div class="eyebrow">01 / The sales problem</div><h2>Sản phẩm nhiều hơn.<br>Thời gian hiểu lại ít hơn.</h2></div><p>Khi thông tin nằm rải rác trong deck, chat và file báo giá, Sale phải tự ghép các mảnh lại. Product OS biến các mảnh đó thành một bản đồ có thể dùng ngay.</p></div>
+<div class="triple"><article class="plain"><h3>Không biết bắt đầu từ đâu</h3><p>Đi từ nhu cầu khách hàng → ngành → sản phẩm.</p></article><article class="plain"><h3>Thiếu bằng chứng để pitch</h3><p>Case, KPI, brand fit phải xuất hiện đúng lúc.</p></article><article class="plain"><h3>Khó nối sang cross-sell</h3><p>Mỗi sản phẩm mở ra sản phẩm liên quan để tăng giá trị deal.</p></article></div>
+</section>
+<section class="section" id="ecosystem">
+<div class="head"><div><div class="eyebrow">02 / Product map</div><h2>Không học sản phẩm.<br>Học cách giải bài toán.</h2></div><p>Click sản phẩm để mở nhanh Pain Point → Solution → Brand Fit → Proof → Cross-sell.</p></div>
+<div class="map"><div class="journey">
+<div class="col"><small>Stage 01</small><h3>Awareness</h3><button class="prod" data-product="pr"><b>PR Chủ động</b><span>→</span></button><button class="prod" data-product="editorial"><b>Editorial Content</b><span>→</span></button><button class="prod" data-product="social"><b>Social Booking</b><span>→</span></button></div>
+<div class="col"><small>Stage 02</small><h3>Consideration</h3><button class="prod" data-product="pm"><b>Product Marketing ★</b><span>→</span></button><button class="prod" data-product="prstar"><b>PR Star</b><span>→</span></button><button class="prod" data-product="visual"><b>Social Visual Content</b><span>→</span></button></div>
+<div class="col"><small>Stage 03</small><h3>Engagement</h3><button class="prod" data-product="contest"><b>Social Contest</b><span>→</span></button><button class="prod" data-product="ecom"><b>Social Ecom</b><span>→</span></button><button class="prod" data-product="kol"><b>KOL Booking</b><span>→</span></button></div>
+</div></div>
+</section>
+<section class="section" id="featured">
+<div class="head"><div><div class="eyebrow">03 / Featured product</div><h2>Product Marketing</h2></div><p>Sản phẩm trọng điểm được kể như một câu chuyện bán hàng: áp lực của nhãn → giải pháp → bằng chứng → cross-sell.</p></div>
+<div class="featured"><article class="hero-card"><div><div class="eyebrow">H2 Priority</div><h2>Turn products<br>into stories<br>people choose.</h2><p>Kết nối content, media và social để biến một sản phẩm từ “thông tin cần truyền thông” thành câu chuyện đủ hấp dẫn để người dùng hiểu, cân nhắc và hành động.</p></div><div><div class="tags"><span>Launch</span><span>Consideration</span><span>Trial</span><span>Content-first</span><span>Social-first</span></div><button class="primary" style="background:white;color:#111;margin-top:20px" data-product="pm">Mở Product Brief →</button></div></article>
+<div class="sidecards"><article class="info"><h3>Sell when</h3><ul><li>Ra mắt / tái ra mắt sản phẩm</li><li>Cần giáo dục lợi ích</li><li>Cần kết nối PR + Social + Creator</li></ul></article><article class="info"><h3>Good fit</h3><p>Finance · FMCG · Beauty · Consumer Tech · Real Estate</p></article></div>
+</div>
+</section>
+<section class="section" id="products">
+<div class="head"><div><div class="eyebrow">04 / Product portfolio</div><h2>Tìm đúng sản phẩm<br>trong vài giây.</h2></div><p>Lọc theo mục tiêu. Click từng dòng để xem brief.</p></div>
+<div class="filters" id="filters"><button class="chip active" data-filter="all">Tất cả</button><button class="chip" data-filter="awareness">Awareness</button><button class="chip" data-filter="consideration">Consideration</button><button class="chip" data-filter="engagement">Engagement</button></div>
+<div class="list">
+<div class="row" data-cat="consideration" data-product="pm"><span>01</span><b>Product Marketing</b><p>Launch / education / trial bằng content + social + media.</p><span class="status">H2 PRIORITY</span><span>→</span></div>
+<div class="row" data-cat="awareness" data-product="prstar"><span>02</span><b>PR Star</b><p>Tạo điểm nhấn PR mạnh hơn cho chiến dịch.</p><span class="status">NEW</span><span>→</span></div>
+<div class="row" data-cat="awareness" data-product="social"><span>03</span><b>Social Booking</b><p>Mở rộng độ phủ qua network social phù hợp.</p><span class="status">CORE</span><span>→</span></div>
+<div class="row" data-cat="awareness" data-product="editorial"><span>04</span><b>Editorial Content</b><p>Tuyến nội dung có chiều sâu, xây nhận thức.</p><span class="status">CORE</span><span>→</span></div>
+<div class="row" data-cat="engagement" data-product="contest"><span>05</span><b>Social Contest</b><p>Tạo tương tác và UGC trong campaign social.</p><span class="status">SERVICE</span><span>→</span></div>
+<div class="row" data-cat="engagement" data-product="kol"><span>06</span><b>KOL Booking</b><p>Kết nối creator/KOL phù hợp vai trò campaign.</p><span class="status">SERVICE</span><span>→</span></div>
+</div>
+</section>
+<section class="section" id="industry">
+<div class="head"><div><div class="eyebrow">05 / Industry mapping</div><h2>Khách này,<br>bán gì trước?</h2></div><p>Ma trận dưới đây là định hướng pitch ban đầu. 3 = ưu tiên cao.</p></div>
+<div class="tablewrap"><table class="matrix"><thead><tr><th>Industry</th><th>Product MKT</th><th>PR Star</th><th>Social</th><th>Editorial</th><th>KOL</th><th>Contest</th></tr></thead><tbody>
+<tr><td><b>Finance</b></td><td><span class="fit high">3</span></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td>1</td></tr>
+<tr><td><b>FMCG</b></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td><span class="fit high">3</span></td><td><span class="fit high">3</span></td></tr>
+<tr><td><b>Real Estate</b></td><td><span class="fit high">3</span></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td><span class="fit high">3</span></td><td><span class="fit med">2</span></td><td>1</td></tr>
+</tbody></table></div>
+</section>
+<section class="section" id="cases">
+<div class="head"><div><div class="eyebrow">06 / Proof</div><h2>Đừng chỉ nói hay.<br>Cho Sale bằng chứng.</h2></div><p>Chưa có dữ liệu case/KPI được duyệt trong brief nên bản v1 chỉ dựng cấu trúc mẫu, không bịa số liệu.</p></div>
+<div class="cases"><article class="case"><h3>CASE / FINANCE</h3><p><b>Challenge:</b> Sản phẩm khó hiểu trong một thông điệp ngắn.</p><p><b>Solution:</b> Content architecture + editorial proof + social amplification.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / FMCG</h3><p><b>Challenge:</b> Người dùng chưa thấy lý do chọn sản phẩm.</p><p><b>Solution:</b> Visual storytelling + creator + booking.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / REAL ESTATE</h3><p><b>Challenge:</b> Thị trường có nhiều thông điệp giống nhau.</p><p><b>Solution:</b> Narrative + editorial + PR.</p><p><b>KPI:</b> — placeholder</p></article></div>
+</section>
+<section class="section" id="toolkit">
+<div class="head"><div><div class="eyebrow">07 / Sales toolkit</div><h2>Tra nhanh.<br>Copy nhanh. Pitch nhanh.</h2></div><p>Gắn link thật sau khi có file đã duyệt.</p></div>
+<div class="toolkit"><article class="tool"><div><b>Product One-pager</b><p>Thông tin tối thiểu để mở pitch.</p></div><button class="btn" data-demo>Open</button></article><article class="tool"><div><b>Rate Card</b><p>Giá / package / điều kiện.</p></div><button class="btn" data-demo>Open</button></article><article class="tool"><div><b>Case Library</b><p>Case theo ngành và bài toán.</p></div><button class="btn" data-demo>Open</button></article><article class="tool"><div><b>Sales Script</b><p>5 câu hỏi nhận diện product fit.</p></div><button class="btn" data-demo>Open</button></article></div>
+</section>
+<section class="section" id="advisor">
+<div class="advisor"><div><div class="eyebrow">08 / Product Advisor</div><h2>Khách này,<br>nên pitch gì?</h2><p>Rule-based demo, không phải AI thật.</p></div><div class="form"><select id="industrySel"><option value="finance">Finance</option><option value="fmcg">FMCG</option><option value="real">Real Estate</option></select><select id="goalSel"><option value="launch">Launch</option><option value="awareness">Awareness</option><option value="consideration">Consideration</option><option value="engagement">Engagement</option></select><button class="primary" id="recommend" style="background:white;color:#111">Đề xuất sản phẩm</button><div class="rec" id="rec">Chọn ngành + mục tiêu để xem gợi ý.</div></div></div>
+</section>
+<section class="section" id="faq">
+<div class="head"><div><div class="eyebrow">09 / FAQ</div><h2>Những câu Sale<br>sẽ hỏi đầu tiên.</h2></div><p>FAQ nên cập nhật bằng phản biện thật từ Sale/Account.</p></div>
+<details open><summary>Product Marketing khác tuyến PR thế nào?</summary><p>Product Marketing được tổ chức quanh bài toán sản phẩm và hành trình thuyết phục; PR có thể là một cấu phần trong hệ giải pháp.</p></details>
+<details><summary>Khi nào nên pitch Product Marketing trước?</summary><p>Khi khách có sản phẩm cụ thể cần launch, educate, consideration hoặc trial.</p></details>
+<details><summary>Case và KPI lấy ở đâu?</summary><p>Trong bản v1 chưa có dữ liệu đã duyệt. Cần map tới case nội bộ thật.</p></details>
+</section>
+</div>
+</main>
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer"><div class="drawerhead"><b>Product Brief</b><button class="icon" id="close">×</button></div><div class="drawerbody" id="drawerbody"></div></aside>
+<div class="searchpanel" id="searchpanel"><input id="globalsearch" placeholder="Gõ Product Marketing, PR, KOL..."><div class="results" id="results"></div></div>
+<script>
+const P={
+pm:{name:"Product Marketing",k:"H2 Priority",line:"Biến sản phẩm thành câu chuyện đủ rõ để người dùng hiểu, cân nhắc và hành động.",pain:"Khách có sản phẩm/campaign nhưng thông điệp rời rạc hoặc khó tạo khác biệt.",solution:"Thiết kế narrative sản phẩm rồi phối hợp content, editorial, social, creator và distribution.",fit:"Finance, FMCG, Tech, Beauty, Real Estate",proof:"Bổ sung case thật sau khi có dữ liệu đã duyệt.",cross:"PR Star · Social Booking · Editorial · KOL"},
+prstar:{name:"PR Star",k:"New Product",line:"Tạo điểm nhấn PR đủ mạnh để câu chuyện thương hiệu không chìm.",pain:"Campaign thiếu điểm nổ để tăng chú ý.",solution:"Tổ chức nội dung/nhân vật/format nổi bật hơn PR thông thường.",fit:"Finance, Real Estate, Tech, FMCG",proof:"Bổ sung case thật.",cross:"Editorial · Social Booking · Product Marketing"},
+pr:{name:"PR Chủ động",k:"Core",line:"Chủ động xây câu chuyện và nhịp truyền thông.",pain:"Thương hiệu cần duy trì luận điểm đều nhưng thiếu tuyến nội dung.",solution:"Xây tuyến chủ đề, góc tiếp cận và nhịp xuất bản.",fit:"Finance, Real Estate, Healthcare, Education",proof:"Bổ sung case thật.",cross:"Editorial · PR Star · Social"},
+editorial:{name:"Editorial Content",k:"Core",line:"Dùng chiều sâu nội dung để xây niềm tin.",pain:"Sản phẩm cần giải thích hoặc tạo authority.",solution:"Tuyến editorial có chủ đề, luận điểm và vai trò rõ.",fit:"Finance, Real Estate, Tech",proof:"Bổ sung case thật.",cross:"Product Marketing · PR · Social"},
+social:{name:"Social Booking",k:"Core",line:"Mở rộng độ phủ qua đúng network và đúng tệp.",pain:"Nội dung có nhưng chưa đủ distribution.",solution:"Booking network social phù hợp mục tiêu.",fit:"FMCG, Tech, Beauty, Retail, Finance",proof:"Bổ sung network/case thật.",cross:"Product Marketing · KOL · Visual"},
+contest:{name:"Social Contest",k:"Service",line:"Biến người xem thành người tham gia.",pain:"Campaign cần engagement hoặc UGC.",solution:"Thiết kế mechanic, nội dung và distribution.",fit:"FMCG, Beauty, Retail",proof:"Bổ sung case thật.",cross:"KOL · Social Booking · Visual"},
+kol:{name:"KOL Booking",k:"Service",line:"Đặt creator đúng vai trò thay vì chỉ mua reach.",pain:"Khách muốn creator nhưng chưa rõ nên dùng ai và nói gì.",solution:"Map creator theo audience, narrative và nhiệm vụ trong funnel.",fit:"FMCG, Beauty, Tech, Retail",proof:"Bổ sung case thật.",cross:"Product Marketing · Social Booking · Contest"},
+visual:{name:"Social Visual Content",k:"Service",line:"Nén câu chuyện thành asset phù hợp nhịp social.",pain:"Nội dung đúng nhưng presentation chưa giữ attention.",solution:"Visual system và asset tối ưu social.",fit:"FMCG, Beauty, Tech",proof:"Bổ sung case thật.",cross:"Social Booking · KOL · Product Marketing"},
+ecom:{name:"Social Ecom",k:"Service",line:"Nối social attention với hành động commerce.",pain:"Campaign có traffic nhưng thiếu cầu nối sang mua.",solution:"Thiết kế nội dung và điểm chạm social theo logic action.",fit:"FMCG, Beauty, Retail, Tech",proof:"Bổ sung case thật.",cross:"KOL · Contest · Social Booking"}
+};
+const drawer=document.getElementById("drawer"),overlay=document.getElementById("overlay"),body=document.getElementById("drawerbody");
+function openP(k){const p=P[k];if(!p)return;body.innerHTML=`<div class="eyebrow">${p.k}</div><h2>${p.name}</h2><p class="lede" style="font-size:20px">${p.line}</p><div class="dgrid"><div class="ditem"><b>Pain Point</b><p>${p.pain}</p></div><div class="ditem"><b>Solution</b><p>${p.solution}</p></div><div class="ditem"><b>Brand Fit</b><p>${p.fit}</p></div><div class="ditem"><b>Proof</b><p>${p.proof}</p></div><div class="ditem"><b>Cross-sell</b><p>${p.cross}</p></div></div>`;drawer.classList.add("open");overlay.classList.add("show")}
+function closeAll(){drawer.classList.remove("open");overlay.classList.remove("show");document.getElementById("searchpanel").classList.remove("show");document.getElementById("sidebar").classList.remove("open")}
+document.querySelectorAll("[data-product]").forEach(x=>x.onclick=()=>openP(x.dataset.product));document.getElementById("close").onclick=closeAll;overlay.onclick=closeAll;
+document.getElementById("themeBtn").onclick=()=>{let r=document.documentElement;r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";localStorage.setItem("theme",r.dataset.theme)};if(localStorage.getItem("theme"))document.documentElement.dataset.theme=localStorage.getItem("theme");
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".row").forEach(r=>r.style.display=b.dataset.filter==="all"||r.dataset.cat===b.dataset.filter?"grid":"none")});
+const sp=document.getElementById("searchpanel"),gs=document.getElementById("globalsearch"),res=document.getElementById("results");
+function search(q){q=q.toLowerCase().trim();let m=Object.entries(P).filter(([k,p])=>p.name.toLowerCase().includes(q)||p.fit.toLowerCase().includes(q));res.innerHTML=!q?"<div class='result'><span>Gợi ý: Product Marketing, PR, KOL, Finance...</span></div>":m.map(([k,p])=>`<div class='result' data-r='${k}'><b>${p.name}</b><span>${p.k} · ${p.fit}</span></div>`).join("")||"<div class='result'>Không tìm thấy.</div>";document.querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>{sp.classList.remove("show");openP(x.dataset.r)})}
+function openSearch(){sp.classList.add("show");overlay.classList.add("show");gs.focus();search("")}
+document.getElementById("searchBtn").onclick=openSearch;document.getElementById("sideSearch").onfocus=openSearch;gs.oninput=e=>search(e.target.value);document.onkeydown=e=>{if(e.key==="Escape")closeAll();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openSearch()}};
+document.getElementById("mobileBtn").onclick=()=>{document.getElementById("sidebar").classList.add("open");overlay.classList.add("show")};
+document.querySelectorAll("[data-demo]").forEach(b=>b.onclick=()=>alert("Placeholder: gắn link file thật sau khi có tài sản được duyệt."));
+const R={finance:{launch:[["Product Marketing",5],["PR Star",4],["Editorial",4]],awareness:[["PR Star",5],["Editorial",4],["Social Booking",3]],consideration:[["Product Marketing",5],["Editorial",4],["PR Star",4]],engagement:[["Social Booking",4],["KOL",3],["Contest",2]]},fmcg:{launch:[["Product Marketing",5],["KOL",5],["Social Booking",4]],awareness:[["Social Booking",5],["KOL",5],["PR Star",3]],consideration:[["Product Marketing",5],["KOL",4],["Visual",4]],engagement:[["Contest",5],["KOL",5],["Social Ecom",4]]},real:{launch:[["Product Marketing",5],["PR Star",5],["Editorial",4]],awareness:[["PR Star",5],["Editorial",5],["Social Booking",3]],consideration:[["Product Marketing",5],["Editorial",5],["PR Star",4]],engagement:[["Social Booking",3],["KOL",3],["Contest",2]]}};
+document.getElementById("recommend").onclick=()=>{let a=R[document.getElementById("industrySel").value][document.getElementById("goalSel").value];document.getElementById("rec").innerHTML=a.map(x=>`<div><b>${x[0]}</b><span>${"★".repeat(x[1])}${"☆".repeat(5-x[1])}</span></div>`).join("")};
+const secs=[...document.querySelectorAll(".section[id]")],links=[...document.querySelectorAll(".nav a")],crumb=document.getElementById("crumb");new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id));let a=links.find(a=>a.getAttribute("href")==="#"+e.target.id);if(a)crumb.textContent=a.textContent+" / Athena Product OS"}}),{rootMargin:"-30% 0px -60% 0px"}).observe;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id));let a=links.find(a=>a.getAttribute("href")==="#"+e.target.id);if(a)crumb.textContent=a.textContent+" / Athena Product OS"}}),{rootMargin:"-30% 0px -60% 0px"});secs.forEach(s=>io.observe(s));
+</script>
 </body>
 </html>
