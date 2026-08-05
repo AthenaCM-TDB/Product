@@ -311,6 +311,38 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 @media(max-width:980px){.directory-row{grid-template-columns:34px 1.3fr 1fr 130px}.directory-status{display:none}}
 @media(max-width:700px){.directory-toolbar{display:block}.directory-toolbar input{width:100%;max-width:none}.directory-count{margin-top:8px}.directory-row{grid-template-columns:30px 1fr}.directory-fit,.directory-status{display:none}.directory-actions{grid-column:2;justify-content:flex-start}}
 
+
+/* ===== V12 MINDMAP-STYLE SOLUTION TREE ===== */
+.tree-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:18px}
+.tree-search-input{flex:1;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px 14px;border-radius:12px;outline:none}
+.tree-reset{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer}
+.solution-tree{display:grid;gap:14px}
+.domain-root{border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden}
+.domain-root>summary{list-style:none;cursor:pointer;padding:26px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.domain-root>summary::-webkit-details-marker,.solution-group>summary::-webkit-details-marker,.tree-node>summary::-webkit-details-marker{display:none}
+.domain-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900}
+.domain-root h3{font-size:25px;margin:3px 0 0}
+.domain-count{font-size:11px;font-weight:900;color:#B65000}
+.domain-body{padding:0 18px 18px;display:grid;gap:10px}
+.solution-group{border:1px solid var(--line);border-radius:16px;background:var(--bg);overflow:hidden}
+.solution-group>summary{list-style:none;cursor:pointer;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.solution-group>summary div{display:grid;gap:3px}.solution-group>summary div span{font-size:11px;color:var(--muted)}.solution-group>summary strong{font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.group-body{border-top:1px solid var(--line);padding:8px 12px 12px;background:var(--surface)}
+.tree-node{border-bottom:1px solid var(--line)}
+.tree-node>summary{list-style:none;cursor:pointer;padding:13px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tree-node>summary:hover,.tree-leaf:hover{background:color-mix(in srgb,var(--bg) 70%,transparent)}
+.tree-children{padding-left:18px;border-left:1px solid var(--line);margin-left:14px}
+.tree-name{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.tree-name b{font-size:13px}
+.tree-status{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#B65000;background:rgba(255,122,0,.09);padding:4px 6px;border-radius:999px}
+.tree-count{font-size:10px;color:var(--muted)}
+.tree-leaf{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 10px;border-bottom:1px solid var(--line)}
+.tree-actions{display:flex;gap:6px}.tree-brief,.tree-profile{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 8px;font-size:10px;font-weight:900;cursor:pointer}
+.tree-profile:not(.disabled-profile){background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.tree-hidden{display:none!important}
+.tree-match{background:rgba(255,211,0,.13)!important}
+.depth-4 .tree-name b{font-weight:700}.depth-5 .tree-name b{font-weight:600;color:var(--muted)}
+@media(max-width:700px){.tree-toolbar{display:block}.tree-reset{margin-top:8px}.domain-root>summary,.solution-group>summary{padding:16px}.tree-leaf{display:block}.tree-actions{margin-top:8px}.domain-count{display:none}}
+
 </style>
 </head>
 <body>
@@ -622,42 +654,475 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 </div>
 </section>
 
+
 <section class="section" id="taxonomy">
-<div class="head"><div><div class="eyebrow">Full catalogue taxonomy</div><h2>Khung giải pháp AthenaCM H2</h2></div><p>Chọn đúng nhóm giải pháp để tìm sản phẩm chính, sản phẩm thay thế và cơ hội cross-sell.</p></div>
-<div class="tax-search">
-<input id="taxonomySearch" placeholder="Tìm theo tên giải pháp hoặc trạng thái: Mới, Nâng cấp, Thay thế..." aria-label="Tìm trong sơ đồ sản phẩm">
-<span class="search-count" id="taxonomyCount">Hiển thị toàn bộ</span>
-</div>
-<div class="taxonomy">
-<details class="taxgroup" open><summary class="taxhead"><div><b>PRODUCT MARKETING — Go-to-market</b><p>Content, creator, visual & community tools</p></div><span>LEVEL 2–4</span></summary><div class="taxbody">
-<div class="taxitem"><b>Product Content by Webuy</b><small> · MỚI</small><p>Nội dung trải nghiệm sản phẩm trực quan.</p></div>
-<div class="taxitem"><b>Featured Product</b><small> · MỚI</small><p>Đưa sản phẩm lên vị trí tiêu điểm.</p></div>
-<div class="taxitem"><b>WEPICK</b><small> · MỚI</small><p>Bình chọn & chứng nhận sản phẩm.</p></div>
-<div class="taxitem"><b>Influencer Marketing / KOL</b><small> · MỚI</small><p>Chuyên gia & creator đánh giá sản phẩm.</p></div>
-<div class="taxitem"><b>Community Marketing</b><small> · MỚI</small><p>Review, workshop và cộng đồng chuyên biệt.</p></div>
-<div class="taxitem"><b>Gamification Marketing</b><small> · MỚI</small><p>Tương tác tăng giữ chân và participation.</p></div>
-</div></details>
-<details class="taxgroup"><summary class="taxhead"><div><b>PRODUCT MARKETING — Review & O2O</b><p>Review product, AI video & activation</p></div><span>LEVEL 2–3</span></summary><div class="taxbody">
-<div class="taxitem"><b>Webuy Booking</b><small> · MỚI</small><p>Booking review theo chuẩn Webuy.</p></div>
-<div class="taxitem"><b>AI Video Review</b><small> · MỚI</small><p>Video review tốc độ cao với AI.</p></div>
-<div class="taxitem"><b>Activation O2O</b><small> · MỚI</small><p>Kích hoạt trải nghiệm online → offline.</p></div>
-<div class="taxitem"><b>Creator Cruise</b><small> · MỚI</small><p>Hành trình trải nghiệm dành cho creators.</p></div>
-</div></details>
-<details class="taxgroup"><summary class="taxhead"><div><b>PRODUCT MARKETING — Conversion & Ecom</b><p>Commerce, livestream & sale tools</p></div><span>LEVEL 2–4</span></summary><div class="taxbody">
-<div class="taxitem"><b>Ecom Marketing</b><small> · MỚI</small><p>Mega Livestream, TikTok Store, sàn TMĐT, GMV Max.</p></div>
-<div class="taxitem"><b>Shoppertainment Race</b><small> · MỚI</small><p>Giải trí kết hợp mua sắm.</p></div>
-<div class="taxitem"><b>Sale AI Agent</b><small> · MỚI</small><p>Trợ lý AI hỗ trợ chốt đơn.</p></div>
-<div class="taxitem"><b>Tool Sale Story</b><small> · MỚI</small><p>Công cụ kể chuyện bán hàng.</p></div>
-</div></details>
-<details class="taxgroup"><summary class="taxhead"><div><b>CONTENT MARKETING</b><p>Core Products · Solutions · Agency Services</p></div><span>CORE</span></summary><div class="taxbody">
-<div class="taxitem"><b>Editorial Content / PR Star</b><small> · NÂNG CẤP</small><p>Nâng chuẩn PR truyền thống.</p></div>
-<div class="taxitem"><b>Content Chủ Động</b><small> · NÂNG CẤP</small><p>Tuyến nội dung chủ động.</p></div>
-<div class="taxitem"><b>Social Booking</b><small> · NÂNG CẤP</small><p>Phân phối social theo hiệu quả.</p></div>
-<div class="taxitem"><b>Social Chủ Động</b><small> · MỚI</small><p>Phát triển nội dung social chủ động.</p></div>
-<div class="taxitem"><b>Engagement Campaign</b><small> · NÂNG CẤP</small><p>Chiến dịch tương tác chiều sâu.</p></div><div class="taxitem"><b>Social Partnership</b><small> · THAY THẾ</small><p>Hợp tác đa kênh thay cho mô hình quản trị Fanpage cũ.</p></div>
-<div class="taxitem"><b>Agency Production</b><small> · NÂNG CẤP</small><p>KV, bài/video, build kênh, social contest.</p></div>
-</div></details>
-</div>
+  <div class="section-head">
+    <div><div class="eyebrow">Full Catalogue Taxonomy</div><h2>Khung giải pháp AthenaCM H2</h2></div>
+    <p>Bắt đầu từ <b>2 mảng Product Marketing / Content Marketing</b>. Mở từng lớp để đi từ nhóm giải pháp → sản phẩm mẹ → sản phẩm/tuyến con.</p>
+  </div>
+  <div class="tree-toolbar">
+    <input class="tree-search-input" data-tree-input="taxonomyTree" placeholder="Tìm sản phẩm, giải pháp, trạng thái...">
+    <button class="tree-reset" data-tree-reset="taxonomyTree">Thu gọn tất cả</button>
+  </div>
+  <div class="solution-tree" id="taxonomyTree">
+    <details class="domain-root">
+      <summary>
+        <div><span class="domain-kicker">MẢNG GIẢI PHÁP</span><h3>PRODUCT MARKETING</h3></div>
+        <span class="domain-count">3 nhóm chính</span>
+      </summary>
+      <div class="domain-body"><details class="solution-group" data-tree-search="bộ công cụ tiếp thị sản phẩm ra thị trường">
+          <summary>
+            <div><b>Bộ công cụ tiếp thị sản phẩm ra thị trường</b><span>7 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="product content by webuy mới">
+          <div class="tree-name"><b>Product Content by Webuy</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Product Content by Webuy">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Product Content by Webuy" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="featured product mới">
+          <div class="tree-name"><b>Featured Product</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Featured Product">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Featured Product" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="wepick mới">
+          <div class="tree-name"><b>WEPICK</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="WEPICK">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="WEPICK" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="influencer marketing nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Influencer Marketing</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="booking kol/chuyên gia nâng cấp">
+          <div class="tree-name"><b>Booking KOL/Chuyên gia</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Booking KOL/Chuyên gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Booking KOL/Chuyên gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="sx hình ảnh và video mkt nâng cấp">
+          <div class="tree-name"><b>Sx Hình ảnh và Video MKT</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sx Hình ảnh và Video MKT">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sx Hình ảnh và Video MKT" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="đào tạo livestream bán hàng với chuyên gia mới">
+          <div class="tree-name"><b>Đào tạo livestream bán hàng với Chuyên gia</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Đào tạo livestream bán hàng với Chuyên gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Đào tạo livestream bán hàng với Chuyên gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="visual marketing mới">
+          <div class="tree-name"><b>Visual Marketing</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Visual Marketing">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Visual Marketing" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="community marketing mới">
+          <summary>
+            <div class="tree-name"><b>Community Marketing</b><span class="tree-status">Mới</span></div>
+            <span class="tree-count">2 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="chuỗi ws cho mẹ &amp; bé nâng cấp">
+          <div class="tree-name"><b>Chuỗi WS cho Mẹ &amp; Bé</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Chuỗi WS cho Mẹ &amp; Bé">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Chuỗi WS cho Mẹ &amp; Bé" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="cộng đồng mom review nâng cấp">
+          <div class="tree-name"><b>Cộng đồng Mom Review</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Cộng đồng Mom Review">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Cộng đồng Mom Review" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="gamification marketing ">
+          <div class="tree-name"><b>Gamification Marketing</b></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Gamification Marketing">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Gamification Marketing" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="bộ công cụ review sản phẩm">
+          <summary>
+            <div><b>Bộ công cụ review sản phẩm</b><span>4 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="webuy booking mới">
+          <div class="tree-name"><b>Webuy Booking</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Webuy Booking">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Webuy Booking" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="ai video review mới">
+          <div class="tree-name"><b>AI Video Review</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="AI Video Review">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="AI Video Review" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="activation o2o mới">
+          <div class="tree-name"><b>Activation O2O</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Activation O2O">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Activation O2O" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="creator cruise mới">
+          <div class="tree-name"><b>Creator Cruise</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Creator Cruise">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Creator Cruise" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="bộ công cụ tối ưu chuyển đổi">
+          <summary>
+            <div><b>Bộ công cụ tối ưu chuyển đổi</b><span>3 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><details class="tree-node depth-3" data-tree-search="ecom marketing mới">
+          <summary>
+            <div class="tree-name"><b>Ecom Marketing</b><span class="tree-status">Mới</span></div>
+            <span class="tree-count">5 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="mega livestream nâng cấp">
+          <div class="tree-name"><b>Mega Livestream</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Mega Livestream">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Mega Livestream" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xây tiktok store mới">
+          <div class="tree-name"><b>Xây TikTok Store</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây TikTok Store">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây TikTok Store" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xây sàn tmđt mới">
+          <div class="tree-name"><b>Xây sàn TMĐT</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây sàn TMĐT">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây sàn TMĐT" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="gmv max nâng cấp">
+          <div class="tree-name"><b>GMV Max</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="GMV Max">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="GMV Max" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="shoppertainment race nâng cấp">
+          <div class="tree-name"><b>Shoppertainment Race</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Shoppertainment Race">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Shoppertainment Race" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="sale ai agent mới">
+          <div class="tree-name"><b>Sale AI Agent</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sale AI Agent">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sale AI Agent" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="tool sale story mới">
+          <div class="tree-name"><b>Tool Sale Story</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tool Sale Story">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tool Sale Story" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details></div>
+    </details>
+<details class="domain-root">
+      <summary>
+        <div><span class="domain-kicker">MẢNG GIẢI PHÁP</span><h3>CONTENT MARKETING</h3></div>
+        <span class="domain-count">3 nhóm chính</span>
+      </summary>
+      <div class="domain-body"><details class="solution-group" data-tree-search="core products">
+          <summary>
+            <div><b>Core Products</b><span>4 nhóm/sản phẩm</span></div>
+            <strong>CORE</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="editorial content / pr star nâng cấp">
+          <div class="tree-name"><b>Editorial Content / PR Star</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Editorial Content / PR Star">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Editorial Content / PR Star" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="pr chủ động nâng cấp">
+          <div class="tree-name"><b>PR Chủ động</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="PR Chủ động">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="PR Chủ động" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social booking nâng cấp">
+          <div class="tree-name"><b>Social Booking</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Booking">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Booking" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social chủ động mới">
+          <div class="tree-name"><b>Social Chủ động</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Chủ động">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Chủ động" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="solutions">
+          <summary>
+            <div><b>Solutions</b><span>6 nhóm/sản phẩm</span></div>
+            <strong>SOLUTIONS</strong>
+          </summary>
+          <div class="group-body"><details class="tree-node depth-3" data-tree-search="social partnership thay thế">
+          <summary>
+            <div class="tree-name"><b>Social Partnership</b><span class="tree-status">Thay thế</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="vietbaby fair mới">
+          <div class="tree-name"><b>Vietbaby Fair</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Vietbaby Fair">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Vietbaby Fair" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="social native kênh14 mới">
+          <div class="tree-name"><b>Social Native Kênh14</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Native Kênh14">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Native Kênh14" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="strategic partnership marketing × genz/men mới">
+          <div class="tree-name"><b>Strategic Partnership Marketing × GenZ/Men</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Strategic Partnership Marketing × GenZ/Men">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Strategic Partnership Marketing × GenZ/Men" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<details class="tree-node depth-3" data-tree-search="event partnership nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Event Partnership</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="idol14 bắt tour mới">
+          <div class="tree-name"><b>IDOL14 Bắt Tour</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="IDOL14 Bắt Tour">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="IDOL14 Bắt Tour" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="here we go 2026 mới">
+          <div class="tree-name"><b>Here We Go 2026</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Here We Go 2026">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Here We Go 2026" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xem world cup cùng sao mới">
+          <div class="tree-name"><b>Xem World Cup Cùng Sao</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xem World Cup Cùng Sao">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xem World Cup Cùng Sao" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<details class="tree-node depth-3" data-tree-search="content partnership nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Content Partnership</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">14 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="★ truyền thông thương hiệu quốc gia q3 flagship">
+          <div class="tree-name"><b>★ Truyền thông Thương Hiệu Quốc Gia</b><span class="tree-status">Q3 Flagship</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Truyền thông Thương Hiệu Quốc Gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Truyền thông Thương Hiệu Quốc Gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="talkshow the investors 3 - cafef q3 priority">
+          <div class="tree-name"><b>Talkshow The Investors 3 - CafeF</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Talkshow The Investors 3 - CafeF">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Talkshow The Investors 3 - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="cuộc thi ngân hàng tôi yêu - cafef q3 priority">
+          <div class="tree-name"><b>Cuộc thi Ngân hàng tôi yêu - CafeF</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Cuộc thi Ngân hàng tôi yêu - CafeF">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Cuộc thi Ngân hàng tôi yêu - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="tuyến ai in banking - cafebiz q3 priority">
+          <div class="tree-name"><b>Tuyến AI in Banking - CafeBiz</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tuyến AI in Banking - CafeBiz">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tuyến AI in Banking - CafeBiz" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="hiếu nghĩa vàng son thay thế">
+          <div class="tree-name"><b>Hiếu Nghĩa Vàng Son</b><span class="tree-status">Thay thế</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Hiếu Nghĩa Vàng Son">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Hiếu Nghĩa Vàng Son" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="ai banking mới">
+          <div class="tree-name"><b>AI BANKING</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="AI BANKING">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="AI BANKING" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="kiêu hãnh việt nam mới">
+          <div class="tree-name"><b>Kiêu hãnh Việt Nam</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Kiêu hãnh Việt Nam">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Kiêu hãnh Việt Nam" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafebiz × kenh14] giao lộ di sản mới">
+          <div class="tree-name"><b>[CafeBiz × Kenh14] Giao Lộ Di Sản</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeBiz × Kenh14] Giao Lộ Di Sản">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeBiz × Kenh14] Giao Lộ Di Sản" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafef] 40 năm đổi mới mới">
+          <div class="tree-name"><b>[CafeF] 40 Năm Đổi Mới</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeF] 40 Năm Đổi Mới">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeF] 40 Năm Đổi Mới" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafebiz] talkshow thuế hộ kinh doanh mới">
+          <div class="tree-name"><b>[CafeBiz] Talkshow Thuế Hộ Kinh Doanh</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[kenh14] b&amp;f mới">
+          <div class="tree-name"><b>[Kenh14] B&amp;F</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[Kenh14] B&amp;F">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[Kenh14] B&amp;F" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[kenh14] đồng hành fifa world cup mới">
+          <div class="tree-name"><b>[Kenh14] Đồng hành FIFA World Cup</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[Kenh14] Đồng hành FIFA World Cup">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[Kenh14] Đồng hành FIFA World Cup" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="lần này con đưa bố mẹ đi coming soon">
+          <div class="tree-name"><b>Lần này con đưa bố mẹ đi</b><span class="tree-status">Coming Soon</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Lần này con đưa bố mẹ đi">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Lần này con đưa bố mẹ đi" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="back to school - kenh14 coming soon">
+          <div class="tree-name"><b>Back to School - Kenh14</b><span class="tree-status">Coming Soon</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Back to School - Kenh14">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Back to School - Kenh14" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="engagement campaign nâng cấp">
+          <div class="tree-name"><b>Engagement Campaign</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Engagement Campaign">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Engagement Campaign" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="khuếch đại truyền thông mới">
+          <div class="tree-name"><b>Khuếch đại Truyền thông</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Khuếch đại Truyền thông">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Khuếch đại Truyền thông" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="tick xanh facebook mới">
+          <div class="tree-name"><b>Tick Xanh Facebook</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tick Xanh Facebook">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tick Xanh Facebook" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="agency services">
+          <summary>
+            <div><b>Agency Services</b><span>5 nhóm/sản phẩm</span></div>
+            <strong>AGENCY SERVICES</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="thiết kế hình ảnh tổng thể ">
+          <div class="tree-name"><b>Thiết kế hình ảnh tổng thể</b></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Thiết kế hình ảnh tổng thể">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Thiết kế hình ảnh tổng thể" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="sản xuất tin bài / video nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Sản xuất tin bài / Video</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">1 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="sản xuất video / tvc ai mới">
+          <div class="tree-name"><b>Sản xuất Video / TVC AI</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sản xuất Video / TVC AI">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sản xuất Video / TVC AI" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="xây dựng và quản trị kênh nâng cấp">
+          <div class="tree-name"><b>Xây dựng và quản trị Kênh</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây dựng và quản trị Kênh">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây dựng và quản trị Kênh" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social contest nâng cấp">
+          <div class="tree-name"><b>Social Contest</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Contest">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Contest" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social đào tạo nâng cấp">
+          <div class="tree-name"><b>Social Đào Tạo</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Đào Tạo">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Đào Tạo" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details></div>
+    </details>
+  </div>
 </section>
 
 <section class="section" id="ecosystem">
@@ -675,535 +1140,475 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 </div>
 </section>
 
+
 <section class="section" id="products">
   <div class="section-head">
-    <div>
-      <div class="eyebrow">04 / Product Directory</div>
-      <h2>Tất cả sản phẩm.<br>Một nơi để tra cứu.</h2>
-    </div>
-    <p>Search theo tên, nhóm, trạng thái hoặc ngành. <b>Brief</b> để xem nhanh; <b>Profile ↗</b> để đi thẳng tới landing page/profile riêng của sản phẩm.</p>
+    <div><div class="eyebrow">04 / Product Directory</div><h2>Tra cứu theo cây sản phẩm.</h2></div>
+    <p>Không dàn trải hàng chục sản phẩm cùng cấp. Mở <b>mảng → nhóm → sản phẩm mẹ → tuyến/sản phẩm con</b>; leaf cuối có Brief và Product Profile.</p>
   </div>
-
-  <div class="directory-toolbar">
-    <input id="directorySearch" placeholder="Tìm: PR Star, Community, Banking, New...">
-    <div class="directory-count" id="directoryCount">51 sản phẩm / giải pháp</div>
+  <div class="tree-toolbar">
+    <input class="tree-search-input" data-tree-input="directoryTree" placeholder="Tìm: Content Partnership, PR Star, Giao Lộ Di Sản...">
+    <button class="tree-reset" data-tree-reset="directoryTree">Thu gọn tất cả</button>
   </div>
-
-  <div class="profile-note">
-    Link Product Profile được quản lý trong biến <code>PRODUCT_PROFILE_URLS</code> ở cuối file. Sau này chỉ cần paste URL, không phải sửa layout.
-  </div>
-
-  <div class="product-directory" id="productDirectory">
-    <div class="directory-row" data-dir-search="truyền thông thương hiệu quốc gia q3 priority enterprise / big idea tập đoàn, ngân hàng, doanh nghiệp đầu ngành">
-      <div class="directory-index">01</div>
-      <div class="directory-name"><b>Truyền thông Thương Hiệu Quốc Gia</b><span>Enterprise / Big Idea</span></div>
-      <div class="directory-fit">Tập đoàn, Ngân hàng, Doanh nghiệp đầu ngành</div>
-      <div class="directory-status">Q3 PRIORITY</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Truyền thông Thương Hiệu Quốc Gia">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Truyền thông Thương Hiệu Quốc Gia" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="talkshow the investors 3 - cafef q3 priority creative content finance, banking, securities, bđs">
-      <div class="directory-index">02</div>
-      <div class="directory-name"><b>Talkshow The Investors 3 - CafeF</b><span>Creative Content</span></div>
-      <div class="directory-fit">Finance, Banking, Securities, BĐS</div>
-      <div class="directory-status">Q3 PRIORITY</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Talkshow The Investors 3 - CafeF">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Talkshow The Investors 3 - CafeF" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="cuộc thi ngân hàng tôi yêu - cafef q3 priority engagement solution banking">
-      <div class="directory-index">03</div>
-      <div class="directory-name"><b>Cuộc thi Ngân hàng tôi yêu - CafeF</b><span>Engagement Solution</span></div>
-      <div class="directory-fit">Banking</div>
-      <div class="directory-status">Q3 PRIORITY</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Cuộc thi Ngân hàng tôi yêu - CafeF">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Cuộc thi Ngân hàng tôi yêu - CafeF" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="tuyến ai in banking - cafebiz q3 priority creative content banking, fintech">
-      <div class="directory-index">04</div>
-      <div class="directory-name"><b>Tuyến AI in Banking - CafeBiz</b><span>Creative Content</span></div>
-      <div class="directory-fit">Banking, Fintech</div>
-      <div class="directory-status">Q3 PRIORITY</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Tuyến AI in Banking - CafeBiz">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Tuyến AI in Banking - CafeBiz" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="pr star core / new rate card content marketing đa ngành">
-      <div class="directory-index">05</div>
-      <div class="directory-name"><b>PR Star</b><span>Content Marketing</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">CORE / NEW RATE CARD</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="PR Star">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="PR Star" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="editorial content core content marketing finance, bđs, tech">
-      <div class="directory-index">06</div>
-      <div class="directory-name"><b>Editorial Content</b><span>Content Marketing</span></div>
-      <div class="directory-fit">Finance, BĐS, Tech</div>
-      <div class="directory-status">CORE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Editorial Content">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Editorial Content" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="content chủ động core content marketing đa ngành">
-      <div class="directory-index">07</div>
-      <div class="directory-name"><b>Content Chủ Động</b><span>Content Marketing</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">CORE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Content Chủ Động">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Content Chủ Động" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social booking core social fmcg, tech, beauty, finance">
-      <div class="directory-index">08</div>
-      <div class="directory-name"><b>Social Booking</b><span>Social</span></div>
-      <div class="directory-fit">FMCG, Tech, Beauty, Finance</div>
-      <div class="directory-status">CORE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Booking">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Booking" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social chủ động new social fmcg, tech, finance, bđs">
-      <div class="directory-index">09</div>
-      <div class="directory-name"><b>Social Chủ Động</b><span>Social</span></div>
-      <div class="directory-fit">FMCG, Tech, Finance, BĐS</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Chủ Động">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Chủ Động" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="product marketing h2 priority product marketing đa ngành">
-      <div class="directory-index">10</div>
-      <div class="directory-name"><b>Product Marketing</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">H2 PRIORITY</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Product Marketing">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Product Marketing" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="product content by webuy new product marketing gia dụng, beauty, consumer tech">
-      <div class="directory-index">11</div>
-      <div class="directory-name"><b>Product Content by Webuy</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Gia dụng, Beauty, Consumer Tech</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Product Content by Webuy">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Product Content by Webuy" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="featured product new product marketing consumer product">
-      <div class="directory-index">12</div>
-      <div class="directory-name"><b>Featured Product</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Consumer Product</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Featured Product">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Featured Product" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="wepick new product marketing consumer product">
-      <div class="directory-index">13</div>
-      <div class="directory-name"><b>WEPICK</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Consumer Product</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="WEPICK">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="WEPICK" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="webuy booking new product marketing consumer product">
-      <div class="directory-index">14</div>
-      <div class="directory-name"><b>Webuy Booking</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Consumer Product</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Webuy Booking">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Webuy Booking" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="ai video review new product marketing consumer product">
-      <div class="directory-index">15</div>
-      <div class="directory-name"><b>AI Video Review</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Consumer Product</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="AI Video Review">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="AI Video Review" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="activation o2o new product marketing retail, fmcg">
-      <div class="directory-index">16</div>
-      <div class="directory-name"><b>Activation O2O</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Retail, FMCG</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Activation O2O">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Activation O2O" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="creator cruise new product marketing beauty, fmcg, tech">
-      <div class="directory-index">17</div>
-      <div class="directory-name"><b>Creator Cruise</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Beauty, FMCG, Tech</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Creator Cruise">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Creator Cruise" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="ecom marketing new product marketing retail, fmcg, beauty, tech">
-      <div class="directory-index">18</div>
-      <div class="directory-name"><b>Ecom Marketing</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Retail, FMCG, Beauty, Tech</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Ecom Marketing">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Ecom Marketing" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="shoppertainment race new product marketing retail, fmcg">
-      <div class="directory-index">19</div>
-      <div class="directory-name"><b>Shoppertainment Race</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Retail, FMCG</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Shoppertainment Race">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Shoppertainment Race" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="sale ai agent new product marketing ecom / sales">
-      <div class="directory-index">20</div>
-      <div class="directory-name"><b>Sale AI Agent</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Ecom / Sales</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Sale AI Agent">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Sale AI Agent" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="tool sale story new product marketing ecom / sales">
-      <div class="directory-index">21</div>
-      <div class="directory-name"><b>Tool Sale Story</b><span>Product Marketing</span></div>
-      <div class="directory-fit">Ecom / Sales</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Tool Sale Story">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Tool Sale Story" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="community marketing solution community fmcg, consumer, finance">
-      <div class="directory-index">22</div>
-      <div class="directory-name"><b>Community Marketing</b><span>Community</span></div>
-      <div class="directory-fit">FMCG, Consumer, Finance</div>
-      <div class="directory-status">SOLUTION</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Community Marketing">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="community marketing mẹ & bé new community mom & kid">
-      <div class="directory-index">23</div>
-      <div class="directory-name"><b>Community Marketing Mẹ & Bé</b><span>Community</span></div>
-      <div class="directory-fit">Mom & Kid</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Community Marketing Mẹ & Bé">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing Mẹ & Bé" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="community marketing game new community game / esports">
-      <div class="directory-index">24</div>
-      <div class="directory-name"><b>Community Marketing Game</b><span>Community</span></div>
-      <div class="directory-fit">Game / Esports</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Community Marketing Game">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing Game" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social partnership solution partnership đa ngành">
-      <div class="directory-index">25</div>
-      <div class="directory-name"><b>Social Partnership</b><span>Partnership</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SOLUTION</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Partnership">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Partnership" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="event partnership solution partnership đa ngành">
-      <div class="directory-index">26</div>
-      <div class="directory-name"><b>Event Partnership</b><span>Partnership</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SOLUTION</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Event Partnership">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Event Partnership" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="engagement campaign solution content marketing đa ngành">
-      <div class="directory-index">27</div>
-      <div class="directory-name"><b>Engagement Campaign</b><span>Content Marketing</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SOLUTION</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Engagement Campaign">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Engagement Campaign" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="hiếu nghĩa vàng son q3 / seasonal big idea finance, insurance, fmcg, enterprise">
-      <div class="directory-index">28</div>
-      <div class="directory-name"><b>Hiếu Nghĩa Vàng Son</b><span>Big Idea</span></div>
-      <div class="directory-fit">Finance, Insurance, FMCG, Enterprise</div>
-      <div class="directory-status">Q3 / SEASONAL</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Hiếu Nghĩa Vàng Son">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Hiếu Nghĩa Vàng Son" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="khuếch đại truyền thông new solution event, entertainment, finance, bđs">
-      <div class="directory-index">29</div>
-      <div class="directory-name"><b>Khuếch đại Truyền thông</b><span>Solution</span></div>
-      <div class="directory-fit">Event, Entertainment, Finance, BĐS</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Khuếch đại Truyền thông">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Khuếch đại Truyền thông" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social native kênh14 new solution fmcg, digital, ecom">
-      <div class="directory-index">30</div>
-      <div class="directory-name"><b>Social Native Kênh14</b><span>Solution</span></div>
-      <div class="directory-fit">FMCG, Digital, Ecom</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Native Kênh14">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Native Kênh14" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="strategic partnership marketing × genz/men new solution gen z, men">
-      <div class="directory-index">31</div>
-      <div class="directory-name"><b>Strategic Partnership Marketing × GenZ/Men</b><span>Solution</span></div>
-      <div class="directory-fit">Gen Z, Men</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Strategic Partnership Marketing × GenZ/Men">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Strategic Partnership Marketing × GenZ/Men" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="tick xanh facebook new solution brand trust">
-      <div class="directory-index">32</div>
-      <div class="directory-name"><b>Tick Xanh Facebook</b><span>Solution</span></div>
-      <div class="directory-fit">Brand Trust</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Tick Xanh Facebook">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Tick Xanh Facebook" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="kol booking service agency service fmcg, beauty, tech, retail">
-      <div class="directory-index">33</div>
-      <div class="directory-name"><b>KOL Booking</b><span>Agency Service</span></div>
-      <div class="directory-fit">FMCG, Beauty, Tech, Retail</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="KOL Booking">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="KOL Booking" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="influencer marketing service agency service fmcg, beauty, tech, retail">
-      <div class="directory-index">34</div>
-      <div class="directory-name"><b>Influencer Marketing</b><span>Agency Service</span></div>
-      <div class="directory-fit">FMCG, Beauty, Tech, Retail</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Influencer Marketing">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Influencer Marketing" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social contest service agency service fmcg, beauty, retail">
-      <div class="directory-index">35</div>
-      <div class="directory-name"><b>Social Contest</b><span>Agency Service</span></div>
-      <div class="directory-fit">FMCG, Beauty, Retail</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Contest">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Contest" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social visual content service agency service fmcg, beauty, tech">
-      <div class="directory-index">36</div>
-      <div class="directory-name"><b>Social Visual Content</b><span>Agency Service</span></div>
-      <div class="directory-fit">FMCG, Beauty, Tech</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Visual Content">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Visual Content" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="thiết kế hình ảnh tổng thể service agency service đa ngành">
-      <div class="directory-index">37</div>
-      <div class="directory-name"><b>Thiết kế hình ảnh tổng thể</b><span>Agency Service</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Thiết kế hình ảnh tổng thể">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Thiết kế hình ảnh tổng thể" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="sản xuất tin bài / video service agency service đa ngành">
-      <div class="directory-index">38</div>
-      <div class="directory-name"><b>Sản xuất tin bài / Video</b><span>Agency Service</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Sản xuất tin bài / Video">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Sản xuất tin bài / Video" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="sản xuất video / tvc ai new agency service đa ngành">
-      <div class="directory-index">39</div>
-      <div class="directory-name"><b>Sản xuất Video / TVC AI</b><span>Agency Service</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Sản xuất Video / TVC AI">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Sản xuất Video / TVC AI" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="xây dựng và quản trị kênh service agency service đa ngành">
-      <div class="directory-index">40</div>
-      <div class="directory-name"><b>Xây dựng và quản trị Kênh</b><span>Agency Service</span></div>
-      <div class="directory-fit">Đa ngành</div>
-      <div class="directory-status">SERVICE</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Xây dựng và quản trị Kênh">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Xây dựng và quản trị Kênh" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="social đào tạo core social agency service auto, bđs, finance">
-      <div class="directory-index">41</div>
-      <div class="directory-name"><b>Social Đào Tạo</b><span>Agency Service</span></div>
-      <div class="directory-fit">Auto, BĐS, Finance</div>
-      <div class="directory-status">CORE SOCIAL</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Social Đào Tạo">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Social Đào Tạo" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="[cafebiz] talkshow thuế hộ kinh doanh new creative content sme, finance">
-      <div class="directory-index">42</div>
-      <div class="directory-name"><b>[CafeBiz] Talkshow Thuế Hộ Kinh Doanh</b><span>Creative Content</span></div>
-      <div class="directory-fit">SME, Finance</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="[kenh14] b&f new creative content fashion, beauty">
-      <div class="directory-index">43</div>
-      <div class="directory-name"><b>[Kenh14] B&F</b><span>Creative Content</span></div>
-      <div class="directory-fit">Fashion, Beauty</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="[Kenh14] B&F">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="[Kenh14] B&F" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="[cafef] 40 năm đổi mới new creative content enterprise">
-      <div class="directory-index">44</div>
-      <div class="directory-name"><b>[CafeF] 40 Năm Đổi Mới</b><span>Creative Content</span></div>
-      <div class="directory-fit">Enterprise</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="[CafeF] 40 Năm Đổi Mới">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="[CafeF] 40 Năm Đổi Mới" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="[kenh14] đồng hành fifa world cup new creative content fmcg, men, tech">
-      <div class="directory-index">45</div>
-      <div class="directory-name"><b>[Kenh14] Đồng hành FIFA World Cup</b><span>Creative Content</span></div>
-      <div class="directory-fit">FMCG, Men, Tech</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="[Kenh14] Đồng hành FIFA World Cup">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="[Kenh14] Đồng hành FIFA World Cup" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="[cafebiz × kenh14] giao lộ di sản new creative content enterprise, legacy">
-      <div class="directory-index">46</div>
-      <div class="directory-name"><b>[CafeBiz × Kenh14] Giao Lộ Di Sản</b><span>Creative Content</span></div>
-      <div class="directory-fit">Enterprise, Legacy</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="[CafeBiz × Kenh14] Giao Lộ Di Sản">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="[CafeBiz × Kenh14] Giao Lộ Di Sản" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="idol14 bắt tour new event partnership gen z">
-      <div class="directory-index">47</div>
-      <div class="directory-name"><b>IDOL14 Bắt Tour</b><span>Event Partnership</span></div>
-      <div class="directory-fit">Gen Z</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="IDOL14 Bắt Tour">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="IDOL14 Bắt Tour" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="here we go 2026 new event partnership lifestyle, travel">
-      <div class="directory-index">48</div>
-      <div class="directory-name"><b>Here We Go 2026</b><span>Event Partnership</span></div>
-      <div class="directory-fit">Lifestyle, Travel</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Here We Go 2026">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Here We Go 2026" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="xem world cup cùng sao new solution fmcg, fashion, men">
-      <div class="directory-index">49</div>
-      <div class="directory-name"><b>Xem World Cup Cùng Sao</b><span>Solution</span></div>
-      <div class="directory-fit">FMCG, Fashion, Men</div>
-      <div class="directory-status">NEW</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Xem World Cup Cùng Sao">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Xem World Cup Cùng Sao" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="lần này con đưa bố mẹ đi coming soon kenh14 project family, lifestyle">
-      <div class="directory-index">50</div>
-      <div class="directory-name"><b>Lần này con đưa bố mẹ đi</b><span>Kenh14 Project</span></div>
-      <div class="directory-fit">Family, Lifestyle</div>
-      <div class="directory-status">COMING SOON</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Lần này con đưa bố mẹ đi">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Lần này con đưa bố mẹ đi" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
-<div class="directory-row" data-dir-search="back to school - kenh14 coming soon kenh14 project education, fmcg, tech">
-      <div class="directory-index">51</div>
-      <div class="directory-name"><b>Back to School - Kenh14</b><span>Kenh14 Project</span></div>
-      <div class="directory-fit">Education, FMCG, Tech</div>
-      <div class="directory-status">COMING SOON</div>
-      <div class="directory-actions">
-        <button class="dir-brief" data-directory-product="Back to School - Kenh14">Brief</button>
-        <a class="dir-profile disabled-profile" data-profile-name="Back to School - Kenh14" href="#" aria-disabled="true">Profile ↗</a>
-      </div>
-    </div>
+  <div class="profile-note">Ví dụ: <b>Giao Lộ Di Sản, 40 Năm Đổi Mới, AI in Banking...</b> nằm dưới <b>Content Marketing → Solutions → Content Partnership</b>, không đứng ngang hàng với sản phẩm mẹ.</div>
+  <div class="solution-tree directory-tree" id="directoryTree">
+    <details class="domain-root">
+      <summary>
+        <div><span class="domain-kicker">MẢNG GIẢI PHÁP</span><h3>PRODUCT MARKETING</h3></div>
+        <span class="domain-count">3 nhóm chính</span>
+      </summary>
+      <div class="domain-body"><details class="solution-group" data-tree-search="bộ công cụ tiếp thị sản phẩm ra thị trường">
+          <summary>
+            <div><b>Bộ công cụ tiếp thị sản phẩm ra thị trường</b><span>7 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="product content by webuy mới">
+          <div class="tree-name"><b>Product Content by Webuy</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Product Content by Webuy">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Product Content by Webuy" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="featured product mới">
+          <div class="tree-name"><b>Featured Product</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Featured Product">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Featured Product" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="wepick mới">
+          <div class="tree-name"><b>WEPICK</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="WEPICK">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="WEPICK" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="influencer marketing nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Influencer Marketing</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="booking kol/chuyên gia nâng cấp">
+          <div class="tree-name"><b>Booking KOL/Chuyên gia</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Booking KOL/Chuyên gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Booking KOL/Chuyên gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="sx hình ảnh và video mkt nâng cấp">
+          <div class="tree-name"><b>Sx Hình ảnh và Video MKT</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sx Hình ảnh và Video MKT">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sx Hình ảnh và Video MKT" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="đào tạo livestream bán hàng với chuyên gia mới">
+          <div class="tree-name"><b>Đào tạo livestream bán hàng với Chuyên gia</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Đào tạo livestream bán hàng với Chuyên gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Đào tạo livestream bán hàng với Chuyên gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="visual marketing mới">
+          <div class="tree-name"><b>Visual Marketing</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Visual Marketing">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Visual Marketing" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="community marketing mới">
+          <summary>
+            <div class="tree-name"><b>Community Marketing</b><span class="tree-status">Mới</span></div>
+            <span class="tree-count">2 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="chuỗi ws cho mẹ &amp; bé nâng cấp">
+          <div class="tree-name"><b>Chuỗi WS cho Mẹ &amp; Bé</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Chuỗi WS cho Mẹ &amp; Bé">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Chuỗi WS cho Mẹ &amp; Bé" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="cộng đồng mom review nâng cấp">
+          <div class="tree-name"><b>Cộng đồng Mom Review</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Cộng đồng Mom Review">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Cộng đồng Mom Review" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="gamification marketing ">
+          <div class="tree-name"><b>Gamification Marketing</b></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Gamification Marketing">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Gamification Marketing" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="bộ công cụ review sản phẩm">
+          <summary>
+            <div><b>Bộ công cụ review sản phẩm</b><span>4 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="webuy booking mới">
+          <div class="tree-name"><b>Webuy Booking</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Webuy Booking">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Webuy Booking" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="ai video review mới">
+          <div class="tree-name"><b>AI Video Review</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="AI Video Review">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="AI Video Review" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="activation o2o mới">
+          <div class="tree-name"><b>Activation O2O</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Activation O2O">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Activation O2O" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="creator cruise mới">
+          <div class="tree-name"><b>Creator Cruise</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Creator Cruise">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Creator Cruise" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="bộ công cụ tối ưu chuyển đổi">
+          <summary>
+            <div><b>Bộ công cụ tối ưu chuyển đổi</b><span>3 nhóm/sản phẩm</span></div>
+            <strong>LEVEL 2</strong>
+          </summary>
+          <div class="group-body"><details class="tree-node depth-3" data-tree-search="ecom marketing mới">
+          <summary>
+            <div class="tree-name"><b>Ecom Marketing</b><span class="tree-status">Mới</span></div>
+            <span class="tree-count">5 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="mega livestream nâng cấp">
+          <div class="tree-name"><b>Mega Livestream</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Mega Livestream">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Mega Livestream" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xây tiktok store mới">
+          <div class="tree-name"><b>Xây TikTok Store</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây TikTok Store">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây TikTok Store" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xây sàn tmđt mới">
+          <div class="tree-name"><b>Xây sàn TMĐT</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây sàn TMĐT">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây sàn TMĐT" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="gmv max nâng cấp">
+          <div class="tree-name"><b>GMV Max</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="GMV Max">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="GMV Max" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="shoppertainment race nâng cấp">
+          <div class="tree-name"><b>Shoppertainment Race</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Shoppertainment Race">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Shoppertainment Race" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="sale ai agent mới">
+          <div class="tree-name"><b>Sale AI Agent</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sale AI Agent">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sale AI Agent" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="tool sale story mới">
+          <div class="tree-name"><b>Tool Sale Story</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tool Sale Story">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tool Sale Story" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details></div>
+    </details>
+<details class="domain-root">
+      <summary>
+        <div><span class="domain-kicker">MẢNG GIẢI PHÁP</span><h3>CONTENT MARKETING</h3></div>
+        <span class="domain-count">3 nhóm chính</span>
+      </summary>
+      <div class="domain-body"><details class="solution-group" data-tree-search="core products">
+          <summary>
+            <div><b>Core Products</b><span>4 nhóm/sản phẩm</span></div>
+            <strong>CORE</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="editorial content / pr star nâng cấp">
+          <div class="tree-name"><b>Editorial Content / PR Star</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Editorial Content / PR Star">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Editorial Content / PR Star" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="pr chủ động nâng cấp">
+          <div class="tree-name"><b>PR Chủ động</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="PR Chủ động">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="PR Chủ động" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social booking nâng cấp">
+          <div class="tree-name"><b>Social Booking</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Booking">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Booking" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social chủ động mới">
+          <div class="tree-name"><b>Social Chủ động</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Chủ động">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Chủ động" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="solutions">
+          <summary>
+            <div><b>Solutions</b><span>6 nhóm/sản phẩm</span></div>
+            <strong>SOLUTIONS</strong>
+          </summary>
+          <div class="group-body"><details class="tree-node depth-3" data-tree-search="social partnership thay thế">
+          <summary>
+            <div class="tree-name"><b>Social Partnership</b><span class="tree-status">Thay thế</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="vietbaby fair mới">
+          <div class="tree-name"><b>Vietbaby Fair</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Vietbaby Fair">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Vietbaby Fair" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="social native kênh14 mới">
+          <div class="tree-name"><b>Social Native Kênh14</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Native Kênh14">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Native Kênh14" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="strategic partnership marketing × genz/men mới">
+          <div class="tree-name"><b>Strategic Partnership Marketing × GenZ/Men</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Strategic Partnership Marketing × GenZ/Men">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Strategic Partnership Marketing × GenZ/Men" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<details class="tree-node depth-3" data-tree-search="event partnership nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Event Partnership</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">3 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="idol14 bắt tour mới">
+          <div class="tree-name"><b>IDOL14 Bắt Tour</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="IDOL14 Bắt Tour">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="IDOL14 Bắt Tour" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="here we go 2026 mới">
+          <div class="tree-name"><b>Here We Go 2026</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Here We Go 2026">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Here We Go 2026" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="xem world cup cùng sao mới">
+          <div class="tree-name"><b>Xem World Cup Cùng Sao</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xem World Cup Cùng Sao">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xem World Cup Cùng Sao" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<details class="tree-node depth-3" data-tree-search="content partnership nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Content Partnership</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">14 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="★ truyền thông thương hiệu quốc gia q3 flagship">
+          <div class="tree-name"><b>★ Truyền thông Thương Hiệu Quốc Gia</b><span class="tree-status">Q3 Flagship</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Truyền thông Thương Hiệu Quốc Gia">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Truyền thông Thương Hiệu Quốc Gia" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="talkshow the investors 3 - cafef q3 priority">
+          <div class="tree-name"><b>Talkshow The Investors 3 - CafeF</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Talkshow The Investors 3 - CafeF">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Talkshow The Investors 3 - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="cuộc thi ngân hàng tôi yêu - cafef q3 priority">
+          <div class="tree-name"><b>Cuộc thi Ngân hàng tôi yêu - CafeF</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Cuộc thi Ngân hàng tôi yêu - CafeF">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Cuộc thi Ngân hàng tôi yêu - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="tuyến ai in banking - cafebiz q3 priority">
+          <div class="tree-name"><b>Tuyến AI in Banking - CafeBiz</b><span class="tree-status">Q3 Priority</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tuyến AI in Banking - CafeBiz">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tuyến AI in Banking - CafeBiz" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="hiếu nghĩa vàng son thay thế">
+          <div class="tree-name"><b>Hiếu Nghĩa Vàng Son</b><span class="tree-status">Thay thế</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Hiếu Nghĩa Vàng Son">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Hiếu Nghĩa Vàng Son" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="ai banking mới">
+          <div class="tree-name"><b>AI BANKING</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="AI BANKING">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="AI BANKING" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="kiêu hãnh việt nam mới">
+          <div class="tree-name"><b>Kiêu hãnh Việt Nam</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Kiêu hãnh Việt Nam">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Kiêu hãnh Việt Nam" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafebiz × kenh14] giao lộ di sản mới">
+          <div class="tree-name"><b>[CafeBiz × Kenh14] Giao Lộ Di Sản</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeBiz × Kenh14] Giao Lộ Di Sản">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeBiz × Kenh14] Giao Lộ Di Sản" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafef] 40 năm đổi mới mới">
+          <div class="tree-name"><b>[CafeF] 40 Năm Đổi Mới</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeF] 40 Năm Đổi Mới">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeF] 40 Năm Đổi Mới" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[cafebiz] talkshow thuế hộ kinh doanh mới">
+          <div class="tree-name"><b>[CafeBiz] Talkshow Thuế Hộ Kinh Doanh</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[kenh14] b&amp;f mới">
+          <div class="tree-name"><b>[Kenh14] B&amp;F</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[Kenh14] B&amp;F">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[Kenh14] B&amp;F" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="[kenh14] đồng hành fifa world cup mới">
+          <div class="tree-name"><b>[Kenh14] Đồng hành FIFA World Cup</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="[Kenh14] Đồng hành FIFA World Cup">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="[Kenh14] Đồng hành FIFA World Cup" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="lần này con đưa bố mẹ đi coming soon">
+          <div class="tree-name"><b>Lần này con đưa bố mẹ đi</b><span class="tree-status">Coming Soon</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Lần này con đưa bố mẹ đi">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Lần này con đưa bố mẹ đi" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-4" data-tree-search="back to school - kenh14 coming soon">
+          <div class="tree-name"><b>Back to School - Kenh14</b><span class="tree-status">Coming Soon</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Back to School - Kenh14">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Back to School - Kenh14" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="engagement campaign nâng cấp">
+          <div class="tree-name"><b>Engagement Campaign</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Engagement Campaign">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Engagement Campaign" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="khuếch đại truyền thông mới">
+          <div class="tree-name"><b>Khuếch đại Truyền thông</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Khuếch đại Truyền thông">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Khuếch đại Truyền thông" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="tick xanh facebook mới">
+          <div class="tree-name"><b>Tick Xanh Facebook</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Tick Xanh Facebook">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Tick Xanh Facebook" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details><details class="solution-group" data-tree-search="agency services">
+          <summary>
+            <div><b>Agency Services</b><span>5 nhóm/sản phẩm</span></div>
+            <strong>AGENCY SERVICES</strong>
+          </summary>
+          <div class="group-body"><div class="tree-leaf depth-3" data-tree-search="thiết kế hình ảnh tổng thể ">
+          <div class="tree-name"><b>Thiết kế hình ảnh tổng thể</b></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Thiết kế hình ảnh tổng thể">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Thiết kế hình ảnh tổng thể" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<details class="tree-node depth-3" data-tree-search="sản xuất tin bài / video nâng cấp">
+          <summary>
+            <div class="tree-name"><b>Sản xuất tin bài / Video</b><span class="tree-status">Nâng cấp</span></div>
+            <span class="tree-count">1 mục</span>
+          </summary>
+          <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="sản xuất video / tvc ai mới">
+          <div class="tree-name"><b>Sản xuất Video / TVC AI</b><span class="tree-status">Mới</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Sản xuất Video / TVC AI">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Sản xuất Video / TVC AI" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details>
+<div class="tree-leaf depth-3" data-tree-search="xây dựng và quản trị kênh nâng cấp">
+          <div class="tree-name"><b>Xây dựng và quản trị Kênh</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Xây dựng và quản trị Kênh">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Xây dựng và quản trị Kênh" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social contest nâng cấp">
+          <div class="tree-name"><b>Social Contest</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Contest">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Contest" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div>
+<div class="tree-leaf depth-3" data-tree-search="social đào tạo nâng cấp">
+          <div class="tree-name"><b>Social Đào Tạo</b><span class="tree-status">Nâng cấp</span></div>
+          <div class="tree-actions">
+            <button class="tree-brief" data-tree-product="Social Đào Tạo">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Social Đào Tạo" href="#" aria-disabled="true">Profile ↗</a>
+          </div>
+        </div></div>
+        </details></div>
+    </details>
   </div>
 </section>
 <section class="section" id="industry">
@@ -1893,14 +2298,13 @@ document.getElementById("pitchProduct")?.addEventListener("change",e=>{
 });
 
 
-/* ===== V11 PRODUCT PROFILE DIRECTORY =====
-   Paste product landing-page/profile URLs here.
-   Example:
-   "PR Star":"https://your-domain/pr-star/",
-   "Social Chủ động":"https://your-domain/social-chu-dong/"
+
+/* ===== V12 UNIFIED PRODUCT HIERARCHY =====
+   Product Profile URLs: paste when each profile is ready.
 */
 const PRODUCT_PROFILE_URLS = {
   "PR Star":"",
+  "Editorial Content / PR Star":"",
   "Social Chủ động":"",
   "Community Marketing":"",
   "Hiếu Nghĩa Vàng Son":"",
@@ -1908,69 +2312,94 @@ const PRODUCT_PROFILE_URLS = {
   "Talkshow The Investors 3 - CafeF":"",
   "Cuộc thi Ngân hàng tôi yêu - CafeF":"",
   "Tuyến AI in Banking - CafeBiz":"",
-  "Product Marketing":"",
+  "[CafeBiz × Kenh14] Giao Lộ Di Sản":"",
+  "[CafeF] 40 Năm Đổi Mới":"",
   "Product Content by Webuy":"",
   "Social Booking":""
 };
 
-function bindProfileLinks(){
-  document.querySelectorAll("[data-profile-name]").forEach(a=>{
+function bindTreeProfiles(){
+  document.querySelectorAll(".tree-profile[data-profile-name]").forEach(a=>{
     const name=a.dataset.profileName;
     const url=PRODUCT_PROFILE_URLS[name]||"";
     if(url){
-      a.href=url;
-      a.target="_blank";
-      a.rel="noopener noreferrer";
-      a.classList.remove("disabled-profile");
-      a.removeAttribute("aria-disabled");
-      a.title="Mở Product Profile";
+      a.href=url;a.target="_blank";a.rel="noopener noreferrer";
+      a.classList.remove("disabled-profile");a.removeAttribute("aria-disabled");
     }else{
-      a.href="#";
-      a.classList.add("disabled-profile");
-      a.setAttribute("aria-disabled","true");
-      a.title="Chưa gắn link Product Profile";
-      a.addEventListener("click",e=>{
-        e.preventDefault();
-        alert("Product Profile của “"+name+"” chưa được gắn link.");
-      });
+      a.href="#";a.classList.add("disabled-profile");a.setAttribute("aria-disabled","true");
+      a.onclick=e=>{e.preventDefault();alert("Product Profile của “"+name+"” chưa được gắn link.");};
     }
   });
 }
-bindProfileLinks();
+bindTreeProfiles();
 
-const directorySearch=document.getElementById("directorySearch");
-const directoryCount=document.getElementById("directoryCount");
-if(directorySearch){
-  directorySearch.addEventListener("input",e=>{
-    const q=e.target.value.trim().toLowerCase();
-    let visible=0;
-    document.querySelectorAll("[data-dir-search]").forEach(row=>{
-      const show=!q || row.dataset.dirSearch.includes(q);
-      row.classList.toggle("hidden-dir",!show);
-      if(show) visible++;
+function treeSearch(treeId,q){
+  const tree=document.getElementById(treeId);
+  if(!tree)return;
+  q=(q||"").trim().toLowerCase();
+
+  if(!q){
+    tree.querySelectorAll(".tree-hidden,.tree-match").forEach(x=>{x.classList.remove("tree-hidden","tree-match")});
+    return;
+  }
+
+  // leaf/node direct matches
+  tree.querySelectorAll("[data-tree-search]").forEach(el=>{
+    const hit=(el.dataset.treeSearch||"").includes(q);
+    el.classList.toggle("tree-match",hit);
+  });
+
+  // recursively show only branches containing a match
+  [...tree.querySelectorAll(".domain-root")].forEach(domain=>{
+    const domainText=domain.textContent.toLowerCase();
+    const domainHit=domainText.includes(q);
+    domain.classList.toggle("tree-hidden",!domainHit);
+    if(domainHit)domain.open=true;
+
+    domain.querySelectorAll(".solution-group").forEach(group=>{
+      const hit=group.textContent.toLowerCase().includes(q);
+      group.classList.toggle("tree-hidden",!hit);
+      if(hit)group.open=true;
     });
-    directoryCount.textContent=visible+" sản phẩm / giải pháp";
+
+    domain.querySelectorAll(".tree-node").forEach(node=>{
+      const hit=node.textContent.toLowerCase().includes(q);
+      node.classList.toggle("tree-hidden",!hit);
+      if(hit)node.open=true;
+    });
+
+    domain.querySelectorAll(".tree-leaf").forEach(leaf=>{
+      leaf.classList.toggle("tree-hidden",!leaf.textContent.toLowerCase().includes(q));
+    });
   });
 }
 
-document.querySelectorAll("[data-directory-product]").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const name=btn.dataset.directoryProduct;
-    const key=Object.keys(PRODUCTS).find(k=>PRODUCTS[k]?.name===name);
-    if(key){ openProduct(key); return; }
+document.querySelectorAll("[data-tree-input]").forEach(input=>{
+  input.addEventListener("input",()=>treeSearch(input.dataset.treeInput,input.value));
+});
 
-    // Fallback brief for products not yet in PRODUCTS object.
+document.querySelectorAll("[data-tree-reset]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const tree=document.getElementById(btn.dataset.treeReset);
+    if(!tree)return;
+    tree.querySelectorAll("details").forEach(d=>d.open=false);
+    const input=document.querySelector(`[data-tree-input="${btn.dataset.treeReset}"]`);
+    if(input){input.value="";treeSearch(btn.dataset.treeReset,"");}
+  });
+});
+
+document.querySelectorAll("[data-tree-product]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const name=btn.dataset.treeProduct;
+    const normalized=name.replace(/^★\s*/,"");
+    const key=Object.keys(PRODUCTS).find(k=>PRODUCTS[k]?.name===normalized || PRODUCTS[k]?.name===name);
+    if(key){openProduct(key);return;}
     drawerBody.innerHTML=`
       <div class="kicker">Quick Brief</div>
-      <h2>${name}</h2>
-      <p class="lede" style="font-size:20px">Product Profile chi tiết chưa được nhúng trong Hub.</p>
-      <div class="drawer-card"><b>Next action</b><p>Mở Product Profile nếu đã gắn link, hoặc tra cứu trong NotebookLM để lấy USP, deliverables, case và giá.</p></div>
-      <div style="margin-top:20px">
-        <button class="primary" onclick="navigator.clipboard.writeText('Tóm tắt ${name}: USP, brand fit, deliverables, case study, giá và khi nào nên pitch.'); window.open(NOTEBOOKLM_URL,'_blank')">Hỏi NotebookLM ↗</button>
-      </div>`;
-    drawer.classList.add("open");
-    drawer.setAttribute("aria-hidden","false");
-    overlay.classList.add("show");
+      <h2>${normalized}</h2>
+      <p class="lede" style="font-size:20px">Mở Product Profile hoặc hỏi Athena Knowledge để lấy USP, brand fit, deliverables, case và giá.</p>
+      <button class="primary" onclick="navigator.clipboard.writeText('Tóm tắt ${normalized}: USP, brand fit, deliverables, case study, giá và khi nào nên pitch.');window.open(NOTEBOOKLM_URL,'_blank')">Hỏi NotebookLM ↗</button>`;
+    drawer.classList.add("open");drawer.setAttribute("aria-hidden","false");overlay.classList.add("show");
   });
 });
 
