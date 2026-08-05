@@ -247,7 +247,7 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
   border-radius:16px;padding:15px 16px
 }
 [data-theme="dark"] .focus-product-card{background:rgba(255,255,255,.035);border-color:#413A34}
-.focus-product-card.placeholder{opacity:.46}
+.focus-product-card.placeholder{opacity:.46}.focus-product-card.flagship-focus{border:2px solid #D69A00;background:linear-gradient(135deg,rgba(255,211,0,.14),rgba(255,255,255,.6));box-shadow:0 12px 36px rgba(184,126,0,.13)}
 .focus-product-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .focus-product-head h3{font-size:17px;margin:0}
 .focus-product-badge{font-size:9px;font-weight:950;letter-spacing:.11em;text-transform:uppercase;padding:5px 7px;border-radius:999px;background:#17181D;color:white;white-space:nowrap}
@@ -263,6 +263,28 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 .sales-copy{font-size:16px!important;color:var(--muted)!important;max-width:720px}
 .action-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 .action-strip span{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:7px 9px;border-radius:999px;background:rgba(255,122,0,.10);color:#B65000}
+
+
+/* ===== V9 Q3 LAUNCH RADAR + FLAGSHIP PRIORITY ===== */
+.q3-radar{margin-top:22px;border:1px solid var(--line);background:var(--surface);border-radius:24px;padding:25px}
+.q3-radar-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+.q3-radar-head p{margin:0;color:var(--muted);max-width:620px}
+.q3-launch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.q3-launch{border:1px solid var(--line);border-radius:16px;padding:17px;background:var(--surface)}
+.q3-launch.priority{border-color:rgba(255,122,0,.55);box-shadow:inset 0 3px 0 var(--athena-orange)}
+.q3-launch.flagship{grid-column:span 2;background:linear-gradient(135deg,#17181D,#28231D 62%,#5B3C08);color:#fff;border-color:#A56B00;position:relative;overflow:hidden}
+.q3-launch.flagship:after{content:"★";position:absolute;right:18px;top:-18px;font-size:120px;color:rgba(255,211,0,.16);line-height:1}
+.q3-launch.flagship p,.q3-launch.flagship .launch-fit{color:rgba(255,255,255,.7)}
+.launch-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.launch-pill{font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 7px;background:rgba(255,122,0,.10);color:#B65000}
+.flagship .launch-pill{background:rgba(255,211,0,.16);color:#FFD84A}
+.launch-star{font-size:10px;font-weight:950;color:#FFD84A;letter-spacing:.09em}
+.q3-launch h3{font-size:17px;margin:0 0 8px}
+.q3-launch p{font-size:12px;color:var(--muted);margin-bottom:12px}
+.launch-fit{font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.flagship .launch-fit{border-color:rgba(255,255,255,.14)}
+@media(max-width:900px){.q3-launch-grid{grid-template-columns:1fr 1fr}.q3-launch.flagship{grid-column:span 2}}
+@media(max-width:620px){.q3-launch-grid{grid-template-columns:1fr}.q3-launch.flagship{grid-column:span 1}.q3-radar-head{display:block}}
 
 </style>
 </head>
@@ -377,8 +399,8 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
     <article class="h2-hero-block focus-block">
       <div class="h2-block-inner">
         <div class="h2-kicker">QUARTER FOCUS / SELL THIS NOW</div>
-        <h2 style="margin-top:22px">Q3 / 2026<br>Sản phẩm cần ưu tiên bán.</h2>
-        <p>Nhìn USP → xác định tình huống pitch → chọn đúng khách.</p>
+        <h2 style="margin-top:22px">Q3 / 2026<br>4 giải pháp ưu tiên bán.</h2>
+        <p>★ Ưu tiên số 1: <b>Truyền thông Thương Hiệu Quốc Gia</b>. Sau đó chọn giải pháp theo đúng brief và nhóm khách.</p>
 
         <div class="focus-tabs">
           <button class="focus-tab active" data-focus-quarter="q3">Q3 / 2026</button>
@@ -390,7 +412,53 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
     </article>
   </div>
 
-  <div class="h2-new-catalogue">
+  
+  <div class="q3-radar" id="q3-launches">
+    <div class="q3-radar-head">
+      <div><div class="eyebrow">Q3 / NEW LAUNCH RADAR</div><h3 style="font-size:28px;margin:6px 0 0">Sản phẩm & dự án mới để mở brief Q3.</h3></div>
+      <p>Ưu tiên sản phẩm có badge <b>Q3 PRIORITY</b>. Dự án có dấu ★ là cơ hội lớn cần chủ động rà soát và mở khách trước.</p>
+    </div>
+    <div class="q3-launch-grid">
+      <article class="q3-launch priority">
+        <div class="launch-meta"><span class="launch-pill">Q3 Priority</span><span class="launch-pill">CafeF</span></div>
+        <h3>Talkshow The Investors 3</h3>
+        <p>Mở brief thought leadership, đầu tư và góc nhìn chuyên gia.</p>
+        <div class="launch-fit"><b>Target:</b> Ngân hàng · Chứng khoán · Tài chính · BĐS</div>
+      </article>
+      <article class="q3-launch priority">
+        <div class="launch-meta"><span class="launch-pill">Q3 Priority</span><span class="launch-pill">CafeF</span></div>
+        <h3>Cuộc thi Ngân hàng tôi yêu</h3>
+        <p>Mở brief engagement và brand love cho ngành ngân hàng.</p>
+        <div class="launch-fit"><b>Target:</b> Ngân hàng</div>
+      </article>
+      <article class="q3-launch priority">
+        <div class="launch-meta"><span class="launch-pill">Q3 Priority</span><span class="launch-pill">CafeBiz</span></div>
+        <h3>Tuyến AI in Banking</h3>
+        <p>Mở câu chuyện AI, đổi mới và vị thế tiên phong công nghệ.</p>
+        <div class="launch-fit"><b>Target:</b> Ngân hàng · Fintech</div>
+      </article>
+      <article class="q3-launch">
+        <div class="launch-meta"><span class="launch-pill">New Rate Card</span><span class="launch-pill">5 site nội bộ</span></div>
+        <h3>PR Star</h3>
+        <p>Đã công bố báo giá trên 5 site nội bộ — sẵn sàng đưa vào proposal và cross-sell.</p>
+        <div class="launch-fit"><b>Action:</b> kiểm tra rate card → chọn site → pitch theo brief.</div>
+      </article>
+      <article class="q3-launch flagship priority">
+        <div class="launch-meta"><span class="launch-pill">★ Flagship</span><span class="launch-pill">Priority #1</span></div>
+        <h3>Truyền thông Thương Hiệu Quốc Gia</h3>
+        <p>Dự án lớn nhất trong nhóm Q3. Ưu tiên rà soát tập đoàn, ngân hàng và doanh nghiệp đầu ngành có nhu cầu nâng vị thế thương hiệu.</p>
+        <div class="launch-fit"><b>Action:</b> lập shortlist khách → mở meeting → lấy brief đề án lớn.</div>
+      </article>
+      <article class="q3-launch">
+        <div class="launch-meta"><span class="launch-pill">Coming Soon</span><span class="launch-pill">Kenh14</span></div>
+        <h3>Lần này con đưa bố mẹ đi · Back to School · ...</h3>
+        <p>Các dự án sắp ra mắt để Account chủ động nhận diện brand fit và chuẩn bị pipeline sớm.</p>
+        <div class="launch-fit"><b>Action:</b> theo dõi cập nhật → map brand phù hợp → giữ cơ hội.</div>
+      </article>
+    </div>
+  </div>
+
+<div class="h2-new-catalogue">
     <div class="new-catalogue-head">
       <div><b>NEW H2 CATALOGUE</b><p>Tra nhanh theo tên sản phẩm, nhóm hoặc ngành phù hợp.</p></div>
       <input class="new-search" id="newH2Search" placeholder="Tìm: PR Star, Community, AI, Gen Z...">
@@ -950,40 +1018,33 @@ document.querySelectorAll("[data-question]").forEach(btn=>btn.addEventListener("
 const QUARTER_FOCUS = {
   q3: [
     {
-      name:"PR Star",
-      badge:"CORE / PRIORITY",
-      usp:"PR nâng cấp: editorial mạnh hơn, visual nổi bật hơn và phù hợp các brief cần tăng sức nặng truyền thông.",
-      pitch:"Khách vẫn cần PR nhưng bài PR truyền thống chưa đủ nổi bật hoặc chưa đủ sức thuyết phục.",
-      fit:"Tech, Finance, FMCG, Real Estate"
+      name:"Truyền thông Thương Hiệu Quốc Gia",
+      badge:"★ FLAGSHIP / #1",
+      usp:"Dự án truyền thông quy mô lớn dành cho bài toán vị thế thương hiệu và tầm vóc doanh nghiệp.",
+      pitch:"Khách cần một đề án lớn để nâng vị thế thương hiệu, tạo dấu ấn cấp doanh nghiệp hoặc câu chuyện mang tính quốc gia.",
+      fit:"Tập đoàn lớn, Ngân hàng, Doanh nghiệp đầu ngành",
+      flagship:true
     },
     {
-      name:"Social Chủ động",
-      badge:"NEW / SOCIAL",
-      usp:"Chủ động tạo nội dung và nhịp phân phối social thay vì chỉ booking theo từng post rời rạc.",
-      pitch:"Khách cần awareness/reach đều, muốn nội dung tự nhiên hơn quảng cáo và cần chủ động câu chuyện social.",
-      fit:"FMCG, Tech, Finance, Real Estate"
+      name:"Talkshow The Investors 3 - CafeF",
+      badge:"Q3 PRIORITY",
+      usp:"Format talkshow trên CafeF để khai thác góc nhìn đầu tư, tài chính và tiếng nói chuyên môn.",
+      pitch:"Khách cần xây dựng thought leadership, chia sẻ góc nhìn chuyên gia hoặc tiếp cận nhóm độc giả tài chính – đầu tư.",
+      fit:"Ngân hàng, Chứng khoán, Tài chính, BĐS"
     },
     {
-      name:"Community Marketing",
-      badge:"GROWTH SOLUTION",
-      usp:"Đưa thương hiệu vào đúng cộng đồng để tạo review, thảo luận và social proof gần với người dùng thật.",
-      pitch:"Khách cần consideration, WOM, review hoặc muốn tiếp cận cộng đồng chuyên biệt.",
-      fit:"Mom & Kid, Game, FMCG, Consumer"
+      name:"Cuộc thi Ngân hàng tôi yêu - CafeF",
+      badge:"Q3 PRIORITY",
+      usp:"Format cuộc thi tạo tương tác và câu chuyện yêu thích thương hiệu trong nhóm khách hàng ngân hàng.",
+      pitch:"Ngân hàng cần engagement, brand love hoặc một hoạt động giúp khách hàng chủ động tham gia và chia sẻ.",
+      fit:"Ngân hàng"
     },
     {
-      name:"Hiếu Nghĩa Vàng Son",
-      badge:"SEASONAL BIG IDEA",
-      usp:"Big idea mùa Vu Lan/tri ân với khả năng mở rộng thành content, activation và reality format.",
-      pitch:"Khách cần chiến dịch CSR, Brand Love hoặc concept mùa vụ có chiều sâu cảm xúc.",
-      fit:"Finance, Insurance, FMCG, Enterprise"
-    },
-    {
-      name:"Đang cập nhật",
-      badge:"SLOT 05",
-      usp:"Sản phẩm trọng điểm thứ 5 của Q3 chưa chốt.",
-      pitch:"Chờ cập nhật.",
-      fit:"—",
-      placeholder:true
+      name:"Tuyến AI in Banking - CafeBiz",
+      badge:"Q3 PRIORITY",
+      usp:"Tuyến nội dung gắn thương hiệu ngân hàng với câu chuyện AI, đổi mới và chuyển đổi trong ngành.",
+      pitch:"Ngân hàng muốn sở hữu câu chuyện AI, chuyển đổi số, đổi mới vận hành hoặc xây vị thế tiên phong công nghệ.",
+      fit:"Ngân hàng, Fintech"
     }
   ],
   q4: [
@@ -1004,7 +1065,7 @@ function renderQuarterFocus(q){
   const items=QUARTER_FOCUS[q]||[];
 
   box.innerHTML=items.map((x,i)=>`
-    <article class="focus-product-card ${x.placeholder?"placeholder":""}">
+    <article class="focus-product-card ${x.placeholder?"placeholder":""} ${x.flagship?"flagship-focus":""}">
       <div class="focus-product-head">
         <h3>${String(i+1).padStart(2,"0")} · ${x.name}</h3>
         <span class="focus-product-badge">${x.badge||"PRIORITY"}</span>
