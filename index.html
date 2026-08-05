@@ -286,6 +286,31 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 @media(max-width:900px){.q3-launch-grid{grid-template-columns:1fr 1fr}.q3-launch.flagship{grid-column:span 2}}
 @media(max-width:620px){.q3-launch-grid{grid-template-columns:1fr}.q3-launch.flagship{grid-column:span 1}.q3-radar-head{display:block}}
 
+
+.auto-rec{margin-top:8px;padding:10px 12px;border-radius:12px;background:rgba(255,122,0,.08);color:#A94A00;font-size:12px;display:none}
+.auto-rec.show{display:block}
+
+
+/* ===== V11 PRODUCT DIRECTORY + PROFILE LINKS ===== */
+.directory-toolbar{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px}
+.directory-toolbar input{flex:1;max-width:520px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px 14px;border-radius:12px;outline:none}
+.directory-count{font-size:12px;color:var(--muted);font-weight:800}
+.profile-note{font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:14px}
+.profile-note code{font-size:11px}
+.product-directory{border-top:1px solid var(--line)}
+.directory-row{display:grid;grid-template-columns:46px 1.3fr 1fr 120px 150px;gap:14px;align-items:center;padding:15px 6px;border-bottom:1px solid var(--line)}
+.directory-row.hidden-dir{display:none}
+.directory-index{font-size:11px;color:var(--muted)}
+.directory-name b{display:block;font-size:14px}.directory-name span{font-size:11px;color:var(--muted)}
+.directory-fit{font-size:12px;color:var(--muted)}
+.directory-status{font-size:10px;font-weight:900;color:#B44F00;text-transform:uppercase;letter-spacing:.06em}
+.directory-actions{display:flex;gap:6px;justify-content:flex-end}
+.dir-brief,.dir-profile{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 9px;font-size:11px;font-weight:900;cursor:pointer}
+.dir-profile:not(.disabled-profile){background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.disabled-profile{opacity:.36;cursor:not-allowed}
+@media(max-width:980px){.directory-row{grid-template-columns:34px 1.3fr 1fr 130px}.directory-status{display:none}}
+@media(max-width:700px){.directory-toolbar{display:block}.directory-toolbar input{width:100%;max-width:none}.directory-count{margin-top:8px}.directory-row{grid-template-columns:30px 1fr}.directory-fit,.directory-status{display:none}.directory-actions{grid-column:2;justify-content:flex-start}}
+
 </style>
 </head>
 <body>
@@ -649,17 +674,537 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 <div class="sidecards"><article class="info"><h3>Sell when</h3><ul><li>Ra mắt / tái ra mắt sản phẩm</li><li>Cần giáo dục lợi ích</li><li>Cần kết nối PR + Social + Creator</li></ul></article><article class="info"><h3>Good fit</h3><p>Finance · FMCG · Beauty · Consumer Tech · Real Estate</p></article></div>
 </div>
 </section>
+
 <section class="section" id="products">
-<div class="head"><div><div class="eyebrow">04 / Product portfolio</div><h2>Tìm đúng sản phẩm<br>trong vài giây.</h2></div><p>Lọc theo mục tiêu. Click từng dòng để xem brief.</p></div>
-<div class="filters" id="filters"><button class="chip active" data-filter="all">Tất cả</button><button class="chip" data-filter="awareness">Awareness</button><button class="chip" data-filter="consideration">Consideration</button><button class="chip" data-filter="engagement">Engagement</button></div>
-<div class="list">
-<div class="row" data-cat="consideration" data-product="pm"><span>01</span><b>Product Marketing</b><p>Launch / education / trial bằng content + social + media.</p><span class="status">H2 PRIORITY</span><span>→</span></div>
-<div class="row" data-cat="awareness" data-product="prstar"><span>02</span><b>PR Star</b><p>Tạo điểm nhấn PR mạnh hơn cho chiến dịch.</p><span class="status">NEW</span><span>→</span></div>
-<div class="row" data-cat="awareness" data-product="social"><span>03</span><b>Social Booking</b><p>Mở rộng độ phủ qua network social phù hợp.</p><span class="status">CORE</span><span>→</span></div>
-<div class="row" data-cat="awareness" data-product="editorial"><span>04</span><b>Editorial Content</b><p>Tuyến nội dung có chiều sâu, xây nhận thức.</p><span class="status">CORE</span><span>→</span></div>
-<div class="row" data-cat="engagement" data-product="contest"><span>05</span><b>Social Contest</b><p>Tạo tương tác và UGC trong campaign social.</p><span class="status">SERVICE</span><span>→</span></div>
-<div class="row" data-cat="engagement" data-product="kol"><span>06</span><b>KOL Booking</b><p>Kết nối creator/KOL phù hợp vai trò campaign.</p><span class="status">SERVICE</span><span>→</span></div>
-</div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">04 / Product Directory</div>
+      <h2>Tất cả sản phẩm.<br>Một nơi để tra cứu.</h2>
+    </div>
+    <p>Search theo tên, nhóm, trạng thái hoặc ngành. <b>Brief</b> để xem nhanh; <b>Profile ↗</b> để đi thẳng tới landing page/profile riêng của sản phẩm.</p>
+  </div>
+
+  <div class="directory-toolbar">
+    <input id="directorySearch" placeholder="Tìm: PR Star, Community, Banking, New...">
+    <div class="directory-count" id="directoryCount">51 sản phẩm / giải pháp</div>
+  </div>
+
+  <div class="profile-note">
+    Link Product Profile được quản lý trong biến <code>PRODUCT_PROFILE_URLS</code> ở cuối file. Sau này chỉ cần paste URL, không phải sửa layout.
+  </div>
+
+  <div class="product-directory" id="productDirectory">
+    <div class="directory-row" data-dir-search="truyền thông thương hiệu quốc gia q3 priority enterprise / big idea tập đoàn, ngân hàng, doanh nghiệp đầu ngành">
+      <div class="directory-index">01</div>
+      <div class="directory-name"><b>Truyền thông Thương Hiệu Quốc Gia</b><span>Enterprise / Big Idea</span></div>
+      <div class="directory-fit">Tập đoàn, Ngân hàng, Doanh nghiệp đầu ngành</div>
+      <div class="directory-status">Q3 PRIORITY</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Truyền thông Thương Hiệu Quốc Gia">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Truyền thông Thương Hiệu Quốc Gia" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="talkshow the investors 3 - cafef q3 priority creative content finance, banking, securities, bđs">
+      <div class="directory-index">02</div>
+      <div class="directory-name"><b>Talkshow The Investors 3 - CafeF</b><span>Creative Content</span></div>
+      <div class="directory-fit">Finance, Banking, Securities, BĐS</div>
+      <div class="directory-status">Q3 PRIORITY</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Talkshow The Investors 3 - CafeF">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Talkshow The Investors 3 - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="cuộc thi ngân hàng tôi yêu - cafef q3 priority engagement solution banking">
+      <div class="directory-index">03</div>
+      <div class="directory-name"><b>Cuộc thi Ngân hàng tôi yêu - CafeF</b><span>Engagement Solution</span></div>
+      <div class="directory-fit">Banking</div>
+      <div class="directory-status">Q3 PRIORITY</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Cuộc thi Ngân hàng tôi yêu - CafeF">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Cuộc thi Ngân hàng tôi yêu - CafeF" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="tuyến ai in banking - cafebiz q3 priority creative content banking, fintech">
+      <div class="directory-index">04</div>
+      <div class="directory-name"><b>Tuyến AI in Banking - CafeBiz</b><span>Creative Content</span></div>
+      <div class="directory-fit">Banking, Fintech</div>
+      <div class="directory-status">Q3 PRIORITY</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Tuyến AI in Banking - CafeBiz">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Tuyến AI in Banking - CafeBiz" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="pr star core / new rate card content marketing đa ngành">
+      <div class="directory-index">05</div>
+      <div class="directory-name"><b>PR Star</b><span>Content Marketing</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">CORE / NEW RATE CARD</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="PR Star">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="PR Star" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="editorial content core content marketing finance, bđs, tech">
+      <div class="directory-index">06</div>
+      <div class="directory-name"><b>Editorial Content</b><span>Content Marketing</span></div>
+      <div class="directory-fit">Finance, BĐS, Tech</div>
+      <div class="directory-status">CORE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Editorial Content">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Editorial Content" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="content chủ động core content marketing đa ngành">
+      <div class="directory-index">07</div>
+      <div class="directory-name"><b>Content Chủ Động</b><span>Content Marketing</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">CORE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Content Chủ Động">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Content Chủ Động" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social booking core social fmcg, tech, beauty, finance">
+      <div class="directory-index">08</div>
+      <div class="directory-name"><b>Social Booking</b><span>Social</span></div>
+      <div class="directory-fit">FMCG, Tech, Beauty, Finance</div>
+      <div class="directory-status">CORE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Booking">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Booking" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social chủ động new social fmcg, tech, finance, bđs">
+      <div class="directory-index">09</div>
+      <div class="directory-name"><b>Social Chủ Động</b><span>Social</span></div>
+      <div class="directory-fit">FMCG, Tech, Finance, BĐS</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Chủ Động">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Chủ Động" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="product marketing h2 priority product marketing đa ngành">
+      <div class="directory-index">10</div>
+      <div class="directory-name"><b>Product Marketing</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">H2 PRIORITY</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Product Marketing">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Product Marketing" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="product content by webuy new product marketing gia dụng, beauty, consumer tech">
+      <div class="directory-index">11</div>
+      <div class="directory-name"><b>Product Content by Webuy</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Gia dụng, Beauty, Consumer Tech</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Product Content by Webuy">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Product Content by Webuy" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="featured product new product marketing consumer product">
+      <div class="directory-index">12</div>
+      <div class="directory-name"><b>Featured Product</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Consumer Product</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Featured Product">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Featured Product" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="wepick new product marketing consumer product">
+      <div class="directory-index">13</div>
+      <div class="directory-name"><b>WEPICK</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Consumer Product</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="WEPICK">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="WEPICK" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="webuy booking new product marketing consumer product">
+      <div class="directory-index">14</div>
+      <div class="directory-name"><b>Webuy Booking</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Consumer Product</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Webuy Booking">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Webuy Booking" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="ai video review new product marketing consumer product">
+      <div class="directory-index">15</div>
+      <div class="directory-name"><b>AI Video Review</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Consumer Product</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="AI Video Review">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="AI Video Review" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="activation o2o new product marketing retail, fmcg">
+      <div class="directory-index">16</div>
+      <div class="directory-name"><b>Activation O2O</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Retail, FMCG</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Activation O2O">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Activation O2O" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="creator cruise new product marketing beauty, fmcg, tech">
+      <div class="directory-index">17</div>
+      <div class="directory-name"><b>Creator Cruise</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Beauty, FMCG, Tech</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Creator Cruise">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Creator Cruise" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="ecom marketing new product marketing retail, fmcg, beauty, tech">
+      <div class="directory-index">18</div>
+      <div class="directory-name"><b>Ecom Marketing</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Retail, FMCG, Beauty, Tech</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Ecom Marketing">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Ecom Marketing" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="shoppertainment race new product marketing retail, fmcg">
+      <div class="directory-index">19</div>
+      <div class="directory-name"><b>Shoppertainment Race</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Retail, FMCG</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Shoppertainment Race">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Shoppertainment Race" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="sale ai agent new product marketing ecom / sales">
+      <div class="directory-index">20</div>
+      <div class="directory-name"><b>Sale AI Agent</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Ecom / Sales</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Sale AI Agent">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Sale AI Agent" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="tool sale story new product marketing ecom / sales">
+      <div class="directory-index">21</div>
+      <div class="directory-name"><b>Tool Sale Story</b><span>Product Marketing</span></div>
+      <div class="directory-fit">Ecom / Sales</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Tool Sale Story">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Tool Sale Story" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="community marketing solution community fmcg, consumer, finance">
+      <div class="directory-index">22</div>
+      <div class="directory-name"><b>Community Marketing</b><span>Community</span></div>
+      <div class="directory-fit">FMCG, Consumer, Finance</div>
+      <div class="directory-status">SOLUTION</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Community Marketing">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="community marketing mẹ & bé new community mom & kid">
+      <div class="directory-index">23</div>
+      <div class="directory-name"><b>Community Marketing Mẹ & Bé</b><span>Community</span></div>
+      <div class="directory-fit">Mom & Kid</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Community Marketing Mẹ & Bé">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing Mẹ & Bé" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="community marketing game new community game / esports">
+      <div class="directory-index">24</div>
+      <div class="directory-name"><b>Community Marketing Game</b><span>Community</span></div>
+      <div class="directory-fit">Game / Esports</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Community Marketing Game">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Community Marketing Game" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social partnership solution partnership đa ngành">
+      <div class="directory-index">25</div>
+      <div class="directory-name"><b>Social Partnership</b><span>Partnership</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SOLUTION</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Partnership">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Partnership" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="event partnership solution partnership đa ngành">
+      <div class="directory-index">26</div>
+      <div class="directory-name"><b>Event Partnership</b><span>Partnership</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SOLUTION</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Event Partnership">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Event Partnership" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="engagement campaign solution content marketing đa ngành">
+      <div class="directory-index">27</div>
+      <div class="directory-name"><b>Engagement Campaign</b><span>Content Marketing</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SOLUTION</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Engagement Campaign">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Engagement Campaign" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="hiếu nghĩa vàng son q3 / seasonal big idea finance, insurance, fmcg, enterprise">
+      <div class="directory-index">28</div>
+      <div class="directory-name"><b>Hiếu Nghĩa Vàng Son</b><span>Big Idea</span></div>
+      <div class="directory-fit">Finance, Insurance, FMCG, Enterprise</div>
+      <div class="directory-status">Q3 / SEASONAL</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Hiếu Nghĩa Vàng Son">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Hiếu Nghĩa Vàng Son" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="khuếch đại truyền thông new solution event, entertainment, finance, bđs">
+      <div class="directory-index">29</div>
+      <div class="directory-name"><b>Khuếch đại Truyền thông</b><span>Solution</span></div>
+      <div class="directory-fit">Event, Entertainment, Finance, BĐS</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Khuếch đại Truyền thông">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Khuếch đại Truyền thông" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social native kênh14 new solution fmcg, digital, ecom">
+      <div class="directory-index">30</div>
+      <div class="directory-name"><b>Social Native Kênh14</b><span>Solution</span></div>
+      <div class="directory-fit">FMCG, Digital, Ecom</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Native Kênh14">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Native Kênh14" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="strategic partnership marketing × genz/men new solution gen z, men">
+      <div class="directory-index">31</div>
+      <div class="directory-name"><b>Strategic Partnership Marketing × GenZ/Men</b><span>Solution</span></div>
+      <div class="directory-fit">Gen Z, Men</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Strategic Partnership Marketing × GenZ/Men">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Strategic Partnership Marketing × GenZ/Men" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="tick xanh facebook new solution brand trust">
+      <div class="directory-index">32</div>
+      <div class="directory-name"><b>Tick Xanh Facebook</b><span>Solution</span></div>
+      <div class="directory-fit">Brand Trust</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Tick Xanh Facebook">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Tick Xanh Facebook" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="kol booking service agency service fmcg, beauty, tech, retail">
+      <div class="directory-index">33</div>
+      <div class="directory-name"><b>KOL Booking</b><span>Agency Service</span></div>
+      <div class="directory-fit">FMCG, Beauty, Tech, Retail</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="KOL Booking">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="KOL Booking" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="influencer marketing service agency service fmcg, beauty, tech, retail">
+      <div class="directory-index">34</div>
+      <div class="directory-name"><b>Influencer Marketing</b><span>Agency Service</span></div>
+      <div class="directory-fit">FMCG, Beauty, Tech, Retail</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Influencer Marketing">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Influencer Marketing" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social contest service agency service fmcg, beauty, retail">
+      <div class="directory-index">35</div>
+      <div class="directory-name"><b>Social Contest</b><span>Agency Service</span></div>
+      <div class="directory-fit">FMCG, Beauty, Retail</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Contest">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Contest" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social visual content service agency service fmcg, beauty, tech">
+      <div class="directory-index">36</div>
+      <div class="directory-name"><b>Social Visual Content</b><span>Agency Service</span></div>
+      <div class="directory-fit">FMCG, Beauty, Tech</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Visual Content">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Visual Content" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="thiết kế hình ảnh tổng thể service agency service đa ngành">
+      <div class="directory-index">37</div>
+      <div class="directory-name"><b>Thiết kế hình ảnh tổng thể</b><span>Agency Service</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Thiết kế hình ảnh tổng thể">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Thiết kế hình ảnh tổng thể" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="sản xuất tin bài / video service agency service đa ngành">
+      <div class="directory-index">38</div>
+      <div class="directory-name"><b>Sản xuất tin bài / Video</b><span>Agency Service</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Sản xuất tin bài / Video">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Sản xuất tin bài / Video" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="sản xuất video / tvc ai new agency service đa ngành">
+      <div class="directory-index">39</div>
+      <div class="directory-name"><b>Sản xuất Video / TVC AI</b><span>Agency Service</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Sản xuất Video / TVC AI">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Sản xuất Video / TVC AI" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="xây dựng và quản trị kênh service agency service đa ngành">
+      <div class="directory-index">40</div>
+      <div class="directory-name"><b>Xây dựng và quản trị Kênh</b><span>Agency Service</span></div>
+      <div class="directory-fit">Đa ngành</div>
+      <div class="directory-status">SERVICE</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Xây dựng và quản trị Kênh">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Xây dựng và quản trị Kênh" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="social đào tạo core social agency service auto, bđs, finance">
+      <div class="directory-index">41</div>
+      <div class="directory-name"><b>Social Đào Tạo</b><span>Agency Service</span></div>
+      <div class="directory-fit">Auto, BĐS, Finance</div>
+      <div class="directory-status">CORE SOCIAL</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Social Đào Tạo">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Social Đào Tạo" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="[cafebiz] talkshow thuế hộ kinh doanh new creative content sme, finance">
+      <div class="directory-index">42</div>
+      <div class="directory-name"><b>[CafeBiz] Talkshow Thuế Hộ Kinh Doanh</b><span>Creative Content</span></div>
+      <div class="directory-fit">SME, Finance</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="[CafeBiz] Talkshow Thuế Hộ Kinh Doanh" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="[kenh14] b&f new creative content fashion, beauty">
+      <div class="directory-index">43</div>
+      <div class="directory-name"><b>[Kenh14] B&F</b><span>Creative Content</span></div>
+      <div class="directory-fit">Fashion, Beauty</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="[Kenh14] B&F">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="[Kenh14] B&F" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="[cafef] 40 năm đổi mới new creative content enterprise">
+      <div class="directory-index">44</div>
+      <div class="directory-name"><b>[CafeF] 40 Năm Đổi Mới</b><span>Creative Content</span></div>
+      <div class="directory-fit">Enterprise</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="[CafeF] 40 Năm Đổi Mới">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="[CafeF] 40 Năm Đổi Mới" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="[kenh14] đồng hành fifa world cup new creative content fmcg, men, tech">
+      <div class="directory-index">45</div>
+      <div class="directory-name"><b>[Kenh14] Đồng hành FIFA World Cup</b><span>Creative Content</span></div>
+      <div class="directory-fit">FMCG, Men, Tech</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="[Kenh14] Đồng hành FIFA World Cup">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="[Kenh14] Đồng hành FIFA World Cup" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="[cafebiz × kenh14] giao lộ di sản new creative content enterprise, legacy">
+      <div class="directory-index">46</div>
+      <div class="directory-name"><b>[CafeBiz × Kenh14] Giao Lộ Di Sản</b><span>Creative Content</span></div>
+      <div class="directory-fit">Enterprise, Legacy</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="[CafeBiz × Kenh14] Giao Lộ Di Sản">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="[CafeBiz × Kenh14] Giao Lộ Di Sản" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="idol14 bắt tour new event partnership gen z">
+      <div class="directory-index">47</div>
+      <div class="directory-name"><b>IDOL14 Bắt Tour</b><span>Event Partnership</span></div>
+      <div class="directory-fit">Gen Z</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="IDOL14 Bắt Tour">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="IDOL14 Bắt Tour" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="here we go 2026 new event partnership lifestyle, travel">
+      <div class="directory-index">48</div>
+      <div class="directory-name"><b>Here We Go 2026</b><span>Event Partnership</span></div>
+      <div class="directory-fit">Lifestyle, Travel</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Here We Go 2026">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Here We Go 2026" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="xem world cup cùng sao new solution fmcg, fashion, men">
+      <div class="directory-index">49</div>
+      <div class="directory-name"><b>Xem World Cup Cùng Sao</b><span>Solution</span></div>
+      <div class="directory-fit">FMCG, Fashion, Men</div>
+      <div class="directory-status">NEW</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Xem World Cup Cùng Sao">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Xem World Cup Cùng Sao" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="lần này con đưa bố mẹ đi coming soon kenh14 project family, lifestyle">
+      <div class="directory-index">50</div>
+      <div class="directory-name"><b>Lần này con đưa bố mẹ đi</b><span>Kenh14 Project</span></div>
+      <div class="directory-fit">Family, Lifestyle</div>
+      <div class="directory-status">COMING SOON</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Lần này con đưa bố mẹ đi">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Lần này con đưa bố mẹ đi" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+<div class="directory-row" data-dir-search="back to school - kenh14 coming soon kenh14 project education, fmcg, tech">
+      <div class="directory-index">51</div>
+      <div class="directory-name"><b>Back to School - Kenh14</b><span>Kenh14 Project</span></div>
+      <div class="directory-fit">Education, FMCG, Tech</div>
+      <div class="directory-status">COMING SOON</div>
+      <div class="directory-actions">
+        <button class="dir-brief" data-directory-product="Back to School - Kenh14">Brief</button>
+        <a class="dir-profile disabled-profile" data-profile-name="Back to School - Kenh14" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+  </div>
 </section>
 <section class="section" id="industry">
 <div class="head"><div><div class="eyebrow">05 / Industry mapping</div><h2>Khách này,<br>bán gì trước?</h2></div><p>Ma trận dưới đây là định hướng pitch ban đầu. 3 = ưu tiên cao.</p></div>
@@ -685,7 +1230,7 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 </section>
 
 <section class="section" id="catalogue">
-<div class="head"><div><div class="eyebrow">Visual product catalogue</div><h2>Sản phẩm trọng điểm H2</h2></div><p>Đưa “bán gì” xuống thành package có brand fit, deliverables và khung ngân sách để Account hành động ngay.</p></div>
+<div class="head"><div><div class="eyebrow">Sales package catalogue</div><h2>Gói bán đề xuất</h2></div><p>Chọn gói theo mức độ sẵn sàng và ngân sách của Client; sau đó đi sâu vào sản phẩm/giải pháp phù hợp.</p></div>
 <div class="catalogue">
 <article class="catcard"><div class="eyebrow">Content Marketing · Nâng cấp</div><h3>PR Star</h3><p>Editorial Content nâng cấp với visual, short video và dashboard.</p><ul><li>Hero PR Star</li><li>Short Video</li><li>Reach/KPI theo gói</li></ul><div class="price">60M–120M*</div><button class="btn pitch-template" data-pitch="PR Star">Tạo Pitch 30s</button></article>
 <article class="catcard"><div class="eyebrow">Product Marketing · Mới</div><h3>Product Content by Webuy</h3><p>Trải nghiệm thực tế sản phẩm với visual thương mại.</p><ul><li>Review trải nghiệm</li><li>Bộ ảnh visual</li><li>Distribution theo package</li></ul><div class="price">80M–160M*</div><button class="btn pitch-template" data-pitch="Product Content by Webuy">Tạo Pitch 30s</button></article>
@@ -711,7 +1256,110 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 <label class="field-label" for="pitchTeam">Team / Bộ phận</label>
 <input id="pitchTeam" placeholder="Ví dụ: A02 / KHTT">
 <label class="field-label" for="pitchBrand">Nhãn hàng</label>
-<input id="pitchBrand" placeholder="Tên nhãn hàng, ví dụ: Dell"><label class="field-label" for="pitchProduct">Sản phẩm quan tâm</label><select id="pitchProduct"><option>Product Marketing</option><option>PR Star</option><option>Product Content by Webuy</option><option>Social Booking</option><option>Enterprise Solution</option></select><label class="field-label" for="pitchGoal">Mục tiêu</label><select id="pitchGoal"><option>Launch sản phẩm</option><option>Tăng awareness</option><option>Tăng consideration</option><option>Tạo engagement</option></select><label class="field-label" for="pitchBudget">Ngân sách dự kiến</label><input id="pitchBudget" placeholder="Ngân sách, ví dụ: 200M"><button class="primary" id="makePitch">Tạo Pitch Zalo 30s</button>
+<input id="pitchBrand" placeholder="Tên nhãn hàng, ví dụ: Dell"><label class="field-label" for="pitchIndustry">Ngành hàng</label>
+<select id="pitchIndustry">
+  <option value="">Chưa chọn / Để hệ thống gợi ý</option>
+  <option>Ngân hàng / Tài chính</option>
+  <option>Bất động sản</option>
+  <option>FMCG</option>
+  <option>Beauty / Personal Care</option>
+  <option>Consumer Tech / Electronics</option>
+  <option>Automotive</option>
+  <option>Mom & Kid</option>
+  <option>Game / Esports</option>
+  <option>Enterprise / B2B</option>
+  <option>Gen Z / Lifestyle</option>
+</select>
+
+<label class="field-label" for="pitchProduct">Sản phẩm quan tâm</label>
+<select id="pitchProduct">
+  <option value="">Chưa chọn — tự gợi ý sản phẩm fit nhất</option>
+
+  <optgroup label="★ Q3 PRIORITY">
+    <option>Truyền thông Thương Hiệu Quốc Gia</option>
+    <option>Talkshow The Investors 3 - CafeF</option>
+    <option>Cuộc thi Ngân hàng tôi yêu - CafeF</option>
+    <option>Tuyến AI in Banking - CafeBiz</option>
+  </optgroup>
+
+  <optgroup label="NEW H2 — PRODUCT MARKETING">
+    <option>Product Marketing</option>
+    <option>Product Content by Webuy</option>
+    <option>Featured Product</option>
+    <option>WEPICK</option>
+    <option>Webuy Booking</option>
+    <option>AI Video Review</option>
+    <option>Activation O2O</option>
+    <option>Creator Cruise</option>
+    <option>Ecom Marketing</option>
+    <option>Shoppertainment Race</option>
+    <option>Sale AI Agent</option>
+    <option>Tool Sale Story</option>
+  </optgroup>
+
+  <optgroup label="CONTENT MARKETING — CORE">
+    <option>PR Star</option>
+    <option>Editorial Content</option>
+    <option>Content Chủ Động</option>
+    <option>Social Booking</option>
+    <option>Social Chủ Động</option>
+  </optgroup>
+
+  <optgroup label="CONTENT MARKETING — SOLUTIONS">
+    <option>Community Marketing</option>
+    <option>Community Marketing Mẹ & Bé</option>
+    <option>Community Marketing Game</option>
+    <option>Social Partnership</option>
+    <option>Event Partnership</option>
+    <option>Engagement Campaign</option>
+    <option>Hiếu Nghĩa Vàng Son</option>
+    <option>Khuếch đại Truyền thông</option>
+    <option>Social Native Kênh14</option>
+    <option>Strategic Partnership Marketing × GenZ/Men</option>
+    <option>Tick Xanh Facebook</option>
+  </optgroup>
+
+  <optgroup label="AGENCY SERVICES">
+    <option>KOL Booking</option>
+    <option>Influencer Marketing</option>
+    <option>Social Contest</option>
+    <option>Social Visual Content</option>
+    <option>Thiết kế hình ảnh tổng thể</option>
+    <option>Sản xuất tin bài / Video</option>
+    <option>Sản xuất Video / TVC AI</option>
+    <option>Xây dựng và quản trị Kênh</option>
+    <option>Social Đào Tạo</option>
+  </optgroup>
+
+  <optgroup label="CREATIVE / EVENT PROJECTS H2">
+    <option>[CafeBiz] Talkshow Thuế Hộ Kinh Doanh</option>
+    <option>[Kenh14] B&F</option>
+    <option>[CafeF] 40 Năm Đổi Mới</option>
+    <option>[Kenh14] Đồng hành FIFA World Cup</option>
+    <option>[CafeBiz × Kenh14] Giao Lộ Di Sản</option>
+    <option>IDOL14 Bắt Tour</option>
+    <option>Here We Go 2026</option>
+    <option>Xem World Cup Cùng Sao</option>
+    <option>Lần này con đưa bố mẹ đi</option>
+    <option>Back to School - Kenh14</option>
+  </optgroup>
+</select>
+<div id="productHint" style="font-size:12px;color:var(--muted);margin-top:-4px">
+  Có thể để trống. Hệ thống sẽ gợi ý sản phẩm dựa trên ngành + mục tiêu + ngân sách.
+</div>
+<div class="auto-rec" id="autoRecommendation"></div>
+<label class="field-label" for="pitchGoal">Mục tiêu</label><select id="pitchGoal">
+  <option>Launch sản phẩm</option>
+  <option>Tăng awareness</option>
+  <option>Tăng consideration</option>
+  <option>Tạo engagement</option>
+  <option>Xây dựng uy tín / thought leadership</option>
+  <option>Tăng brand love</option>
+  <option>Tạo social proof / review</option>
+  <option>Thúc đẩy conversion / ecom</option>
+  <option>Khuếch đại sự kiện</option>
+  <option>Xây vị thế thương hiệu lớn</option>
+</select><label class="field-label" for="pitchBudget">Ngân sách dự kiến</label><input id="pitchBudget" placeholder="Ngân sách, ví dụ: 200M"><button class="primary" id="makePitch">Tạo Pitch Zalo 30s</button>
 <div class="form-status" id="pitchSubmitStatus"></div>
 <div class="data-note">Khi cấu hình Google Sheets endpoint, mỗi lần tạo Pitch sẽ đồng thời lưu 1 dòng dữ liệu: thời gian, Account, team, nhãn hàng, sản phẩm, mục tiêu và ngân sách.</div>
 </div>
@@ -813,12 +1461,26 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.
 document.getElementById("makePitch").addEventListener("click",()=>{
  const owner=(document.getElementById("pitchOwner")?.value||"").trim();
  const brand=document.getElementById("pitchBrand").value.trim()||"nhãn hàng";
- const product=document.getElementById("pitchProduct").value;
- const goal=document.getElementById("pitchGoal").value.toLowerCase();
+ const industry=document.getElementById("pitchIndustry")?.value||"";
+ let product=document.getElementById("pitchProduct").value;
+ const goal=document.getElementById("pitchGoal").value;
  const budget=document.getElementById("pitchBudget").value.trim()||"cần trao đổi";
+
+ let auto=false;
+ if(!product){
+   product=recommendPitchProduct(industry,goal,budget,brand);
+   auto=true;
+   const box=document.getElementById("autoRecommendation");
+   if(box){
+     box.classList.add("show");
+     box.innerHTML=`Gợi ý fit nhất: <b>${product}</b> · Bạn vẫn có thể mở dropdown để đổi sang giải pháp khác.`;
+   }
+ }
+
+ const benefit=productBenefit(product);
  const hello=owner?`— ${owner}`:"";
- document.getElementById("pitchText").textContent=`Em đang nghĩ ${product} khá fit với ${brand} cho bài toán ${goal}. Hướng này giúp mình đóng gói câu chuyện sản phẩm rõ hơn, có visual/proof để tăng sức thuyết phục và dễ nối thêm các touchpoint liên quan. Budget tham chiếu: ${budget}. Nếu anh/chị thấy fit, em gửi ngay one-pager + case gần nhất để mình trao đổi với khách. ${hello}`;
- submitPitchLead(pitchPayload());
+ document.getElementById("pitchText").textContent=`Em đang nghĩ ${product} khá fit với ${brand}${industry?` (${industry})`:""} cho bài toán ${goal.toLowerCase()}. ${benefit} Budget tham chiếu: ${budget}. Nếu anh/chị thấy fit, em gửi ngay one-pager + case gần nhất để mình trao đổi với khách. ${hello}`;
+ submitPitchLead({...pitchPayload(),industry,product,autoRecommended:auto?"yes":"no"});
 });
 document.getElementById("copyPitch").addEventListener("click",async()=>{
  const t=document.getElementById("pitchText").textContent;
@@ -945,6 +1607,7 @@ function pitchPayload(){
     team: (document.getElementById("pitchTeam")?.value || "").trim(),
     brand: (document.getElementById("pitchBrand")?.value || "").trim(),
     product: document.getElementById("pitchProduct")?.value || "",
+    industry: document.getElementById("pitchIndustry")?.value || "",
     goal: document.getElementById("pitchGoal")?.value || "",
     budget: (document.getElementById("pitchBudget")?.value || "").trim(),
     page: location.href,
@@ -1127,6 +1790,189 @@ async function askQuarterProduct(productName){
   try{await navigator.clipboard.writeText(q);}catch(e){}
   if(typeof NOTEBOOKLM_URL!=="undefined") window.open(NOTEBOOKLM_URL,"_blank","noopener,noreferrer");
 }
+
+
+/* ===== V10 PRODUCT RECOMMENDATION ENGINE ===== */
+function recommendPitchProduct(industry,goal,budget,brand){
+  const i=(industry||"").toLowerCase();
+  const g=(goal||"").toLowerCase();
+  const b=(budget||"").toLowerCase();
+
+  // Flagship / enterprise
+  if(g.includes("vị thế") || (i.includes("enterprise") && (g.includes("uy tín")||g.includes("thương hiệu"))))
+    return "Truyền thông Thương Hiệu Quốc Gia";
+
+  // Banking / finance priority solutions
+  if(i.includes("ngân hàng") || i.includes("tài chính")){
+    if(g.includes("thought") || g.includes("uy tín")) return "Talkshow The Investors 3 - CafeF";
+    if(g.includes("brand love") || g.includes("engagement")) return "Cuộc thi Ngân hàng tôi yêu - CafeF";
+    if(g.includes("ai") || g.includes("công nghệ")) return "Tuyến AI in Banking - CafeBiz";
+    if(g.includes("khuếch đại sự kiện")) return "Khuếch đại Truyền thông";
+    if(g.includes("launch")) return "Product Marketing";
+  }
+
+  // BĐS
+  if(i.includes("bất động sản")){
+    if(g.includes("uy tín") || g.includes("thought")) return "PR Star";
+    if(g.includes("launch") || g.includes("sự kiện")) return "Khuếch đại Truyền thông";
+    return "Product Marketing";
+  }
+
+  // Mom & Kid
+  if(i.includes("mom") || i.includes("kid")) return "Community Marketing Mẹ & Bé";
+
+  // Game
+  if(i.includes("game") || i.includes("esport")) return "Community Marketing Game";
+
+  // FMCG / Beauty / Tech
+  if(i.includes("fmcg") || i.includes("beauty") || i.includes("tech") || i.includes("electronics")){
+    if(g.includes("review") || g.includes("social proof")) return "Product Content by Webuy";
+    if(g.includes("conversion") || g.includes("ecom")) return "Ecom Marketing";
+    if(g.includes("engagement")) return "Community Marketing";
+    if(g.includes("launch")) return "Product Marketing";
+    return "Social Chủ động";
+  }
+
+  // Gen Z / lifestyle
+  if(i.includes("gen z") || i.includes("lifestyle")){
+    if(g.includes("engagement")) return "Social Native Kênh14";
+    return "Strategic Partnership Marketing × GenZ/Men";
+  }
+
+  // Goal-first fallback
+  if(g.includes("review") || g.includes("social proof")) return "Product Content by Webuy";
+  if(g.includes("conversion") || g.includes("ecom")) return "Ecom Marketing";
+  if(g.includes("engagement")) return "Community Marketing";
+  if(g.includes("thought") || g.includes("uy tín")) return "PR Star";
+  if(g.includes("brand love")) return "Hiếu Nghĩa Vàng Son";
+  if(g.includes("sự kiện")) return "Khuếch đại Truyền thông";
+  if(g.includes("launch")) return "Product Marketing";
+  return "Product Marketing";
+}
+
+function productBenefit(product){
+  const map={
+    "Truyền thông Thương Hiệu Quốc Gia":"Hướng này phù hợp để xây vị thế thương hiệu ở quy mô lớn và mở một đề án chiến lược thay vì bán từng hạng mục lẻ.",
+    "Talkshow The Investors 3 - CafeF":"Hướng này giúp thương hiệu sở hữu tiếng nói chuyên gia và tiếp cận tệp độc giả đầu tư/tài chính trên CafeF.",
+    "Cuộc thi Ngân hàng tôi yêu - CafeF":"Hướng này tạo engagement và brand love bằng một format có sự tham gia chủ động từ người dùng.",
+    "Tuyến AI in Banking - CafeBiz":"Hướng này giúp ngân hàng sở hữu câu chuyện AI, đổi mới và vị thế tiên phong trong ngành.",
+    "PR Star":"Hướng này nâng cấp PR truyền thống bằng editorial và visual mạnh hơn để tăng sức nặng thông điệp.",
+    "Social Chủ động":"Hướng này chủ động tạo câu chuyện và nhịp phân phối social thay vì booking rời rạc.",
+    "Community Marketing":"Hướng này đưa thương hiệu vào đúng cộng đồng để tạo review, thảo luận và social proof.",
+    "Product Content by Webuy":"Hướng này tạo trải nghiệm/review sản phẩm trực quan để tăng consideration và social proof.",
+    "Product Marketing":"Hướng này đóng gói câu chuyện sản phẩm theo hành trình launch → hiểu → cân nhắc → hành động.",
+    "Ecom Marketing":"Hướng này nối content/social với hành động commerce và mục tiêu doanh số.",
+    "Khuếch đại Truyền thông":"Hướng này dùng hệ sinh thái đa lớp để tăng độ phủ và độ tin cậy quanh sự kiện/công bố."
+  };
+  return map[product]||"Hướng này giúp chọn đúng giải pháp theo brief và mở đường cross-sell sang các touchpoint liên quan.";
+}
+
+["pitchIndustry","pitchGoal","pitchBudget"].forEach(id=>{
+  document.getElementById(id)?.addEventListener("change",()=>{
+    const product=document.getElementById("pitchProduct");
+    if(product && !product.value){
+      const suggestion=recommendPitchProduct(
+        document.getElementById("pitchIndustry")?.value||"",
+        document.getElementById("pitchGoal")?.value||"",
+        document.getElementById("pitchBudget")?.value||"",
+        document.getElementById("pitchBrand")?.value||""
+      );
+      const box=document.getElementById("autoRecommendation");
+      if(box){
+        box.classList.add("show");
+        box.innerHTML=`Gợi ý hiện tại: <b>${suggestion}</b> · Giữ trống dropdown để dùng gợi ý này khi tạo pitch.`;
+      }
+    }
+  });
+});
+
+document.getElementById("pitchProduct")?.addEventListener("change",e=>{
+  const box=document.getElementById("autoRecommendation");
+  if(!box) return;
+  if(e.target.value){box.classList.remove("show");box.innerHTML="";}
+});
+
+
+/* ===== V11 PRODUCT PROFILE DIRECTORY =====
+   Paste product landing-page/profile URLs here.
+   Example:
+   "PR Star":"https://your-domain/pr-star/",
+   "Social Chủ động":"https://your-domain/social-chu-dong/"
+*/
+const PRODUCT_PROFILE_URLS = {
+  "PR Star":"",
+  "Social Chủ động":"",
+  "Community Marketing":"",
+  "Hiếu Nghĩa Vàng Son":"",
+  "Truyền thông Thương Hiệu Quốc Gia":"",
+  "Talkshow The Investors 3 - CafeF":"",
+  "Cuộc thi Ngân hàng tôi yêu - CafeF":"",
+  "Tuyến AI in Banking - CafeBiz":"",
+  "Product Marketing":"",
+  "Product Content by Webuy":"",
+  "Social Booking":""
+};
+
+function bindProfileLinks(){
+  document.querySelectorAll("[data-profile-name]").forEach(a=>{
+    const name=a.dataset.profileName;
+    const url=PRODUCT_PROFILE_URLS[name]||"";
+    if(url){
+      a.href=url;
+      a.target="_blank";
+      a.rel="noopener noreferrer";
+      a.classList.remove("disabled-profile");
+      a.removeAttribute("aria-disabled");
+      a.title="Mở Product Profile";
+    }else{
+      a.href="#";
+      a.classList.add("disabled-profile");
+      a.setAttribute("aria-disabled","true");
+      a.title="Chưa gắn link Product Profile";
+      a.addEventListener("click",e=>{
+        e.preventDefault();
+        alert("Product Profile của “"+name+"” chưa được gắn link.");
+      });
+    }
+  });
+}
+bindProfileLinks();
+
+const directorySearch=document.getElementById("directorySearch");
+const directoryCount=document.getElementById("directoryCount");
+if(directorySearch){
+  directorySearch.addEventListener("input",e=>{
+    const q=e.target.value.trim().toLowerCase();
+    let visible=0;
+    document.querySelectorAll("[data-dir-search]").forEach(row=>{
+      const show=!q || row.dataset.dirSearch.includes(q);
+      row.classList.toggle("hidden-dir",!show);
+      if(show) visible++;
+    });
+    directoryCount.textContent=visible+" sản phẩm / giải pháp";
+  });
+}
+
+document.querySelectorAll("[data-directory-product]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const name=btn.dataset.directoryProduct;
+    const key=Object.keys(PRODUCTS).find(k=>PRODUCTS[k]?.name===name);
+    if(key){ openProduct(key); return; }
+
+    // Fallback brief for products not yet in PRODUCTS object.
+    drawerBody.innerHTML=`
+      <div class="kicker">Quick Brief</div>
+      <h2>${name}</h2>
+      <p class="lede" style="font-size:20px">Product Profile chi tiết chưa được nhúng trong Hub.</p>
+      <div class="drawer-card"><b>Next action</b><p>Mở Product Profile nếu đã gắn link, hoặc tra cứu trong NotebookLM để lấy USP, deliverables, case và giá.</p></div>
+      <div style="margin-top:20px">
+        <button class="primary" onclick="navigator.clipboard.writeText('Tóm tắt ${name}: USP, brand fit, deliverables, case study, giá và khi nào nên pitch.'); window.open(NOTEBOOKLM_URL,'_blank')">Hỏi NotebookLM ↗</button>
+      </div>`;
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden","false");
+    overlay.classList.add("show");
+  });
+});
 
 </script>
 </body>
