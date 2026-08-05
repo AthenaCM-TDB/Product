@@ -385,6 +385,13 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 @media(max-width:980px){.focus-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.focus-product-card.flagship-focus{grid-column:1/-1}.focus-priority-note{display:block}}
 @media(max-width:620px){.focus-heading-row{display:block}.focus-priority-note{margin-top:12px;max-width:none}.focus-product-grid{grid-template-columns:1fr}.focus-product-card.flagship-focus{grid-column:auto}}
 
+
+/* ===== V15 SOCIAL PROFILE LINK UX ===== */
+.tree-summary-tools{display:flex;align-items:center;gap:8px}
+.tree-profile:not(.disabled-profile){box-shadow:0 5px 14px rgba(0,0,0,.08)}
+.tree-profile:not(.disabled-profile)::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:5px;opacity:.45}
+@media(max-width:700px){.tree-summary-tools .tree-count{display:none}}
+
 </style></head>
 <body>
 
@@ -748,7 +755,10 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 <details class="tree-node depth-3" data-tree-search="influencer marketing nâng cấp">
           <summary>
             <div class="tree-name"><b>Influencer Marketing</b><span class="tree-status">Nâng cấp</span></div>
-            <span class="tree-count">3 mục</span>
+            <div class="tree-summary-tools">
+              <a class="tree-profile disabled-profile" data-profile-name="Influencer Marketing" href="#" aria-disabled="true" onclick="event.stopPropagation()">Profile ↗</a>
+              <span class="tree-count">3 mục</span>
+            </div>
           </summary>
           <div class="tree-children"><div class="tree-leaf depth-4" data-tree-search="booking kol/chuyên gia nâng cấp">
           <div class="tree-name"><b>Booking KOL/Chuyên gia</b><span class="tree-status">Nâng cấp</span></div>
@@ -938,7 +948,37 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
             <button class="tree-brief" data-tree-product="Social Chủ động">Brief</button>
             <a class="tree-profile disabled-profile" data-profile-name="Social Chủ động" href="#" aria-disabled="true">Profile ↗</a>
           </div>
-        </div></div>
+        </div>
+
+<details class="tree-node depth-3" data-tree-search="social ecom livestream video chuyển đổi quản trị vận hành sàn commerce">
+  <summary>
+    <div class="tree-name"><b>Social Ecom</b><span class="tree-status">Core Social</span></div>
+    <span class="tree-count">3 mục</span>
+  </summary>
+  <div class="tree-children">
+    <div class="tree-leaf depth-4" data-tree-search="sản xuất livestream social ecom livestream">
+      <div class="tree-name"><b>Sản xuất Livestream</b><span class="tree-status">Social Ecom</span></div>
+      <div class="tree-actions">
+        <button class="tree-brief" data-tree-product="Sản xuất Livestream">Brief</button>
+        <a class="tree-profile disabled-profile" data-profile-name="Sản xuất Livestream" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+    <div class="tree-leaf depth-4" data-tree-search="sản xuất video chuyển đổi social ecom conversion video">
+      <div class="tree-name"><b>Sản xuất Video chuyển đổi</b><span class="tree-status">Social Ecom</span></div>
+      <div class="tree-actions">
+        <button class="tree-brief" data-tree-product="Sản xuất Video chuyển đổi">Brief</button>
+        <a class="tree-profile disabled-profile" data-profile-name="Sản xuất Video chuyển đổi" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+    <div class="tree-leaf depth-4" data-tree-search="quản trị vận hành sàn social ecom commerce">
+      <div class="tree-name"><b>Quản trị &amp; vận hành sàn</b><span class="tree-status">Social Ecom</span></div>
+      <div class="tree-actions">
+        <button class="tree-brief" data-tree-product="Quản trị & vận hành sàn">Brief</button>
+        <a class="tree-profile disabled-profile" data-profile-name="Quản trị & vận hành sàn" href="#" aria-disabled="true">Profile ↗</a>
+      </div>
+    </div>
+  </div>
+</details></div>
         </details><details class="solution-group" data-tree-search="solutions">
           <summary>
             <div><b>Solutions</b><span>6 nhóm/sản phẩm</span></div>
@@ -1111,6 +1151,14 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
             <a class="tree-profile disabled-profile" data-profile-name="Engagement Campaign" href="#" aria-disabled="true">Profile ↗</a>
           </div>
         </div>
+
+<div class="tree-leaf depth-3" data-tree-search="community marketing mẹ bé mom baby community social proof">
+  <div class="tree-name"><b>Community Marketing Mẹ &amp; Bé</b><span class="tree-status">Solution</span></div>
+  <div class="tree-actions">
+    <button class="tree-brief" data-tree-product="Community Marketing Mẹ & Bé">Brief</button>
+    <a class="tree-profile disabled-profile" data-profile-name="Community Marketing Mẹ & Bé" href="#" aria-disabled="true">Profile ↗</a>
+  </div>
+</div>
 <div class="tree-leaf depth-3" data-tree-search="khuếch đại truyền thông mới">
           <div class="tree-name"><b>Khuếch đại Truyền thông</b><span class="tree-status">Mới</span></div>
           <div class="tree-actions">
@@ -1150,11 +1198,11 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
           </div>
         </div></div>
         </details>
-<div class="tree-leaf depth-3" data-tree-search="xây dựng và quản trị kênh nâng cấp">
-          <div class="tree-name"><b>Xây dựng và quản trị Kênh</b><span class="tree-status">Nâng cấp</span></div>
+<div class="tree-leaf depth-3" data-tree-search="quản trị fanpage tiktok xây dựng quản trị kênh nâng cấp">
+          <div class="tree-name"><b>Quản trị Fanpage, TikTok</b><span class="tree-status">Nâng cấp</span></div>
           <div class="tree-actions">
-            <button class="tree-brief" data-tree-product="Xây dựng và quản trị Kênh">Brief</button>
-            <a class="tree-profile disabled-profile" data-profile-name="Xây dựng và quản trị Kênh" href="#" aria-disabled="true">Profile ↗</a>
+            <button class="tree-brief" data-tree-product="Quản trị Fanpage, TikTok">Brief</button>
+            <a class="tree-profile disabled-profile" data-profile-name="Quản trị Fanpage, TikTok" href="#" aria-disabled="true">Profile ↗</a>
           </div>
         </div>
 <div class="tree-leaf depth-3" data-tree-search="social contest nâng cấp">
@@ -1906,8 +1954,30 @@ const PRODUCT_PROFILE_URLS = {
   "A81":"",
   "PR Star":"",
   "Editorial Content / PR Star":"",
+
+  /* ===== SOCIAL MEDIA PROFILE LINKS ===== */
+  "Social Booking":"https://docs.google.com/presentation/d/13ezGReLrV9OWkex-t-wVotnHhX4yuOANdEpTZ2WXkdA/edit?slide=id.p#slide=id.p",
   "Social Chủ động":"https://docs.google.com/presentation/d/1VgA7I4_kdYQ4-9CbKt_h0I8FMvIiEtrVSzvfiPdk404/edit",
   "Social Chủ Động":"https://docs.google.com/presentation/d/1VgA7I4_kdYQ4-9CbKt_h0I8FMvIiEtrVSzvfiPdk404/edit",
+
+  "Influencer Marketing":"https://docs.google.com/presentation/d/1BIGlhBSZqFGASEqGgVXTF69pRg96MX6YATa0ES42cmk/edit?slide=id.g3badf5e3b92_0_0#slide=id.g3badf5e3b92_0_0",
+  "Booking KOL/Chuyên gia":"https://docs.google.com/presentation/d/1BIGlhBSZqFGASEqGgVXTF69pRg96MX6YATa0ES42cmk/edit?slide=id.g3badf5e3b92_0_0#slide=id.g3badf5e3b92_0_0",
+
+  "Social Ecom":"",
+  "Sản xuất Livestream":"https://docs.google.com/presentation/d/1GJ4ligzQUeiNJ4PL1h9Ypi70nz3BX2S1Zi98sJg70Kg/edit?slide=id.g36ad1cbd3f3_0_72#slide=id.g36ad1cbd3f3_0_72",
+  "Sản xuất Video chuyển đổi":"https://docs.google.com/presentation/d/14yWVgxV3aD3Nz0ulU_T7B21uGCLQLACZYJbsyCWTm34/edit?slide=id.g36afb1ce237_0_131#slide=id.g36afb1ce237_0_131",
+  "Quản trị & vận hành sàn":"https://docs.google.com/presentation/d/12Bze147t50I_rcrY1ZYrLdvUbcBNYDSx/edit?slide=id.g2a11a8b688f_0_10#slide=id.g2a11a8b688f_0_10",
+
+  "Social Contest":"https://docs.google.com/presentation/d/1sKan4Mx8IZ67nAU4kJ1gBwKg9Y9sJAyb/edit?usp=sharing&ouid=104368109802330684054&rtpof=true&sd=true",
+  "Quản trị Fanpage, TikTok":"https://docs.google.com/presentation/d/1vQhck0ESFXcOgkiiwoqjhpKfFxwGLdutlQ4GxeCJdy8/edit?usp=sharing",
+  "Xây dựng và quản trị Kênh":"https://docs.google.com/presentation/d/1vQhck0ESFXcOgkiiwoqjhpKfFxwGLdutlQ4GxeCJdy8/edit?usp=sharing",
+
+  "Community Marketing Mẹ & Bé":"https://canva.link/6cqrhpyt0xgr3en",
+  "Khuếch đại Truyền thông":"https://drive.google.com/file/d/1t-gLufOE1ka_U_-fmGHWssm9hymH-rYB/view?usp=drive_link",
+  "Tick Xanh Facebook":"https://drive.google.com/file/d/14-S1GJITAkSQA_kOZS4RNPdNQMbuvKgR/view?usp=sharing",
+  "Social Đào Tạo":"https://drive.google.com/file/d/13BvNITYXSSQ82NvWBsGqVJho-IeJIu0r/view?usp=sharing",
+
+  /* ===== OTHER PRODUCTS / PROJECTS ===== */
   "Community Marketing":"",
   "Hiếu Nghĩa Vàng Son":"",
   "Truyền thông Thương Hiệu Quốc Gia":"",
@@ -1921,8 +1991,7 @@ const PRODUCT_PROFILE_URLS = {
   "[Kenh14] Đồng hành FIFA World Cup":"",
   "Lần này con đưa bố mẹ đi":"",
   "Back to School - Kenh14":"",
-  "Product Content by Webuy":"",
-  "Social Booking":"https://docs.google.com/presentation/d/13ezGReLrV9OWkex-t-wVotnHhX4yuOANdEpTZ2WXkdA/edit?slide=id.p#slide=id.p"
+  "Product Content by Webuy":""
 };
 
 function bindTreeProfiles(){
@@ -1932,9 +2001,13 @@ function bindTreeProfiles(){
     if(url){
       a.href=url;a.target="_blank";a.rel="noopener noreferrer";
       a.classList.remove("disabled-profile");a.removeAttribute("aria-disabled");
+      a.onclick=e=>{e.stopPropagation();};
+      a.title="Mở Product Profile: "+name;
     }else{
-      a.href="#";a.classList.add("disabled-profile");a.setAttribute("aria-disabled","true");
-      a.onclick=e=>{e.preventDefault();alert("Product Profile của “"+name+"” chưa được gắn link.");};
+      a.href="#";a.removeAttribute("target");a.removeAttribute("rel");
+      a.classList.add("disabled-profile");a.setAttribute("aria-disabled","true");
+      a.onclick=e=>{e.preventDefault();e.stopPropagation();alert("Product Profile của “"+name+"” chưa được gắn link.");};
+      a.title="Product Profile chưa được cập nhật";
     }
   });
 }
