@@ -416,6 +416,163 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
   .focus-product-card.flagship-focus{grid-column:auto}
 }
 
+
+/* ===== V17 PREMIUM SALES-LED EXPERIENCE ===== */
+
+/* 1) Global rhythm and hierarchy */
+.content{max-width:1180px}
+.section{padding:76px 0}
+.section + .section{border-top:0}
+.head{margin-bottom:32px}
+.head p{max-width:520px}
+h2{max-width:840px}
+
+/* 2) More premium surfaces, less "dashboard" feeling */
+.map,.h2-new-catalogue,.q3-radar,.knowledge-hub,.pitchbox,.tablewrap{
+  box-shadow:0 10px 34px rgba(23,24,29,.045)
+}
+.catcard,.rate,.case,.proof,.tool,.taxgroup,.domain-root{
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+@media (hover:hover){
+  .catcard:hover,.rate:hover,.proof:hover,.tool:hover,.taxgroup:hover,.domain-root:hover{
+    transform:translateY(-2px);
+    box-shadow:0 16px 40px rgba(23,24,29,.07);
+  }
+}
+
+/* 3) Product discovery should feel like editorial commerce, not spreadsheet UI */
+.taxonomy{gap:18px}
+.domain-root{border-radius:24px}
+.domain-root>summary{padding:28px 30px}
+.domain-root h3{font-size:27px}
+.solution-group{border-radius:18px}
+
+/* 4) Industry matrix becomes cleaner and more scannable */
+.matrix th{background:color-mix(in srgb,var(--bg) 75%,transparent);position:sticky;top:0}
+.matrix th,.matrix td{padding:17px}
+
+/* 5) Unified proof / case-study suite */
+.proof-suite{padding-top:82px;padding-bottom:82px}
+.proof-suite>.head{margin-bottom:34px}
+.proofgrid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.proof{
+  border-radius:22px;
+  overflow:hidden;
+  min-width:0;
+  background:var(--surface);
+}
+.proofvisual{
+  height:220px;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:flex-end;
+  padding:24px;
+  background:
+    radial-gradient(circle at 72% 18%,rgba(255,211,0,.30),transparent 34%),
+    linear-gradient(145deg,#17181D 0%,#282A31 62%,#49372B 100%);
+}
+.proofvisual:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.44),transparent 58%);
+  z-index:-1;
+}
+.proofvisual h3{
+  margin:0;
+  font-size:clamp(22px,2.4vw,34px);
+  line-height:.95;
+  letter-spacing:-.045em;
+  max-width:90%;
+}
+.proofbody{padding:22px 22px 24px}
+.proofbody>.eyebrow{font-size:10px}
+.metrics{justify-content:space-between}
+.metrics strong{font-size:25px}
+
+/* The former 06 / Proof becomes a compact continuation, not a second competing block */
+.proof-compact-block{
+  margin-top:20px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:color-mix(in srgb,var(--surface) 92%,var(--bg));
+  padding:22px;
+}
+.proof-compact-block>.head{
+  grid-template-columns:1.05fr .95fr;
+  align-items:start;
+  margin-bottom:18px;
+}
+.proof-compact-block>.head h2{
+  font-size:clamp(26px,3vw,38px);
+  margin-top:2px;
+}
+.proof-compact-block>.head p{
+  font-size:14px;
+  margin-top:4px;
+}
+.proof-compact-block .cases{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.proof-compact-block .case{
+  padding:18px;
+  border-radius:16px;
+  background:var(--surface);
+}
+.proof-compact-block .case h3{
+  font-size:14px;
+  margin:0 0 10px;
+  letter-spacing:.01em;
+}
+.proof-compact-block .case p{
+  font-size:12px;
+  line-height:1.5;
+  margin:6px 0;
+}
+
+/* 6) Catalogue/ratecard should read as one journey */
+#catalogue{padding-bottom:54px}
+#ratecard{padding-top:54px}
+.catalogue,.rategrid{gap:14px}
+.catcard,.rate{border-radius:20px}
+
+/* 7) Pitch + Knowledge are utility zones: denser and action-led */
+#pitch,#knowledge,#toolkit{padding-top:68px;padding-bottom:68px}
+.pitchbox,.knowledge-hub{border-radius:24px}
+
+/* 8) Subtle section differentiation, inspired by premium editorial landing pages */
+#h2-priorities,#visual-proof,#pitch{
+  position:relative;
+}
+#visual-proof:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;bottom:0;
+  width:100vw;
+  background:linear-gradient(180deg,rgba(255,248,232,.52),rgba(255,255,255,0) 72%);
+  z-index:-1;
+  pointer-events:none;
+}
+[data-theme="dark"] #visual-proof:before{
+  background:linear-gradient(180deg,rgba(255,122,0,.035),transparent 72%);
+}
+
+/* 9) Mobile keeps image-led case studies instead of collapsing into text-heavy cards */
+@media(max-width:900px){
+  .section{padding:62px 0}
+  .proofgrid{grid-template-columns:1fr}
+  .proofvisual{height:230px}
+  .proof-compact-block>.head{grid-template-columns:1fr}
+  .proof-compact-block .cases{grid-template-columns:1fr}
+}
+
 </style></head>
 <body>
 
@@ -1209,19 +1366,21 @@ details{border-bottom:1px solid var(--line)}summary{cursor:pointer;padding:20px 
 </tbody></table></div>
 </section>
 
-<section class="section" id="visual-proof">
+
+<section class="section proof-suite" id="visual-proof">
 <div class="head"><div><div class="eyebrow">Visual proof & ROI</div><h2>Bằng chứng phải nhìn thấy được.</h2></div><p>Ba case dưới đây dùng đúng cấu trúc từ reference. Các con số được gắn nhãn “demo” vì chưa được xác minh từ tài liệu AthenaCM.</p></div>
 <div class="proofgrid">
 <article class="proof"><div class="proofvisual"><h3>UNILEVER VIETNAM</h3></div><div class="proofbody"><div class="eyebrow">Product Content × Interactive Hub</div><p>Webuy experience content kết hợp gamification.</p><div class="metrics"><div><strong>2.4M+</strong><span>DEMO REACH</span></div><div><strong>6.8%</strong><span>DEMO ER</span></div></div></div></article>
 <article class="proof"><div class="proofvisual"><h3>DELL & ALIENWARE</h3></div><div class="proofbody"><div class="eyebrow">Featured Product × Review</div><p>PR Star kết hợp short video review cho sản phẩm công nghệ.</p><div class="metrics"><div><strong>1.2M+</strong><span>DEMO VIEWS</span></div><div><strong>850+</strong><span>DEMO LEADS</span></div></div></div></article>
 <article class="proof"><div class="proofvisual"><h3>L'ORÉAL PARIS</h3></div><div class="proofbody"><div class="eyebrow">Creator Cruise × Shoppertainment</div><p>Creator experience kết hợp livestream commerce.</p><div class="metrics"><div><strong>4,500+</strong><span>DEMO UGC</span></div><div><strong>+35%</strong><span>DEMO GMV</span></div></div></div></article>
 </div>
+
+<div class="proof-compact-block" id="cases">
+  <div class="head"><div><div class="eyebrow">06 / Proof</div><h2>Đừng chỉ nói hay.<br>Cho Sale bằng chứng.</h2></div><p>Chưa có dữ liệu case/KPI được duyệt trong brief nên bản v1 chỉ dựng cấu trúc mẫu, không bịa số liệu.</p></div>
+<div class="cases"><article class="case"><h3>CASE / FINANCE</h3><p><b>Challenge:</b> Sản phẩm khó hiểu trong một thông điệp ngắn.</p><p><b>Solution:</b> Content architecture + editorial proof + social amplification.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / FMCG</h3><p><b>Challenge:</b> Người dùng chưa thấy lý do chọn sản phẩm.</p><p><b>Solution:</b> Visual storytelling + creator + booking.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / REAL ESTATE</h3><p><b>Challenge:</b> Thị trường có nhiều thông điệp giống nhau.</p><p><b>Solution:</b> Narrative + editorial + PR.</p><p><b>KPI:</b> — placeholder</p></article></div>
+</div>
 </section>
 
-<section class="section" id="cases">
-<div class="head"><div><div class="eyebrow">06 / Proof</div><h2>Đừng chỉ nói hay.<br>Cho Sale bằng chứng.</h2></div><p>Chưa có dữ liệu case/KPI được duyệt trong brief nên bản v1 chỉ dựng cấu trúc mẫu, không bịa số liệu.</p></div>
-<div class="cases"><article class="case"><h3>CASE / FINANCE</h3><p><b>Challenge:</b> Sản phẩm khó hiểu trong một thông điệp ngắn.</p><p><b>Solution:</b> Content architecture + editorial proof + social amplification.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / FMCG</h3><p><b>Challenge:</b> Người dùng chưa thấy lý do chọn sản phẩm.</p><p><b>Solution:</b> Visual storytelling + creator + booking.</p><p><b>KPI:</b> — placeholder</p></article><article class="case"><h3>CASE / REAL ESTATE</h3><p><b>Challenge:</b> Thị trường có nhiều thông điệp giống nhau.</p><p><b>Solution:</b> Narrative + editorial + PR.</p><p><b>KPI:</b> — placeholder</p></article></div>
-</section>
 
 <section class="section" id="catalogue">
 <div class="head"><div><div class="eyebrow">Sales package catalogue</div><h2>Gói bán đề xuất</h2></div><p>Chọn gói theo mức độ sẵn sàng và ngân sách của Client; sau đó đi sâu vào sản phẩm/giải pháp phù hợp.</p></div>
