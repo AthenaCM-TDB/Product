@@ -929,6 +929,175 @@ html,body{max-width:100%;overflow-x:hidden}
   .h2-hero-block.focus-block{padding:26px 22px!important}
 }
 
+
+/* ===== V21 H2 HERO + QUARTER FOCUS POLISH ===== */
+
+/* NEW H2: fixed editorial grid; no text overlap */
+.h2-hero-block.new-block{padding:0!important;min-height:0!important}
+.new-block .h2-block-inner{
+  display:grid!important;
+  grid-template-columns:180px minmax(0,1fr);
+  grid-template-areas:
+    "kicker kicker"
+    "number headline"
+    "number copy"
+    "number chips"
+    "number actions";
+  column-gap:34px;
+  row-gap:12px;
+  align-items:start;
+  padding:34px 38px 32px!important;
+}
+.new-block .h2-kicker{
+  grid-area:kicker!important;
+  margin:0 0 2px!important;
+}
+.new-block .h2-number{
+  grid-area:number!important;
+  margin:8px 0 0!important;
+  align-self:start!important;
+  justify-self:start!important;
+  font-size:clamp(92px,10vw,132px)!important;
+  line-height:.82!important;
+}
+.new-block h2{
+  grid-area:headline!important;
+  margin:4px 0 0!important;
+  max-width:760px!important;
+  font-size:clamp(38px,4.5vw,58px)!important;
+  line-height:.94!important;
+  letter-spacing:-.05em!important;
+}
+.new-block .h2-block-inner>p{
+  grid-area:copy!important;
+  margin:4px 0 0!important;
+  padding:0!important;
+  max-width:720px!important;
+  align-self:start!important;
+}
+.new-block .action-strip{
+  grid-area:chips!important;
+  margin:8px 0 0!important;
+}
+.new-block .h2-block-actions{
+  grid-area:actions!important;
+  display:flex!important;
+  justify-self:start!important;
+  align-self:start!important;
+  width:auto!important;
+  margin:8px 0 0!important;
+  padding:0!important;
+  gap:8px!important;
+}
+
+/* Quarter Focus: remove orphan flagship tag and build one clean hierarchy */
+.focus-block{
+  position:relative;
+  overflow:hidden;
+}
+.focus-block .h2-block-inner{display:block!important}
+.focus-heading-row{
+  display:block!important;
+  margin-bottom:18px!important;
+}
+.focus-heading-row h2{
+  margin:22px 0 8px!important;
+  max-width:none!important;
+}
+.focus-heading-row h2::after{
+  content:"SELL THIS NOW";
+  display:inline-flex;
+  vertical-align:middle;
+  margin-left:14px;
+  transform:translateY(-4px);
+  padding:6px 9px;
+  border-radius:999px;
+  background:#17181D;
+  color:#fff;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.10em;
+}
+.focus-block .h2-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.focus-block .h2-kicker::after{
+  content:"";
+  height:1px;
+  flex:1;
+  max-width:110px;
+  background:rgba(23,24,29,.18);
+}
+.focus-block .focus-tabs{margin-top:14px}
+.focus-product-card.flagship-focus{
+  margin-top:2px;
+  position:relative;
+}
+.focus-product-card.flagship-focus::before{
+  content:"ƯU TIÊN #1";
+  position:absolute;
+  top:18px;
+  right:18px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#FFD300;
+  color:#17181D;
+  font-size:9px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+.focus-product-card.flagship-focus .focus-product-badge{
+  display:none!important;
+}
+
+/* Mobile: vertical rhythm, no oversized collisions */
+@media(max-width:900px){
+  .new-block .h2-block-inner{
+    display:flex!important;
+    flex-direction:column!important;
+    padding:26px 22px!important;
+    gap:0!important;
+  }
+  .new-block .h2-number{
+    margin:28px 0 20px!important;
+    font-size:88px!important;
+  }
+  .new-block h2{
+    margin:0 0 16px!important;
+    font-size:clamp(34px,10vw,46px)!important;
+    line-height:.98!important;
+  }
+  .new-block .h2-block-inner>p{margin:0!important}
+  .new-block .action-strip{margin-top:20px!important}
+  .new-block .h2-block-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    margin-top:24px!important;
+  }
+  .focus-heading-row h2::after{
+    margin-left:8px;
+    transform:translateY(-2px);
+  }
+}
+@media(max-width:560px){
+  .new-block .h2-block-actions{grid-template-columns:1fr!important}
+  .focus-heading-row h2::after{
+    display:flex;
+    width:max-content;
+    margin:8px 0 0;
+    transform:none;
+  }
+  .focus-product-card.flagship-focus::before{
+    position:static;
+    display:inline-flex;
+    margin:0 0 12px;
+  }
+}
+
 </style></head>
 <body>
 
@@ -1046,8 +1215,7 @@ html,body{max-width:100%;overflow-x:hidden}
             <h2 id="focusQuarterTitle" style="margin-top:22px">Q3 / 2026</h2>
             <div class="focus-countline"><strong id="focusQuarterCount">8</strong> giải pháp ưu tiên bán</div>
           </div>
-          <div class="focus-priority-note">★ <b>#1 Flagship</b><br>Truyền thông Thương Hiệu Quốc Gia</div>
-        </div>
+</div>
         <p class="focus-intro">Một danh sách duy nhất để Sale/Acc quét nhanh: <b>dùng khi nào</b> và <b>nhãn nào phù hợp</b>.</p>
 
         <div class="focus-tabs">
